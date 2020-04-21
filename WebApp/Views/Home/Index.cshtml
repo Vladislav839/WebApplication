@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Home Page";
+}
+@model WebApp.Models.LoginUser;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="~/css/homestyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+</head>
+<body background="linear-gradient(80deg, #e83e8c, #0069d9)">
+    <div class="parent">
+        <div class="block">
+            <div class="social-network-image">
+                <img src="~/img/social-network.png" class="responsive" alt="social-network-image">
+            </div>
+            <div class="input-form">
+                <p class="label">Log in to our social network</p>
+                <form asp-action="Profile" method="post" class="enter-form">
+                    <input asp-for="NickName" placeholder="NickName" class="enter-form-input">
+                    <input asp-for="Password" placeholder="Password" type="password" class="enter-form-input">
+                    <button type="submit" class="enter-form-button">Log in</button>
+                </form>
+                <span><a asp-action="ForgotPassword" class="forgot">Forgot password?</a></span>
+                <p class="account">Don't have an account?</p>
+                <a asp-action="Register" class="register-button">Create it now</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
