@@ -2,34 +2,76 @@
     Layout = null;
     ViewData["Title"] = "Home Page";
 }
-@model WebApp.Models.LoginUser;
+@using System.Security.Claims;
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="~/css/homestyle.css">
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body background="linear-gradient(80deg, #e83e8c, #0069d9)">
-    <div class="parent">
-        <div class="block">
-            <div class="social-network-image">
-                <img src="~/img/social-network.png" class="responsive" alt="social-network-image">
-            </div>
-            <div class="input-form">
-                <p class="label">Log in to our social network</p>
-                <form asp-action="Profile" method="post" class="enter-form">
-                    <input asp-for="NickName" placeholder="NickName" class="enter-form-input">
-                    <input asp-for="Password" placeholder="Password" type="password" class="enter-form-input">
-                    <button type="submit" class="enter-form-button">Log in</button>
+<body>
+    <div class="container-fluid">
+        <div class="row bg-dark align-items-center">
+            <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
+            <div class="col-md-4 mt-4 mb-3">
+                <form class="d-flex">
+                    <input type="text" class="form-control" placeholder="Искать здесь...">
+                    <button class="bth btn-success ml-2">Search</button>
                 </form>
-                <span><a asp-action="ForgotPassword" class="forgot">Forgot password?</a></span>
-                <p class="account">Don't have an account?</p>
-                <a asp-action="Register" class="register-button">Create it now</a>
+            </div>
+            <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
+                <a href="#" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
+                </form>
             </div>
         </div>
     </div>
+    <div class="container-fluid" style="background-image: url('../img/header.jpg'); height: 350px;">
+        <div class="row align-items-center justify-content-center pt-4">
+            <div style="width: 200px; height: 200px;">
+                <img src="~/img/avatar-default.png" class="rounded-circle img-fluid">
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center pt-4">
+            <button class="btn btn-primary small">Change photo</button>
+        </div>
+        <div style="font-size: 26px;" class="row align-items-center justify-content-center text-white pt-2">
+            @User.Identity.Name
+        </div>
+    </div>
+    <div class="container-fluid" style="background-color: #35558c;">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">POSTS</div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">FRIENDS</div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="text-dark mt-3">Add post</h2>
+        <form action="/action_page.php">
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mb-4">Submit</button>
+        </form>
+    </div>
+    <footer class="page-footer bg-dark font-small blue">
+
+        <!-- Copyright -->
+        <div class="text-center text-gray-dark py-3">
+            © 2020 Copyright:
+        </div>
+        <!-- Copyright -->
+
+    </footer>
 </body>
 </html>

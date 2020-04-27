@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WebApp.Database;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -19,28 +19,10 @@ namespace WebApp.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public ViewResult Index()
+        [Authorize]
+        public IActionResult Index()
         {
             return View();
-        }
-       
-        
-
-        [HttpGet]
-        public ViewResult Register()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ViewResult Register(User user)
-        {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return View("Profile", user);
-            }
         }
 
 

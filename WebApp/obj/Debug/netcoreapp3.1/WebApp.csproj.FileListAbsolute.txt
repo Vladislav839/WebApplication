@@ -32,7 +32,6 @@ C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\staticwebasse
 C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\WebApp.dll
 C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\WebApp.pdb
 C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\WebApp.csproj.CopyComplete
-C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Register.cshtml.g.cs
 C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
@@ -53,7 +52,14 @@ C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Npgsql.dll
 C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.Design.dll
 C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
-C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\WebApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Profile.cshtml.g.cs
-C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\LoginError.cshtml.g.cs
 C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Profile.cshtml.g.cs
+C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\WebApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Lenovo\source\repos\WebApp\WebApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Lenovo\source\repos\WebApp\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs

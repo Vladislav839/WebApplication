@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Register";
+}
+@model WebApp.ViewModels.RegisterModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="~/css/homestyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+</head>
+<body background="linear-gradient(80deg, #e83e8c, #0069d9)">
+    <div class="parent">
+            <div class="register-column">
+                <div class="register-image">
+                    <img src="~/img/register-image.png" class="responsive" alt="register-image">
+                </div>
+                <form class="register-input-form" asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+                    <p class="label">Join us!</p>
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <input asp-for="NickName" style="margin-bottom:10px;" placeholder="Nickname" class="register-input">
+                    <span asp-validation-for="NickName"></span>
+                    <input asp-for="Email" style="margin-bottom:10px;" type="email" placeholder="Email" class="register-input">
+                    <span asp-validation-for="Email"></span>
+                    <input asp-for="Password" style="margin-bottom:10px;" type="password" placeholder="Password" class="register-input">
+                    <span asp-validation-for="Password"></span>
+                    <input type="password" asp-for="ConfirmPassword" style="margin-bottom:10px;" placeholder="Conform Password" class="register-input">
+                    <span asp-validation-for="ConfirmPassword"></span>
+                    <button type="submit" value="Регистрация" class="register-form-button">Complete registration</button>
+                </form>
+            </div>
+
+        </div>
+</body>
+</html>
