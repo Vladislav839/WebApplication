@@ -34,7 +34,7 @@ namespace AuthApp.Controllers
                 {
                     await Authenticate(model.Email); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", user);
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -54,13 +54,14 @@ namespace AuthApp.Controllers
                 User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
+                    User reguser = new User { Email = model.Email, Password = model.Password, NickName = model.NickName };
                     // добавляем пользователя в бд
-                    db.Users.Add(new User { Email = model.Email, Password = model.Password, NickName = model.NickName });
+                    db.Users.Add(reguser);
                     await db.SaveChangesAsync();
 
                     await Authenticate(model.Email); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", reguser);
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");

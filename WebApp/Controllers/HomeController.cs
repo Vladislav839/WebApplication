@@ -20,9 +20,9 @@ namespace WebApp.Controllers
         }
 
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(User user)
         {
-            return View();
+            return View(user);
         }
 
 

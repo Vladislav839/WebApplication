@@ -3,6 +3,7 @@
     ViewData["Title"] = "Home Page";
 }
 @using System.Security.Claims;
+@model WebApp.Models.User;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" style="background-image: url('../img/header.jpg'); height: 350px;">
+    <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c)">
         <div class="row align-items-center justify-content-center pt-4">
             <div style="width: 200px; height: 200px;">
                 <img src="~/img/avatar-default.png" class="rounded-circle img-fluid">
@@ -41,7 +42,7 @@
             <button class="btn btn-primary small">Change photo</button>
         </div>
         <div style="font-size: 26px;" class="row align-items-center justify-content-center text-white pt-2">
-            @User.Identity.Name
+            @Model.NickName
         </div>
     </div>
     <div class="container-fluid" style="background-color: #35558c;">
