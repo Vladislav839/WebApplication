@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -6,17 +7,16 @@ using System.Security.Claims;
 using WebApp.ViewModels; // пространство имен моделей RegisterModel и LoginModel
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using webApp.Models;
 using WebApp.Models;
 
 namespace AuthApp.Controllers
 {
     public class AccountController : Controller
     {
-        private UserContext db;
-        public AccountController(UserContext context)
+        private readonly ApplicationContext _db;
+        public AccountController(ApplicationContext context)
         {
-            db = context;
+            _db = context;
         }
         [HttpGet]
         public IActionResult Login()
@@ -29,12 +29,13 @@ namespace AuthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                var users = await _db.Users.ToListAsync().ConfigureAwait(true);
+                var user = users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
                 if (user != null)
                 {
                     await Authenticate(model.Email); // аутентификация
 
-                    return RedirectToAction("Index", "Home", user);
+                    return RedirectToAction("Index", "User", new {id = user.Id} );
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -51,13 +52,13 @@ namespace AuthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                User user = await _db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
                     User reguser = new User { Email = model.Email, Password = model.Password, NickName = model.NickName };
                     // добавляем пользователя в бд
-                    db.Users.Add(reguser);
-                    await db.SaveChangesAsync();
+                    _db.Users.Add(reguser);
+                    await _db.SaveChangesAsync();
 
                     await Authenticate(model.Email); // аутентификация
 
