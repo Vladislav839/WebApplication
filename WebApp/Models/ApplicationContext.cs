@@ -3,14 +3,17 @@ using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 
+
+
 namespace WebApp.Models
 {
     public class ApplicationContext: DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserModel> Users { get; set; }
+        public DbSet<PostModel> Posts { get; set; }
         public DbSet<Friend> Friends { get; set; }
-        public DbSet<UsersPost> UsersPosts { get; set; }
-        public DbSet<LikesPost> LikesPosts { get; set; }
+        public DbSet<UserPost> UsersPosts { get; set; }
+        public DbSet<LikePost> LikesPosts { get; set; }
         
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
@@ -36,23 +39,23 @@ namespace WebApp.Models
                 .WithMany(u => u.Friends2)
                 .HasForeignKey(sc => sc.Person2Id);
 
-            modelBuilder.Entity<UsersPost>().HasKey(t => new {t.OwnerId, t.PostId});
+            modelBuilder.Entity<UserPost>().HasKey(t => new {t.OwnerId, t.PostId});
             
-            modelBuilder.Entity<UsersPost>().HasOne(p => p.Owner)
+            modelBuilder.Entity<UserPost>().HasOne(p => p.Owner)
                 .WithMany(up => up.UserPosts)
                 .HasForeignKey(u => u.OwnerId);
             
-            modelBuilder.Entity<UsersPost>().HasOne(p => p.Post)
+            modelBuilder.Entity<UserPost>().HasOne(p => p.PostModel)
                 .WithMany(up => up.UserPosts)
                 .HasForeignKey(u => u.PostId);
             
-            modelBuilder.Entity<LikesPost>().HasKey(t => new {t.RatingPersonId, t.PostId});
+            modelBuilder.Entity<LikePost>().HasKey(t => new {t.RatingPersonId, t.PostId});
             
-            modelBuilder.Entity<LikesPost>().HasOne(p => p.RatingPerson)
+            modelBuilder.Entity<LikePost>().HasOne(p => p.RatingPerson)
                 .WithMany(up => up.LikesPosts)
                 .HasForeignKey(u => u.RatingPersonId);
             
-            modelBuilder.Entity<LikesPost>().HasOne(p => p.Post)
+            modelBuilder.Entity<LikePost>().HasOne(p => p.PostModel)
                 .WithMany(up => up.LikesPosts)
                 .HasForeignKey(u => u.RatingPersonId);
             

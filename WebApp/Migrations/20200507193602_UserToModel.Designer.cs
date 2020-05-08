@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WebApp.Models;
@@ -9,9 +10,10 @@ using WebApp.Models;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200507193602_UserToModel")]
+    partial class UserToModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,24 +29,24 @@ namespace WebApp.Migrations
                     b.Property<int>("Person2Id")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("UserModelId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("UserId1")
+                    b.Property<int?>("UserModelId1")
                         .HasColumnType("integer");
 
                     b.HasKey("Person1Id", "Person2Id");
 
                     b.HasIndex("Person2Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserModelId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserModelId1");
 
                     b.ToTable("Friends");
                 });
 
-            modelBuilder.Entity("WebApp.Models.LikePost", b =>
+            modelBuilder.Entity("WebApp.Models.LikesPost", b =>
                 {
                     b.Property<int>("RatingPersonId")
                         .HasColumnType("integer");
@@ -52,12 +54,12 @@ namespace WebApp.Migrations
                     b.Property<int>("PostId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("UserModelId")
                         .HasColumnType("integer");
 
                     b.HasKey("RatingPersonId", "PostId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserModelId");
 
                     b.ToTable("LikesPosts");
                 });
@@ -73,9 +75,6 @@ namespace WebApp.Migrations
                         .HasColumnType("text");
 
                     b.Property<int>("owner")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("rating")
                         .HasColumnType("integer");
 
                     b.Property<string>("text")
@@ -128,7 +127,7 @@ namespace WebApp.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("WebApp.Models.UserPost", b =>
+            modelBuilder.Entity("WebApp.Models.UsersPost", b =>
                 {
                     b.Property<int>("OwnerId")
                         .HasColumnType("integer");
@@ -150,28 +149,28 @@ namespace WebApp.Migrations
 
             modelBuilder.Entity("WebApp.Models.Friend", b =>
                 {
-                    b.HasOne("WebApp.Models.UserModel", "Person1")
+                    b.HasOne("WebApp.Models.User", "Person1")
                         .WithMany("Friends1")
                         .HasForeignKey("Person1Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApp.Models.UserModel", "Person2")
+                    b.HasOne("WebApp.Models.User", "Person2")
                         .WithMany("Friends2")
                         .HasForeignKey("Person2Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApp.Models.User", null)
+                    b.HasOne("WebApp.Models.UserModel", null)
                         .WithMany("Friends1")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserModelId");
 
-                    b.HasOne("WebApp.Models.User", null)
+                    b.HasOne("WebApp.Models.UserModel", null)
                         .WithMany("Friends2")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserModelId1");
                 });
 
-            modelBuilder.Entity("WebApp.Models.LikePost", b =>
+            modelBuilder.Entity("WebApp.Models.LikesPost", b =>
                 {
                     b.HasOne("WebApp.Models.Post", "Post")
                         .WithMany("LikesPosts")
@@ -179,18 +178,18 @@ namespace WebApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApp.Models.UserModel", "RatingPerson")
+                    b.HasOne("WebApp.Models.User", "RatingPerson")
                         .WithMany("LikesPosts")
                         .HasForeignKey("RatingPersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApp.Models.User", null)
+                    b.HasOne("WebApp.Models.UserModel", null)
                         .WithMany("LikesPosts")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserModelId");
                 });
 
-            modelBuilder.Entity("WebApp.Models.UserPost", b =>
+            modelBuilder.Entity("WebApp.Models.UsersPost", b =>
                 {
                     b.HasOne("WebApp.Models.User", "Owner")
                         .WithMany("UserPosts")

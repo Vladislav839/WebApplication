@@ -13,16 +13,30 @@
       <e p="Migrations" t="Include">
         <e p="20200507164248_FriendList.cs" t="Include" />
         <e p="20200507164248_FriendList.Designer.cs" t="Include" />
+        <e p="20200507193602_UserToModel.cs" t="Include" />
+        <e p="20200507193602_UserToModel.Designer.cs" t="Include" />
+        <e p="20200507211919_FriendList_changedbset.cs" t="Include" />
+        <e p="20200507211919_FriendList_changedbset.Designer.cs" t="Include" />
+        <e p="20200507211932_FriendList_changedbset_.cs" t="Include" />
+        <e p="20200507211932_FriendList_changedbset_.Designer.cs" t="Include" />
+        <e p="20200507212812_UserToModel___.cs" t="Include" />
+        <e p="20200507212812_UserToModel___.Designer.cs" t="Include" />
+        <e p="20200507212822_UserToModel____.cs" t="Include" />
+        <e p="20200507212822_UserToModel____.Designer.cs" t="Include" />
+        <e p="20200508145222_ok_names.cs" t="Include" />
+        <e p="20200508145222_ok_names.Designer.cs" t="Include" />
         <e p="ApplicationContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
         <e p="ApplicationContext.cs" t="Include" />
         <e p="ErrorViewModel.cs" t="Include" />
         <e p="Friend.cs" t="Include" />
-        <e p="LikesPost.cs" t="Include" />
+        <e p="LikePost.cs" t="Include" />
         <e p="Post.cs" t="Include" />
+        <e p="PostModel.cs" t="Include" />
         <e p="User.cs" t="Include" />
-        <e p="UsersPost.cs" t="Include" />
+        <e p="UserModel.cs" t="Include" />
+        <e p="UserPost.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
@@ -36,6 +50,11 @@
       <e p="Program.cs" t="Include" />
       <e p="Properties" t="Include">
         <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="Services" t="Include">
+        <e p="Mappers.cs" t="Include" />
+        <e p="PostService.cs" t="Include" />
+        <e p="UserService.cs" t="Include" />
       </e>
       <e p="Startup.cs" t="Include" />
       <e p="ViewModels" t="Include">

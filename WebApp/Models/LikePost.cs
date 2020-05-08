@@ -1,10 +1,10 @@
 ﻿namespace WebApp.Models
 {
-    public class LikesPost
+    public class LikePost
     {
-        public User RatingPerson { get; set; }
+        public UserModel RatingPerson { get; set; }
         public int RatingPersonId { get; set; }
-        public Post Post { get; set; }
+        public PostModel PostModel { get; set; }
         public int PostId { get; set; }
     }
 }

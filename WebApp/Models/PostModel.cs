@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace WebApp.Models
 {
-    public class Post
+    
+    public class PostModel
     {
         public int ID{ get; set; }
         public int owner{ get; set; }
@@ -11,11 +13,6 @@ namespace WebApp.Models
         public int rating { get; set; }
         public List<UserPost> UserPosts { get; set; }
         public List<LikePost> LikesPosts { get; set; }
-
-        public Post()
-        {
-            UserPosts = new List<UserPost>();
-            LikesPosts = new List<LikePost>();
-        }
+        
     }
 }

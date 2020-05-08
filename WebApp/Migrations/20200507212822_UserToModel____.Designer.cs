@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WebApp.Models;
@@ -9,9 +10,10 @@ using WebApp.Models;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200507212822_UserToModel____")]
+    partial class UserToModel____
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +46,7 @@ namespace WebApp.Migrations
                     b.ToTable("Friends");
                 });
 
-            modelBuilder.Entity("WebApp.Models.LikePost", b =>
+            modelBuilder.Entity("WebApp.Models.LikesPost", b =>
                 {
                     b.Property<int>("RatingPersonId")
                         .HasColumnType("integer");
@@ -73,9 +75,6 @@ namespace WebApp.Migrations
                         .HasColumnType("text");
 
                     b.Property<int>("owner")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("rating")
                         .HasColumnType("integer");
 
                     b.Property<string>("text")
@@ -128,7 +127,7 @@ namespace WebApp.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("WebApp.Models.UserPost", b =>
+            modelBuilder.Entity("WebApp.Models.UsersPost", b =>
                 {
                     b.Property<int>("OwnerId")
                         .HasColumnType("integer");
@@ -171,7 +170,7 @@ namespace WebApp.Migrations
                         .HasForeignKey("UserId1");
                 });
 
-            modelBuilder.Entity("WebApp.Models.LikePost", b =>
+            modelBuilder.Entity("WebApp.Models.LikesPost", b =>
                 {
                     b.HasOne("WebApp.Models.Post", "Post")
                         .WithMany("LikesPosts")
@@ -190,7 +189,7 @@ namespace WebApp.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("WebApp.Models.UserPost", b =>
+            modelBuilder.Entity("WebApp.Models.UsersPost", b =>
                 {
                     b.HasOne("WebApp.Models.User", "Owner")
                         .WithMany("UserPosts")
