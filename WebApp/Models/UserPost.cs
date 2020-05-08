@@ -8,6 +8,6 @@ namespace WebApp.Models
         public User Owner { get; set; }
         public PostModel PostModel { get; set; }
         public int PostId { get; set; }
-
+        
     }
 }

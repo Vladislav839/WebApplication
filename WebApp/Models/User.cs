@@ -10,6 +10,10 @@ namespace WebApp.Models
     {
         public string NickName { get; set; }
         public int Id { get; set; }
+        
+        //public string birthday { get; set; }
+        
+        //public int age { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public List<Friend> Friends1 { get; set; }

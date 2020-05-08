@@ -1,4 +1,6 @@
-﻿using WebApp.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using WebApp.Models;
 
 namespace WebApp.Services
 {
@@ -15,7 +17,9 @@ namespace WebApp.Services
                 Friends2 = u.Friends2,
                 Id = u.Id,
                 LikesPosts = u.LikesPosts,
-                UserPosts = u.UserPosts
+                UserPosts = u.UserPosts,
+               // age = u.age,
+                //birthday = u.birthday
             };
         }
         public static Post BuildPost(PostModel p)
@@ -23,7 +27,7 @@ namespace WebApp.Services
             return new Post
             {
                 date = p.date,
-                ID = p.ID,
+                Id = p.ID,
                 LikesPosts = p.LikesPosts,
                 owner = p.owner,
                 rating = p.rating,
@@ -31,5 +35,6 @@ namespace WebApp.Services
                 UserPosts = p.UserPosts
             };
         }
+        
     }
 }
