@@ -12,6 +12,7 @@ namespace WebApp.Models
         public DbSet<UserModel> Users { get; set; }
         public DbSet<PostModel> Posts { get; set; }
         public DbSet<Friend> Friends { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<UserPost> UsersPosts { get; set; }
         public DbSet<LikePost> LikesPosts { get; set; }
         
@@ -27,17 +28,17 @@ namespace WebApp.Models
             base.OnModelCreating(modelBuilder);
             
             modelBuilder.Entity<Friend>()
-                 .HasKey(t => new { t.Person1Id, t.Person2Id });
+                 .HasKey(t => new { Person1Id = t.PersonInputRequestId, Person2Id = t.PersonOutputRequestId });
             
             modelBuilder.Entity<Friend>()
-                .HasOne(sc => sc.Person1)
+                .HasOne(sc => sc.PersonOutputRequest)
                 .WithMany(u => u.Friends1)
-                .HasForeignKey(sc => sc.Person1Id);
+                .HasForeignKey(sc => sc.PersonInputRequestId);
             
             modelBuilder.Entity<Friend>()
-                .HasOne(sc => sc.Person2)
+                .HasOne(sc => sc.PersonInputRequest)
                 .WithMany(u => u.Friends2)
-                .HasForeignKey(sc => sc.Person2Id);
+                .HasForeignKey(sc => sc.PersonOutputRequestId);
 
             modelBuilder.Entity<UserPost>().HasKey(t => new {t.OwnerId, t.PostId});
             
@@ -49,15 +50,27 @@ namespace WebApp.Models
                 .WithMany(up => up.UserPosts)
                 .HasForeignKey(u => u.PostId);
             
-            modelBuilder.Entity<LikePost>().HasKey(t => new {t.RatingPersonId, t.PostId});
+            modelBuilder.Entity<LikePost>()
+                .HasKey(t => new {t.RatingPersonId, t.PostId});
             
             modelBuilder.Entity<LikePost>().HasOne(p => p.RatingPerson)
                 .WithMany(up => up.LikesPosts)
                 .HasForeignKey(u => u.RatingPersonId);
             
             modelBuilder.Entity<LikePost>().HasOne(p => p.PostModel)
-                .WithMany(up => up.LikesPosts)
+                .WithMany(up => up.LikesPost)
                 .HasForeignKey(u => u.RatingPersonId);
+            
+            modelBuilder.Entity<Subscriber>()
+                .HasKey(t => new {t.senderId, t.targetId});
+            
+            modelBuilder.Entity<Subscriber>().HasOne(p => p.sender)
+                .WithMany(up => up.OutputSubscribtions)
+                .HasForeignKey(u => u.senderId);
+            
+            modelBuilder.Entity<Subscriber>().HasOne(p => p.target)
+                .WithMany(up => up.InputSubscriptions)
+                .HasForeignKey(u => u.targetId);
             
         }
 

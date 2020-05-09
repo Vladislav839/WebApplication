@@ -12,7 +12,7 @@ namespace WebApp.Models
         public string date{ get; set; }
         public int rating { get; set; }
         public List<UserPost> UserPosts { get; set; }
-        public List<LikePost> LikesPosts { get; set; }
+        public List<LikePost> LikesPost { get; set; }
         
     }
 }

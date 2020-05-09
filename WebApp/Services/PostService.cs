@@ -33,9 +33,16 @@ namespace WebApp.Services
             return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post).rating;
         }
 
-        public Post FindById(int id)
+        public Post FindById(int id_post)
         {
-            return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id);
+            return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post);
+        }
+        
+        public bool IsLikedByUser(int postId, int userId)
+        {
+            var finder = _appContext.LikesPosts.Where(lp => lp.PostId == postId && lp.RatingPersonId == userId).ToList();
+            if (finder.Count != 0) return true;
+            return false;
         }
     }
 }

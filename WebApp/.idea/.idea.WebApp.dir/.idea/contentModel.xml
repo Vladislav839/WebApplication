@@ -35,6 +35,7 @@
         <e p="LikePost.cs" t="Include" />
         <e p="Post.cs" t="Include" />
         <e p="PostModel.cs" t="Include" />
+        <e p="Subscriber.cs" t="Include" />
         <e p="User.cs" t="Include" />
         <e p="UserModel.cs" t="Include" />
         <e p="UserPost.cs" t="Include" />

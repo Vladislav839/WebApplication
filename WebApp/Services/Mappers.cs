@@ -13,12 +13,14 @@ namespace WebApp.Services
                 NickName = u.NickName,
                 Password = u.Password,
                 Email = u.Email,
-                Friends1 = u.Friends1,
-                Friends2 = u.Friends2,
+                FriendsOut = u.Friends1,
+                FriendsIn = u.Friends2,
                 Id = u.Id,
                 LikesPosts = u.LikesPosts,
                 UserPosts = u.UserPosts,
-               // age = u.age,
+                InputSubscriptions = u.InputSubscriptions,
+                OutputSubcriptions = u.OutputSubscribtions
+                // age = u.age,
                 //birthday = u.birthday
             };
         }
@@ -28,7 +30,7 @@ namespace WebApp.Services
             {
                 date = p.date,
                 Id = p.ID,
-                LikesPosts = p.LikesPosts,
+                LikesPosts = p.LikesPost,
                 owner = p.owner,
                 rating = p.rating,
                 text = p.text,

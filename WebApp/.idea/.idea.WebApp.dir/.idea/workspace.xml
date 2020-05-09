@@ -18,6 +18,7 @@
     <setting file="file://$PROJECT_DIR$/Models/ApplicationContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/233E8C8F-0E85-4B63-AE7F-9B374A12D146/d9/d831f672/Controller.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Models/Friend.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Models/Subscriber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Controllers/UserController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Views/User/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Views/Profile.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
@@ -61,19 +62,20 @@
         <option value="$PROJECT_DIR$/Models/Friends.cs" />
         <option value="$PROJECT_DIR$/Models/UsersPost.cs" />
         <option value="$PROJECT_DIR$/Controllers/HomeController.cs" />
-        <option value="$PROJECT_DIR$/Models/Friend.cs" />
         <option value="$PROJECT_DIR$/Controllers/AccountController.cs" />
         <option value="$PROJECT_DIR$/Controllers/UserController.cs" />
         <option value="$PROJECT_DIR$/Models/LikesPost.cs" />
-        <option value="$PROJECT_DIR$/Models/PostModel.cs" />
-        <option value="$PROJECT_DIR$/Models/ApplicationContext.cs" />
         <option value="$PROJECT_DIR$/Controllers/PostController.cs" />
         <option value="$PROJECT_DIR$/Models/Post.cs" />
-        <option value="$PROJECT_DIR$/Models/User.cs" />
-        <option value="$PROJECT_DIR$/Services/Mappers.cs" />
-        <option value="$PROJECT_DIR$/Models/UserModel.cs" />
-        <option value="$PROJECT_DIR$/Services/PostService.cs" />
         <option value="$PROJECT_DIR$/Models/UserPost.cs" />
+        <option value="$PROJECT_DIR$/Models/PostModel.cs" />
+        <option value="$PROJECT_DIR$/Models/UserModel.cs" />
+        <option value="$PROJECT_DIR$/Models/Subscriber.cs" />
+        <option value="$PROJECT_DIR$/Models/ApplicationContext.cs" />
+        <option value="$PROJECT_DIR$/Services/Mappers.cs" />
+        <option value="$PROJECT_DIR$/Models/Friend.cs" />
+        <option value="$PROJECT_DIR$/Models/User.cs" />
+        <option value="$PROJECT_DIR$/Services/PostService.cs" />
         <option value="$PROJECT_DIR$/Services/UserService.cs" />
       </list>
     </option>
@@ -147,7 +149,9 @@
       <workItem from="1588782315366" duration="2312000" />
       <workItem from="1588866305374" duration="18115000" />
       <workItem from="1588946884660" duration="14236000" />
-      <workItem from="1588973394595" duration="5384000" />
+      <workItem from="1588973394595" duration="8931000" />
+      <workItem from="1589021607756" duration="8551000" />
+      <workItem from="1589031552561" duration="4967000" />
     </task>
     <servers />
   </component>
@@ -174,25 +178,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1588886455046" />
-    <state width="1493" height="198" key="GridCell.Tab.0.bottom" timestamp="1588974895143">
+    <state width="1493" height="95" key="GridCell.Tab.0.bottom" timestamp="1588982332559">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588974895143" />
-    <state width="1493" height="198" key="GridCell.Tab.0.center" timestamp="1588974895143">
+    <state width="1493" height="95" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588982332559" />
+    <state width="1493" height="95" key="GridCell.Tab.0.center" timestamp="1588982332559">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588974895143" />
-    <state width="1493" height="198" key="GridCell.Tab.0.left" timestamp="1588974895143">
+    <state width="1493" height="95" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588982332559" />
+    <state width="1493" height="95" key="GridCell.Tab.0.left" timestamp="1588982332559">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588974895143" />
-    <state width="1493" height="198" key="GridCell.Tab.0.right" timestamp="1588974895143">
+    <state width="1493" height="95" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588982332559" />
+    <state width="1493" height="95" key="GridCell.Tab.0.right" timestamp="1588982332559">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="198" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588974895143" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1588444866576">
+    <state width="1493" height="95" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588982332559" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1589027163563">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1588444866576" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1589027163563" />
   </component>
 </project>
