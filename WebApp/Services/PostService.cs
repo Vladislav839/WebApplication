@@ -30,7 +30,7 @@ namespace WebApp.Services
 
         public int GetRating(int id_post)
         {
-            return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post).rating;
+            return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post) == null ? -1 : _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post).rating;
         }
 
         public Post FindById(int id_post)
@@ -43,6 +43,12 @@ namespace WebApp.Services
             var finder = _appContext.LikesPosts.Where(lp => lp.PostId == postId && lp.RatingPersonId == userId).ToList();
             if (finder.Count != 0) return true;
             return false;
+        }
+
+        public List<User> FindPerson_simple(string request)
+        {
+            return _appContext.Users.Select(Mappers.BuildUser).Where(p => p.NickName.Contains(request)).ToList();
+            
         }
     }
 }

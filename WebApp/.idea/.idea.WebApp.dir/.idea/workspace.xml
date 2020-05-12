@@ -48,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Views/Home/Feed.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Controllers/PostController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Models/PostModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/E9BDBB73-53B2-465B-B3B7-E2006463A5DC/F/RazorPageOfT.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -75,8 +76,10 @@
         <option value="$PROJECT_DIR$/Services/Mappers.cs" />
         <option value="$PROJECT_DIR$/Models/Friend.cs" />
         <option value="$PROJECT_DIR$/Models/User.cs" />
-        <option value="$PROJECT_DIR$/Services/PostService.cs" />
         <option value="$PROJECT_DIR$/Services/UserService.cs" />
+        <option value="$PROJECT_DIR$/Services/PostService.cs" />
+        <option value="$PROJECT_DIR$/Views/User/Index.cshtml" />
+        <option value="$PROJECT_DIR$/Views/Account/Login.cshtml" />
       </list>
     </option>
   </component>
@@ -152,6 +155,7 @@
       <workItem from="1588973394595" duration="8931000" />
       <workItem from="1589021607756" duration="8551000" />
       <workItem from="1589031552561" duration="4967000" />
+      <workItem from="1589287320547" duration="6972000" />
     </task>
     <servers />
   </component>
