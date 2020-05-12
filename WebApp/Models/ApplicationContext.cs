@@ -3,10 +3,11 @@ using WebApp.Models;
 
 namespace webApp.Models
 {
-    public class UserContext : DbContext
+    public class ApplicationContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public UserContext(DbContextOptions<UserContext> options)
+        public DbSet<Post> Posts { get; set; }
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
             Database.EnsureCreated();

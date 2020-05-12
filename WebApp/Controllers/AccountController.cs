@@ -8,15 +8,22 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using webApp.Models;
 using WebApp.Models;
+using System.Linq;
+using System;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace AuthApp.Controllers
 {
     public class AccountController : Controller
     {
-        private UserContext db;
-        public AccountController(UserContext context)
+        private ApplicationContext db;
+        private IWebHostEnvironment _appEnvironment;
+        public AccountController(ApplicationContext context, IWebHostEnvironment iWebHostEnvironment)
         {
             db = context;
+            _appEnvironment = iWebHostEnvironment;
         }
         [HttpGet]
         public IActionResult Login()
@@ -29,10 +36,10 @@ namespace AuthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                User user = await db.Users.FirstOrDefaultAsync(u => u.NickName == model.NickName && u.Password == model.Password);
                 if (user != null)
                 {
-                    await Authenticate(model.Email); // аутентификация
+                    await Authenticate(model.NickName); // аутентификация
 
                     return RedirectToAction("Index", "Home", user);
                 }
@@ -54,12 +61,12 @@ namespace AuthApp.Controllers
                 User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    User reguser = new User { Email = model.Email, Password = model.Password, NickName = model.NickName };
+                    User reguser = new User { Email = model.Email, Password = model.Password, NickName = model.NickName, Path = "~/img/avatar-default.png" };
                     // добавляем пользователя в бд
                     db.Users.Add(reguser);
                     await db.SaveChangesAsync();
 
-                    await Authenticate(model.Email); // аутентификация
+                    await Authenticate(model.NickName); // аутентификация
 
                     return RedirectToAction("Index", "Home", reguser);
                 }
@@ -83,10 +90,39 @@ namespace AuthApp.Controllers
         }
 
         [HttpPost]
+        public IActionResult PostPost(string text)
+       {
+           Post a = new Post {Owner = User.Identity.Name, Text = text, Time = DateTime.Now.ToString()};
+           db.Posts.Add(a);
+           db.SaveChanges();
+           return RedirectToAction("Index", "Home");
+       }
+
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddFile(IFormFile uploadedFile)
+        {
+            var user = await db.Users.FirstOrDefaultAsync(u => u.NickName == User.Identity.Name);
+            if (uploadedFile != null)
+            {
+                // путь к папке Files
+                string path = "/Files/" + uploadedFile.FileName;
+                // сохраняем файл в папку Files в каталоге wwwroot
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await uploadedFile.CopyToAsync(fileStream);
+                }
+                user.Path = path;
+                db.SaveChanges();
+            }
+            
+            return RedirectToAction("Index", "Home", user);
         }
     }
 }
