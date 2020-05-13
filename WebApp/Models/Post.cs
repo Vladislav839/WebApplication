@@ -5,9 +5,9 @@ namespace WebApp.Models
     public class Post
     {
         public int Id{ get; set; }
-        public int owner{ get; set; }
-        public string text{ get; set; }
-        public string date{ get; set; }
+        public string Owner{ get; set; }
+        public string Text{ get; set; }
+        public string Time{ get; set; }
         public int rating { get; set; }
         public List<UserPost> UserPosts { get; set; }
         public List<LikePost> LikesPosts { get; set; }

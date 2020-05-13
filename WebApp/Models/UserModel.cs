@@ -10,11 +10,13 @@ namespace WebApp.Models
         public int Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string Path { get; set; }
         public List<Friend> Friends1 { get; set; }
         public List<Friend> Friends2 { get; set; }
         public List<UserPost> UserPosts { get; set; }
         public List<LikePost> LikesPosts { get; set; } 
         public List<Subscriber> InputSubscriptions { get; set; }
         public List<Subscriber> OutputSubscribtions { get; set; }
+        
     }
 }

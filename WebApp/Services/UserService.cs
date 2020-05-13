@@ -78,10 +78,10 @@ namespace WebApp.Services
             return likedPosts;
         }
         
-        public List<Post> GetPosts(int user_id)
+        /*public List<Post> GetPosts(int user_id)
         {
             return _appContext.Posts.Select(Mappers.BuildPost).Where(p => FindById(p.owner).Id == user_id).ToList();
-        }
+        }*/
         
         public List<Subscriber> GetInputRequests(int id)
         {

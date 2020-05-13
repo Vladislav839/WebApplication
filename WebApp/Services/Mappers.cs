@@ -28,12 +28,12 @@ namespace WebApp.Services
         {
             return new Post
             {
-                date = p.date,
+                Time = p.date,
                 Id = p.ID,
                 LikesPosts = p.LikesPost,
-                owner = p.owner,
+                Owner = p.owner,
                 rating = p.rating,
-                text = p.text,
+                Text = p.text,
                 UserPosts = p.UserPosts
             };
         }

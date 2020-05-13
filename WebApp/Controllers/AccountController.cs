@@ -13,17 +13,20 @@ using System;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using WebApp.Services;
 
 namespace AuthApp.Controllers
 {
     public class AccountController : Controller
     {
-        private ApplicationContext db;
+        private ApplicationContext _db;
         private IWebHostEnvironment _appEnvironment;
+        private UserService _userService;
         public AccountController(ApplicationContext context, IWebHostEnvironment iWebHostEnvironment)
         {
-            db = context;
+            _db = context;
             _appEnvironment = iWebHostEnvironment;
+            _userService = new UserService(_db);
         }
         [HttpGet]
         public IActionResult Login()
@@ -36,7 +39,7 @@ namespace AuthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.NickName == model.NickName && u.Password == model.Password);
+                UserModel user = await _db.Users.FirstOrDefaultAsync(u => u.NickName == model.NickName && u.Password == model.Password);
                 if (user != null)
                 {
                     await Authenticate(model.NickName); // аутентификация
@@ -61,7 +64,7 @@ namespace AuthApp.Controllers
                 UserModel user = await _db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    User reguser = new User { Email = model.Email, Password = model.Password, NickName = model.NickName, Path = "~/img/avatar-default.png" };
+                    UserModel reguser = new UserModel { Email = model.Email, Password = model.Password, NickName = model.NickName, Path = "~/img/avatar-default.png" };
                     // добавляем пользователя в бд
                     _db.Users.Add(reguser);
                     await _db.SaveChangesAsync();
@@ -92,9 +95,9 @@ namespace AuthApp.Controllers
         [HttpPost]
         public IActionResult PostPost(string text)
        {
-           Post a = new Post {Owner = User.Identity.Name, Text = text, Time = DateTime.Now.ToString()};
-           db.Posts.Add(a);
-           db.SaveChanges();
+           PostModel a = new PostModel {owner = User.Identity.Name, text = text, date = DateTime.Now.ToString()};
+           _db.Posts.Add(a);
+           _db.SaveChanges();
            return RedirectToAction("Index", "Home");
        }
 
@@ -108,7 +111,7 @@ namespace AuthApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddFile(IFormFile uploadedFile)
         {
-            var user = await db.Users.FirstOrDefaultAsync(u => u.NickName == User.Identity.Name);
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.NickName == User.Identity.Name);
             if (uploadedFile != null)
             {
                 // путь к папке Files
@@ -119,16 +122,16 @@ namespace AuthApp.Controllers
                     await uploadedFile.CopyToAsync(fileStream);
                 }
                 user.Path = path;
-                db.SaveChanges();
+                _db.SaveChanges();
             }
             
             return RedirectToAction("Index", "Home", user);
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public List<Post> GetPosts()
         {
-            return db.Posts.Where(u => u.Owner == User.Identity.Name).ToList();
-        }
+            return _db.Posts.Where(u => u.Owner == User.Identity.Name).ToList();
+        }*/
     }
 }

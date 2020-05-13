@@ -13,10 +13,10 @@ namespace WebApp.Services
             _appContext = db;
         }
 
-        public User GetOwner(int id_post)
+        /*public User GetOwner(int id_post)
         {
             return _appContext.Users.Select(Mappers.BuildUser).FirstOrDefault(u => u.Id == _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post).owner);
-        }
+        }*/
         
         public List<Post> GetAllPosts()
         {
@@ -25,7 +25,7 @@ namespace WebApp.Services
 
         public string GetDate(int id_post)
         {
-            return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post).date;
+            return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post).Time;
         }
 
         public int GetRating(int id_post)
