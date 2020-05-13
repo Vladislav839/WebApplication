@@ -40,11 +40,14 @@
         </div>
         <div class="row align-items-center justify-content-center pt-4">
             <form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
-            <input type="file" class="btn btn-primary small" name="uploadedFile" />
+             <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+             </div>
             <button id="photo" class="btn btn-primary small">Change photo</button>
             </form>
         </div>
-        <div style="font-size: 26px;" class="row align-items-center justify-content-center text-white pt-2">
+        <div style="font-size: 26px;" class="text-dark" id="name" class="row align-items-center justify-content-center text-white pt-2">
             @User.Identity.Name
         </div>
     </div>
@@ -58,8 +61,9 @@
             </div>
         </div>
     </div>
-
-
+</header>
+    <div id="posts" style="display: flex; flex-direction: colomn; justify-content: center; color: blackl;">
+    </div>
     <div class="container">
         <h2 class="text-dark mt-3">Add post</h2>
             <div class="form-group">
@@ -68,15 +72,39 @@
             </div>
             <button class="btn btn-primary mb-4" id="postdata">Submit</button>
     </div>
+    <div class="container-fluid">
     <footer class="page-footer bg-dark font-small blue">
         <div class="text-center text-gray-dark py-3">
             © 2020 Copyright:
         </div>
     </footer>
+    </div>
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $.ajax({
+      url:'Account/GetPosts',
+      type:'GET'
+    })
+    .done(function (data){
+         let ddl = '';
+                $.each(data, function(index, element){
+                ddl += '<div class="container media border p-3 text-dark">\n';
+                ddl +=  '<img src="';
+                ddl += '@Url.Content(Model.Path)"';
+                ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
+                ddl += '<div class="media-body">\n';
+                ddl += '<h4 class="text-dark">' + element.owner + '<small><i class="text-dark">' + element.time + '</i></small></h4>\n';
+                ddl += '<p class="text-dark">' + element.text + '</p>\n';
+                ddl += '</div>\n';
+                ddl += '</div>\n';
+                });
+                $(ddl).insertAfter('#posts');
+    });
+    })
+
     $('#postdata').on('click', function() {
         console.log(document.getElementById('comment').innerHTML)
         $.ajax({
@@ -86,6 +114,19 @@
               text: $('#comment').val()
           }
         })
+        let name =  document.getElementById('name').innerHTML;
+        let date = Date(Date.now());
+        let d = date.toString();
+        let ddl = '<div class="container media border p-3 text-dark">\n';
+        ddl +=  '<img src="';
+        ddl += '@Url.Content(Model.Path)"';
+        ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
+        ddl += '<div class="media-body">\n';
+        ddl += '<h4 class="text-dark">' + name + '<small><i class="text-dark">' + date + '</i></small></h4>\n';
+        ddl += '<p class="text-dark">' + $('#comment').val() + '</p>\n';
+        ddl += '</div>\n';
+        ddl += '</div>\n';
+        $(ddl).insertAfter('#posts');
     })
 </script>
 

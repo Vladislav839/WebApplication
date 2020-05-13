@@ -124,5 +124,11 @@ namespace AuthApp.Controllers
             
             return RedirectToAction("Index", "Home", user);
         }
+
+        [HttpGet]
+        public List<Post> GetPosts()
+        {
+            return db.Posts.Where(u => u.Owner == User.Identity.Name).ToList();
+        }
     }
 }
