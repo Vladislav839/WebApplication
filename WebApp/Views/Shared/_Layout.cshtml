@@ -9,25 +9,47 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApp</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="container-fluid">
+        <div class="row bg-dark align-items-center">
+            <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
+            <div class="col-md-4 mt-4 mb-3">
+                <form class="d-flex">
+                    <input type="text" class="form-control" placeholder="Искать здесь...">
+                    <button class="bth btn-success ml-2">Search</button>
+                </form>
             </div>
-        </nav>
+            <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
+                <a href="#" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c)">
+        <div class="row align-items-center justify-content-center pt-4">
+            <div style="width: 200px; height: 200px;">
+                <img src="~/img/avatar-default.png" class="rounded-circle img-fluid">
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center pt-4">
+            <button class="btn btn-primary small">Change photo</button>
+        </div>
+        <div style="font-size: 26px;" class="row align-items-center justify-content-center text-white pt-2">
+            @User.Identity.Name
+        </div>
+    </div>
+    <div class="container-fluid" style="background-color: #35558c;">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">POSTS</div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">FRIENDS</div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</div>
+            </div>
+        </div>
+    </div>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -35,9 +57,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="page-footer bg-dark font-small blue">
+        <div class="text-center text-gray-dark py-3">
+            © 2020 Copyright:
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

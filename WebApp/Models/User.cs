@@ -16,6 +16,7 @@ namespace WebApp.Models
         //public int age { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string Path { get; set; }
         public List<Friend> FriendsOut { get; set; }
         public List<Friend> FriendsIn { get; set; }
         public List<UserPost> UserPosts { get; set; }

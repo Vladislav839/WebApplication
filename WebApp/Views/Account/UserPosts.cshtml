@@ -1,0 +1,14 @@
+
+@model WebApp.Models.Post;
+@{
+    Layout = null;
+}
+
+<div id="searchresults" class="text-dark">
+            <div class="media border p-3">
+            <div class="media-body">
+                <h4 style="color: balck;">@Model.Owner<small><i style="color: red;">Posted on @Model.Time</i></small></h4>
+                <p style="color: red;">@Model.Text</p>
+            </div>
+            </div>
+</div>
