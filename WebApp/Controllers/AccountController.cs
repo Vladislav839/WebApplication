@@ -22,11 +22,13 @@ namespace AuthApp.Controllers
         private ApplicationContext _db;
         private IWebHostEnvironment _appEnvironment;
         private UserService _userService;
+        private PostService _postService;
         public AccountController(ApplicationContext context, IWebHostEnvironment iWebHostEnvironment)
         {
             _db = context;
             _appEnvironment = iWebHostEnvironment;
             _userService = new UserService(_db);
+            _postService = new PostService(_db);
         }
         [HttpGet]
         public IActionResult Login()
@@ -39,7 +41,7 @@ namespace AuthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserModel user = await _db.Users.FirstOrDefaultAsync(u => u.NickName == model.NickName && u.Password == model.Password);
+                UserModel user = await _db.UserModels.FirstOrDefaultAsync(u => u.NickName == model.NickName && u.Password == model.Password);
                 if (user != null)
                 {
                     await Authenticate(model.NickName); // аутентификация
@@ -61,12 +63,12 @@ namespace AuthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserModel user = await _db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                UserModel user = await _db.UserModels.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
                     UserModel reguser = new UserModel { Email = model.Email, Password = model.Password, NickName = model.NickName, Path = "~/img/avatar-default.png" };
                     // добавляем пользователя в бд
-                    _db.Users.Add(reguser);
+                    _db.UserModels.Add(reguser);
                     await _db.SaveChangesAsync();
 
                     await Authenticate(model.NickName); // аутентификация
@@ -93,13 +95,21 @@ namespace AuthApp.Controllers
         }
 
         [HttpPost]
+        
         public IActionResult PostPost(string text)
-       {
-           PostModel a = new PostModel {owner = User.Identity.Name, text = text, date = DateTime.Now.ToString()};
-           _db.Posts.Add(a);
-           _db.SaveChanges();
-           return RedirectToAction("Index", "Home");
-       }
+        {
+            PostModel postModel = new PostModel
+            {
+                Owner = _db.UserModels.FirstOrDefault(um => um.NickName == User.Identity.Name) == null ? _db.UserModels.FirstOrDefault(um => um.Id == 1) : _db.UserModels.FirstOrDefault(um => um.NickName == User.Identity.Name), 
+                Text = text, 
+                Time = DateTime.Now.ToString(), 
+                OwnerId = _db.UserModels.FirstOrDefault( um => um.NickName == User.Identity.Name)?.Id ?? 1, 
+                Rating = 0
+            };
+            _db.PostModels.Add(postModel);
+            _db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpPost]
         public async Task<IActionResult> Logout()
@@ -111,7 +121,7 @@ namespace AuthApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddFile(IFormFile uploadedFile)
         {
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.NickName == User.Identity.Name);
+            var user = await _db.UserModels.FirstOrDefaultAsync(u => u.NickName == User.Identity.Name);
             if (uploadedFile != null)
             {
                 // путь к папке Files
@@ -128,10 +138,12 @@ namespace AuthApp.Controllers
             return RedirectToAction("Index", "Home", user);
         }
 
-        /*[HttpGet]
+        [HttpGet]
         public List<Post> GetPosts()
         {
-            return _db.Posts.Where(u => u.Owner == User.Identity.Name).ToList();
-        }*/
+            int id = _userService.FindByName(User.Identity.Name).Id;
+            List<Post> a = _userService.GetPosts(id);
+            return a;
+        }
     }
 }

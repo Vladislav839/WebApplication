@@ -62,7 +62,7 @@
         </div>
     </div>
 </header>
-    <div id="posts" style="display: flex; flex-direction: colomn; justify-content: center; color: blackl;">
+    <div id="posts" style="display: flex; flex-direction: column; justify-content: center; color: black;">
     </div>
     <div class="container">
         <h2 class="text-dark mt-3">Add post</h2>
@@ -89,47 +89,46 @@
       type:'GET'
     })
     .done(function (data){
-         let ddl = '';
+                let ddl = '';
                 $.each(data, function(index, element){
                 ddl += '<div class="container media border p-3 text-dark">\n';
                 ddl +=  '<img src="';
                 ddl += '@Url.Content(Model.Path)"';
                 ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
                 ddl += '<div class="media-body">\n';
-                ddl += '<h4 class="text-dark">' + element.owner + '<small><i class="text-dark">' + element.time + '</i></small></h4>\n';
-                ddl += '<p class="text-dark">' + element.text + '</p>\n';
+                ddl += '<h4 class="text-dark">' + element.Owner + '<small><i class="text-dark">' + element.Time + '</i></small></h4>\n';
+                ddl += '<p class="text-dark">' + element.Text + '</p>\n';
                 ddl += '</div>\n';
                 ddl += '</div>\n';
                 });
                 $(ddl).insertAfter('#posts');
     });
-    })
+    });
 
-    $('#postdata').on('click', function() {
-        console.log(document.getElementById('comment').innerHTML)
-        $.ajax({
-          url:'Account/PostPost',
-          type:'POST',
-          data: {
-              text: $('#comment').val()
-          }
-        })
-        let name =  document.getElementById('name').innerHTML;
-        let date = Date(Date.now());
-        let d = date.toString();
-        let ddl = '<div class="container media border p-3 text-dark">\n';
-        ddl +=  '<img src="';
-        ddl += '@Url.Content(Model.Path)"';
-        ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
-        ddl += '<div class="media-body">\n';
-        ddl += '<h4 class="text-dark">' + name + '<small><i class="text-dark">' + date + '</i></small></h4>\n';
-        ddl += '<p class="text-dark">' + $('#comment').val() + '</p>\n';
-        ddl += '</div>\n';
-        ddl += '</div>\n';
-        $(ddl).insertAfter('#posts');
-    })
+         $('#postdata').on('click', function() {
+            $.ajax({
+              url:'Account/PostPost',
+              type:'POST',
+              data: {
+                  text: $('#comment').val()
+              }
+            })
+            let name =  document.getElementById('name').innerHTML;
+            let date = Date(Date.now());
+            let d = date.toString();
+            let ddl = '<div class="container media border p-3 text-dark">\n';
+            ddl +=  '<img src="';
+            ddl += '@Url.Content(Model.Path)"';
+            ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
+            ddl += '<div class="media-body">\n';
+            ddl += '<h4 class="text-dark">' + name + '<small><i class="text-dark">' + date + '</i></small></h4>\n';
+            ddl += '<p class="text-dark">' + $('#comment').val() + '</p>\n';
+            ddl += '</div>\n';
+            ddl += '</div>\n';
+            $(ddl).insertAfter('#posts'); 
+        });
+   
 </script>
-
 </body>
 </html>
 

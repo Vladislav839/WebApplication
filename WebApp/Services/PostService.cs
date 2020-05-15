@@ -20,34 +20,34 @@ namespace WebApp.Services
         
         public List<Post> GetAllPosts()
         {
-            return _appContext.Posts.Select(Mappers.BuildPost).ToList();
+            return _appContext.PostModels.Select(Mappers.BuildPost).ToList();
         }
 
         public string GetDate(int id_post)
         {
-            return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post).Time;
+            return _appContext.PostModels.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post)?.Time ?? "null";
         }
 
         public int GetRating(int id_post)
         {
-            return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post) == null ? -1 : _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post).rating;
+            return _appContext.PostModels.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post)?.rating ?? 0;
         }
 
         public Post FindById(int id_post)
         {
-            return _appContext.Posts.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post);
+            return _appContext.PostModels.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post);
         }
         
-        public bool IsLikedByUser(int postId, int userId)
+        /*public bool IsLikedByUser(int postId, int userId)
         {
             var finder = _appContext.LikesPosts.Where(lp => lp.PostId == postId && lp.RatingPersonId == userId).ToList();
             if (finder.Count != 0) return true;
             return false;
-        }
+        }*/
 
         public List<User> FindPerson_simple(string request)
         {
-            return _appContext.Users.Select(Mappers.BuildUser).Where(p => p.NickName.Contains(request)).ToList();
+            return _appContext.UserModels.Select(Mappers.BuildUser).Where(p => p.NickName.Contains(request)).ToList();
             
         }
     }

@@ -13,13 +13,13 @@ namespace WebApp.Services
                 NickName = u.NickName,
                 Password = u.Password,
                 Email = u.Email,
-                FriendsOut = u.Friends1,
-                FriendsIn = u.Friends2,
+                //FriendsOut = u.Friends1,
+                //FriendsIn = u.Friends2,
                 Id = u.Id,
-                LikesPosts = u.LikesPosts,
-                UserPosts = u.UserPosts,
-                InputSubscriptions = u.InputSubscriptions,
-                OutputSubcriptions = u.OutputSubscribtions
+                //LikesPosts = u.LikesPosts,
+                //InputSubscriptions = u.InputSubscriptions,
+                //OutputSubcriptions = u.OutputSubscribtions,
+                Posts = u.Posts
                 // age = u.age,
                 //birthday = u.birthday
             };
@@ -28,13 +28,13 @@ namespace WebApp.Services
         {
             return new Post
             {
-                Time = p.date,
-                Id = p.ID,
-                LikesPosts = p.LikesPost,
-                Owner = p.owner,
-                rating = p.rating,
-                Text = p.text,
-                UserPosts = p.UserPosts
+                Time = p.Time,
+                Id = p.Id,
+                //LikesPosts = p.LikesPost,
+                Owner = p.Owner,
+                rating = p.Rating,
+                Text = p.Text,
+                OwnerId = p.OwnerId
             };
         }
         

@@ -1,4 +1,4 @@
-﻿namespace WebApp.Models
+﻿/*namespace WebApp.Models
 {
     public class Friend
     {
@@ -8,4 +8,4 @@
         public int PersonOutputRequestId{ get; set; }
 
     }
-}
+}*/

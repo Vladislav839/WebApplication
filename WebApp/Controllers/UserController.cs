@@ -20,8 +20,8 @@ namespace WebApp.Controllers
         [Authorize]
         public async Task<IActionResult> Index(int id)
         {
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == id).ConfigureAwait(true);
-            return View(_userService.FindById(id));
+            var user = await _db.UserModels.FirstOrDefaultAsync(u => u.Id == id).ConfigureAwait(true);
+            return RedirectToAction("Index", "Home", user);
         }
     }
 }

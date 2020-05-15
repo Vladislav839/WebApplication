@@ -17,39 +17,39 @@ namespace WebApp.Services
             _appContext = db;
         }
 
-        public List<User> GetFriendList(int id)
+        /*public List<User> GetFriendList(int id)
         {
-            var userFriends1 = FindById(id).FriendsOut;
-            List<User> friends = null;
+            var userFriends1 = FindById(id)?.FriendsOut ?? new List<Friend>();
+            List<User> friends = new List<User>();
             foreach (var f in userFriends1)
             {
                 if(f.PersonInputRequestId!= id) { friends.Add(Mappers.BuildUser(f.PersonOutputRequest));} else friends.Add(Mappers.BuildUser(f.PersonInputRequest));
             }
-            var userFriends2 = FindById(id).FriendsIn;
+            var userFriends2 = FindById(id)?.FriendsIn ?? new List<Friend>();
             foreach (var f in userFriends2)
             {
                 if(f.PersonInputRequestId!= id) { friends.Add(Mappers.BuildUser(f.PersonOutputRequest));} else friends.Add(Mappers.BuildUser(f.PersonInputRequest));
             }
 
             return friends;
-        }
+        }*/
         
-        public List<int> GetFriendListId(int id)
+        /*public List<int> GetFriendListId(int id)
         {
-            var userFriends1 = FindById(id).FriendsOut;
-            List<int> friends = null;
+            var userFriends1 = FindById(id)?.FriendsOut ?? new List<Friend>();
+            List<int> friends = new List<int>();
             foreach (var f in userFriends1)
             {
                 if(f.PersonInputRequestId!= id) { friends.Add(f.PersonInputRequestId);} else friends.Add(f.PersonOutputRequestId);
             }
-            var userFriends2 = FindById(id).FriendsIn;
+            var userFriends2 = FindById(id)?.FriendsIn ?? new List<Friend>();
             foreach (var f in userFriends2)
             {
                 if(f.PersonInputRequestId!= id) { friends.Add(f.PersonInputRequestId);} else friends.Add(f.PersonOutputRequestId);
             }
 
             return friends;
-        }
+        }*/
         
         public int GetId(User u)
         {
@@ -63,27 +63,27 @@ namespace WebApp.Services
         
         public List<User> GetUsers()
         {
-            return _appContext.Users.Select(Mappers.BuildUser).ToList();
+            return _appContext.UserModels.Select(Mappers.BuildUser).ToList();
         }
 
-        public List<Post> GetLikedPosts(int userId)
+        /*public List<Post> GetLikedPosts(int userId)
         {
             var likepost = _appContext.LikesPosts.Where(lp => lp.RatingPersonId == userId).ToList();
-            List<Post> likedPosts = null;
+            List<Post> likedPosts = new List<Post>();
             foreach (var lp in likepost)
             {
                 likedPosts.Add(Mappers.BuildPost(lp.PostModel));
             }
 
             return likedPosts;
-        }
-        
-        /*public List<Post> GetPosts(int user_id)
-        {
-            return _appContext.Posts.Select(Mappers.BuildPost).Where(p => FindById(p.owner).Id == user_id).ToList();
         }*/
         
-        public List<Subscriber> GetInputRequests(int id)
+        public List<Post> GetPosts(int user_id)
+        {
+            return _appContext.PostModels.Select(Mappers.BuildPost).Where(p => FindById(p.OwnerId).Id == user_id).ToList();
+        }
+        
+        /*public List<Subscriber> GetInputRequests(int id)
         {
             return FindById(id).InputSubscriptions;
         }
@@ -91,41 +91,50 @@ namespace WebApp.Services
         public List<Subscriber> GetOutputRequests(int id)
         {
             return FindById(id).OutputSubcriptions;
-        }
+        }*/
         public User FindById(int id)
         {
-            return _appContext.Users.Select(Mappers.BuildUser).FirstOrDefault(user => user.Id == id);
+            return _appContext.UserModels.Select(Mappers.BuildUser).FirstOrDefault(user => user.Id == id);
+        }
+
+        public User FindByName(string name)
+        {
+            return _appContext.UserModels.Select(Mappers.BuildUser).FirstOrDefault(user => user.NickName == name);
         }
         
-        public void SendOutputRequest(int senderId, int targetId)
+        /*public void SendOutputRequest(int senderId, int targetId)
         {
-            var senderModel = _appContext.Users.FirstOrDefault(um => um.Id == senderId);
-            var targetModel = _appContext.Users.FirstOrDefault(um => um.Id == targetId);
-            _appContext.Users.FirstOrDefault(um => um.Id == senderId).OutputSubscribtions.Add(
-                new Subscriber()
-                {
-                    sender = senderModel,
-                    senderId = senderId,
-                    target = targetModel,
-                    targetId = targetId
-                });
-            _appContext.Users.FirstOrDefault(um => um.Id == targetId).InputSubscriptions.Add(
-                new Subscriber()
-                {
-                    sender = senderModel,
-                    senderId = senderId,
-                    target = targetModel,
-                    targetId = targetId
-                });
+            if (FindById(senderId) != null 
+                && FindById(targetId) != null)
+            {
+                var senderModel = _appContext.UserModels.FirstOrDefault(um => um.Id == senderId);
+                var targetModel = _appContext.UserModels.FirstOrDefault(um => um.Id == targetId);
+                _appContext.UserModels.FirstOrDefault(um => um.Id == senderId)?.OutputSubscribtions.Add(
+                    new Subscriber()
+                    {
+                        sender = senderModel,
+                        senderId = senderId,
+                        target = targetModel,
+                        targetId = targetId
+                    });
+                _appContext.UserModels.FirstOrDefault(um => um.Id == targetId)?.InputSubscriptions.Add(
+                    new Subscriber()
+                    {
+                        sender = senderModel,
+                        senderId = senderId,
+                        target = targetModel,
+                        targetId = targetId
+                    });
+            }
         }
         
         public void AcceptOutputRequest(int senderId, int targetId)
         {
-            FindById(senderId).FriendsOut.Add(
+            FindById(senderId)?.FriendsOut.Add(
                 new Friend()
                 {
                     PersonOutputRequest = FindById(senderId).OutputSubcriptions
-                        .FirstOrDefault(s => s.senderId == senderId && s.targetId == targetId).sender,
+                        .FirstOrDefault(s => s.senderId == senderId && s.targetId == targetId)?.sender,
                     PersonInputRequestId = FindById(senderId).OutputSubcriptions
                         .FirstOrDefault(s => s.senderId == senderId && s.targetId == targetId).senderId,
                     PersonInputRequest = FindById(senderId).OutputSubcriptions
@@ -134,7 +143,7 @@ namespace WebApp.Services
                         .FirstOrDefault(s => s.senderId == senderId && s.targetId == targetId).targetId
                 }
                 );
-            FindById(targetId).FriendsIn.Add(
+            FindById(targetId)?.FriendsIn.Add(
                 new Friend()
                 {
                     PersonOutputRequest = FindById(senderId).OutputSubcriptions
@@ -148,32 +157,42 @@ namespace WebApp.Services
                 }
             );
             
-            FindById(senderId).OutputSubcriptions.Remove(FindById(senderId).OutputSubcriptions
+            FindById(senderId)?.OutputSubcriptions.Remove(FindById(senderId).OutputSubcriptions
                 .FirstOrDefault(s => s.senderId == senderId && s.targetId == targetId));
             
-        }
-        
-        public void DeleteFriend(int userId, int targetId)
+        }*/
+
+        /*public void DeleteFriend(int userId, int targetId)
         {
-            _appContext.Subscribers.Add(new Subscriber()
+            if (FindById(userId) != null 
+                && FindById(targetId) != null 
+                && _appContext.Friends
+                    .FirstOrDefault(f => (f.PersonInputRequestId == userId 
+                                         && f.PersonOutputRequestId == targetId) 
+                                         ||(f.PersonInputRequestId == targetId
+                                            && f.PersonOutputRequestId == userId)) != null)
             {
-                sender = _appContext.Friends.FirstOrDefault(f =>
-                    (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId)).PersonOutputRequest,
-                target = _appContext.Friends.FirstOrDefault(f =>
-                    (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId)).PersonInputRequest,
-                senderId = _appContext.Friends.FirstOrDefault(f =>
-                    (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId)).PersonOutputRequestId,
-                targetId = _appContext.Friends.FirstOrDefault(f =>
-                    (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId)).PersonInputRequestId
-            });
-            _appContext.Friends.Remove(_appContext.Friends.FirstOrDefault(f =>
-                (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId)));
-            
-            _appContext.Friends.Remove(_appContext.Friends.FirstOrDefault(f =>
-                (f.PersonInputRequestId == targetId && f.PersonOutputRequestId == userId)));
-            
-        }
+                _appContext.Subscribers.Add(new Subscriber()
+                {
+                    sender = _appContext.Friends.FirstOrDefault(f =>
+                        (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId)).PersonOutputRequest,
+                    target = _appContext.Friends.FirstOrDefault(f =>
+                        (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId)).PersonInputRequest,
+                    senderId = _appContext.Friends.FirstOrDefault(f =>
+                            (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId))
+                        .PersonOutputRequestId,
+                    targetId = _appContext.Friends.FirstOrDefault(f =>
+                        (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId)).PersonInputRequestId
+                });
+                _appContext.Friends.Remove(_appContext.Friends.FirstOrDefault(f =>
+                    (f.PersonInputRequestId == userId && f.PersonOutputRequestId == targetId)));
+
+                _appContext.Friends.Remove(_appContext.Friends.FirstOrDefault(f =>
+                    (f.PersonInputRequestId == targetId && f.PersonOutputRequestId == userId)));
+
+            }*/
         
+
 
 
     }

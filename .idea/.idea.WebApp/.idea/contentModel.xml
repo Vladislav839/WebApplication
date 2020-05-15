@@ -28,6 +28,26 @@
           <e p="20200507212822_UserToModel____.Designer.cs" t="Include" />
           <e p="20200508145222_ok_names.cs" t="Include" />
           <e p="20200508145222_ok_names.Designer.cs" t="Include" />
+          <e p="20200514201741_PostUpdate.cs" t="Include" />
+          <e p="20200514201741_PostUpdate.Designer.cs" t="Include" />
+          <e p="20200515115633_wtf.cs" t="Include" />
+          <e p="20200515115633_wtf.Designer.cs" t="Include" />
+          <e p="20200515125058_wtf_2.cs" t="Include" />
+          <e p="20200515125058_wtf_2.Designer.cs" t="Include" />
+          <e p="20200515130115_wtf___.cs" t="Include" />
+          <e p="20200515130115_wtf___.Designer.cs" t="Include" />
+          <e p="20200515131004_wtf_32.cs" t="Include" />
+          <e p="20200515131004_wtf_32.Designer.cs" t="Include" />
+          <e p="20200515140929_postpost.cs" t="Include" />
+          <e p="20200515140929_postpost.Designer.cs" t="Include" />
+          <e p="20200515141511_remove_evr_exc_users_posts.cs" t="Include" />
+          <e p="20200515141511_remove_evr_exc_users_posts.Designer.cs" t="Include" />
+          <e p="20200515142746_postposts.cs" t="Include" />
+          <e p="20200515142746_postposts.Designer.cs" t="Include" />
+          <e p="20200515143820_remove_evr_exc_users_posts2.cs" t="Include" />
+          <e p="20200515143820_remove_evr_exc_users_posts2.Designer.cs" t="Include" />
+          <e p="20200515145731_postpostss.cs" t="Include" />
+          <e p="20200515145731_postpostss.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -40,7 +60,6 @@
           <e p="Subscriber.cs" t="Include" />
           <e p="User.cs" t="Include" />
           <e p="UserModel.cs" t="Include" />
-          <e p="UserPost.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

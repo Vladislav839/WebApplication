@@ -1,4 +1,4 @@
-namespace WebApp.Models
+/*namespace WebApp.Models
 {
     public class Subscriber
     {
@@ -7,4 +7,4 @@ namespace WebApp.Models
         public int senderId { get; set; }
         public int targetId { get; set; }
     }
-}
+}*/
