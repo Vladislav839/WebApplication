@@ -1,21 +1,22 @@
-﻿@{
+﻿@model WebApp.Models.User;
+@{
     Layout = null;
     ViewData["Title"] = "Home Page";
 }
+@using System.Net
 @using System.Security.Claims;
-@model WebApp.Models.User;
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Profile Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <div class="container-fluid">
+    <header>
+        <div class="container-fluid">
         <div class="row bg-dark align-items-center">
             <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
             <div class="col-md-4 mt-4 mb-3">
@@ -35,14 +36,20 @@
     <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c)">
         <div class="row align-items-center justify-content-center pt-4">
             <div style="width: 200px; height: 200px;">
-                <img src="~/img/avatar-default.png" class="rounded-circle img-fluid">
+                <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid">
             </div>
         </div>
         <div class="row align-items-center justify-content-center pt-4">
-            <button class="btn btn-primary small">Change photo</button>
+            <form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
+             <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+             </div>
+            <button id="photo" class="btn btn-primary small">Change photo</button>
+            </form>
         </div>
-        <div style="font-size: 26px;" class="row align-items-center justify-content-center text-white pt-2">
-            @Model.NickName
+        <div style="font-size: 26px;" class="text-dark" id="name" class="row align-items-center justify-content-center text-white pt-2">
+            @User.Identity.Name
         </div>
     </div>
     <div class="container-fluid" style="background-color: #35558c;">
@@ -55,24 +62,75 @@
             </div>
         </div>
     </div>
+</header>
+<div id="posts" style="display: flex; flex-direction: column; justify-content: center; color: black;">
+   
+</div>
     <div class="container">
         <h2 class="text-dark mt-3">Add post</h2>
-        <form action="/action_page.php">
             <div class="form-group">
                 <label for="comment">Comment:</label>
-                <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+               <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary mb-4">Submit</button>
-        </form>
+            <button class="btn btn-primary mb-4" id="postdata">Submit</button>
     </div>
+    <div class="container-fluid">
     <footer class="page-footer bg-dark font-small blue">
-
-        <!-- Copyright -->
         <div class="text-center text-gray-dark py-3">
             © 2020 Copyright:
         </div>
-        <!-- Copyright -->
-
     </footer>
+    </div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $.ajax({
+      type:'GET',
+      url:'@Url.Action("GetPosts", "Account")'     
+    })
+    .done(function (data){
+                let ddl = ' ';
+                $.each(data, function(index, element){
+                     ddl += '<div class="container media border p-3 text-dark">\n';
+                     ddl +=  '<img src="';
+                     ddl += '@Url.Content(Model.Path)"';
+                     ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
+                     ddl += '<div class="media-body">\n';
+                     ddl += '<h4 class="text-dark">' + element.owner.nickName + '<small><i class="text-dark">' + element.time + '</i></small></h4>\n';
+                     ddl += '<p class="text-dark">' + element.text + '</p>\n';  
+                     ddl += '</div>\n';
+                     ddl += '</div>\n';
+                });
+                console.log(ddl);
+                $(ddl).insertAfter('#posts');            
+    });
+    });
+
+         $('#postdata').on('click', function() {
+            $.ajax({
+              url:'@Url.Action("SavePost", "Account")',
+              type:'POST',
+              data: {
+                  text: $('#comment').val()
+              }
+            })
+            let name =  '@Model.NickName';
+            let date = Date();
+            let ddl = '<div class="container media border p-3 text-dark">\n';
+            ddl +=  '<img src="';
+            ddl += '@Url.Content(Model.Path)"';
+            ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
+            ddl += '<div class="media-body">\n';
+            ddl += '<h4 class="text-dark">' + name + '<small><i class="text-dark">' + date + '</i></small></h4>\n';
+            ddl += '<p class="text-dark">' + $('#comment').val() + '</p>\n';
+            ddl += '</div>\n';
+            ddl += '</div>\n';
+            $(ddl).insertAfter('#posts'); 
+        });
+   
+</script>
 </body>
 </html>
+

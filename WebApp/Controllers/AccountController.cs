@@ -66,7 +66,7 @@ namespace AuthApp.Controllers
                 UserModel user = await _db.UserModels.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    UserModel reguser = new UserModel { Email = model.Email, Password = model.Password, NickName = model.NickName, Path = "~/img/avatar-default.png" };
+                    UserModel reguser = new UserModel { Email = model.Email, Password = model.Password, NickName = model.NickName, Path = "/img/avatar-default.png" };
                     // добавляем пользователя в бд
                     _db.UserModels.Add(reguser);
                     await _db.SaveChangesAsync();
@@ -96,7 +96,7 @@ namespace AuthApp.Controllers
 
         [HttpPost]
         
-        public IActionResult PostPost(string text)
+        public IActionResult SavePost(string text)
         {
             PostModel postModel = new PostModel
             {

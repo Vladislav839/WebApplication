@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApp.Models;
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
@@ -22,9 +23,12 @@ namespace WebApp.Controllers
              db = applicationContext;
         }
         [Authorize]
-        public IActionResult Index(User user)
+        public IActionResult Index(int id)
         {
-            return View(user);
+            //проверить куки пользователя 
+            //если есть пользователь - редирект на страницу пользователя
+            //если нет - редирект на логин
+            return RedirectToAction("Login", "Account");
         }
 
 

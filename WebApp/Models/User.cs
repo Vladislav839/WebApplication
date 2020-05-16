@@ -18,7 +18,7 @@ namespace WebApp.Models
         public string Password { get; set; }
         public string Path { get; set; }
         //public List<Friend> FriendsOut { get; set; }
-        public IList<PostModel> Posts { get; set; }
+        public IList<Post> Posts { get; set; }
         //public List<Friend> FriendsIn { get; set; }
         //public List<LikePost> LikesPosts { get; set; }  
         //public List<Subscriber> OutputSubcriptions { get; set; } = null; 

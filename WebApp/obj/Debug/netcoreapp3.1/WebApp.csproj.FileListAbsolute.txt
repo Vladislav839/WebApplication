@@ -113,7 +113,6 @@ C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.TagHelpers.
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.RazorCoreGenerate.cache
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
-C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Profile.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Profile.cshtml.g.cs
@@ -130,5 +129,5 @@ C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.dll
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.pdb
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Feed.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Friends.cshtml.g.cs
-C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\UserPosts.cshtml.g.cs
+C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs

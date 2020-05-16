@@ -94,7 +94,6 @@
           <e p="Home" t="Include">
             <e p="Feed.cshtml" t="Include" />
             <e p="Friends.cshtml" t="Include" />
-            <e p="Index.cshtml" t="Include" />
             <e p="Privacy.cshtml" t="Include" />
             <e p="Profile.cshtml" t="Include" />
           </e>

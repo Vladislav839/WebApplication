@@ -21,7 +21,7 @@ namespace WebApp.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var user = await _db.UserModels.FirstOrDefaultAsync(u => u.Id == id).ConfigureAwait(true);
-            return RedirectToAction("Index", "Home", user);
+            return View(Mappers.BuildUser(user));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WebApp.Models;
 
@@ -23,9 +24,9 @@ namespace WebApp.Services
             return _appContext.PostModels.Select(Mappers.BuildPost).ToList();
         }
 
-        public string GetDate(int id_post)
+        public DateTime? GetDate(int id_post)
         {
-            return _appContext.PostModels.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post)?.Time ?? "null";
+            return _appContext.PostModels.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post)?.Time;
         }
 
         public int GetRating(int id_post)
