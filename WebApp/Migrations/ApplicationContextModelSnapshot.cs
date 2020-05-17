@@ -44,6 +44,21 @@ namespace WebApp.Migrations
                     b.ToTable("PostModels");
                 });
 
+            modelBuilder.Entity("WebApp.Models.Subscriber", b =>
+                {
+                    b.Property<int>("senderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("targetId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("senderId", "targetId");
+
+                    b.HasIndex("targetId");
+
+                    b.ToTable("Subscribers");
+                });
+
             modelBuilder.Entity("WebApp.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
@@ -73,6 +88,21 @@ namespace WebApp.Migrations
                     b.HasOne("WebApp.Models.UserModel", "Owner")
                         .WithMany("Posts")
                         .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApp.Models.Subscriber", b =>
+                {
+                    b.HasOne("WebApp.Models.UserModel", "sender")
+                        .WithMany("OutputSubscribtions")
+                        .HasForeignKey("senderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApp.Models.UserModel", "target")
+                        .WithMany("InputSubscriptions")
+                        .HasForeignKey("targetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

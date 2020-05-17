@@ -145,5 +145,11 @@ namespace AuthApp.Controllers
             List<Post> a = _userService.GetPosts(id);
             return a;
         }
+
+        public List<User> GetSubscribers()
+        {
+            int id = _userService.FindByName(User.Identity.Name).Id;
+            return _userService.GetFollowers(id);
+        }
     }
 }
