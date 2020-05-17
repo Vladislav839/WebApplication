@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c)">
+    <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c); display: flex; flex-direction: column;">
         <div class="row align-items-center justify-content-center pt-4">
             <div style="width: 200px; height: 200px;">
                 <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid">
@@ -42,13 +42,13 @@
         <div class="row align-items-center justify-content-center pt-4">
             <form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
              <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile">
+            <input type="file" class="custom-file-input" name="uploadedFile" id="customFile">
             <label class="custom-file-label" for="customFile">Choose file</label>
              </div>
-            <button id="photo" class="btn btn-primary small">Change photo</button>
+            <button id="photo" type="submit" class="btn btn-primary small">Change photo</button>
             </form>
         </div>
-        <div style="font-size: 26px;" class="text-dark" id="name" class="row align-items-center justify-content-center text-white pt-2">
+        <div style="font-size: 38px; margin-top: -3px;" class="text-white text-center" id="name" class="row align-items-center justify-content-center text-white pt-2">
             @User.Identity.Name
         </div>
     </div>
@@ -116,7 +116,7 @@
                   text: $('#comment').val()
               }
             })
-            let name =  '@Model.NickName';
+            let name =  '@Model.NickName ';
             let date = Date();
             let ddl = '<div class="container media border p-3 text-dark">\n';
             ddl +=  '<img src="';
@@ -129,6 +129,11 @@
             ddl += '</div>\n';
             $(ddl).insertAfter('#posts'); 
         });
+
+        $("#customFile").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
    
 </script>
 </body>

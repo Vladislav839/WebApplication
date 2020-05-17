@@ -8,7 +8,6 @@ using WebApp.ViewModels; // пространство имен моделей Reg
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using WebApp.Models;
-using System.Linq;
 using System;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
@@ -135,7 +134,7 @@ namespace AuthApp.Controllers
                 _db.SaveChanges();
             }
             
-            return RedirectToAction("Index", "Home", user);
+            return RedirectToAction("Index", "Home", new {id = user.Id});
         }
 
         [HttpGet]
