@@ -20,6 +20,7 @@ namespace WebApp.Controllers
         [Authorize]
         public async Task<IActionResult> Index(int id)
         {
+            //------новые изменения-------
             var user = await _db.UserModels.FirstOrDefaultAsync(u => u.NickName == User.Identity.Name).ConfigureAwait(true);
             return View(Mappers.BuildUser(user));
         }

@@ -23,12 +23,12 @@ namespace WebApp.Controllers
              db = applicationContext;
         }
         [Authorize]
-        public async Task<IActionResult> Index(int id)
+        public IActionResult Index(int id)
         {
+            //----новые изменения
             if (User.Identity.Name != null)
             {
-                var user = await db.UserModels.FirstOrDefaultAsync(u => u.NickName == User.Identity.Name);
-                return RedirectToAction("Index", "User", user.Id);
+                return RedirectToAction("Index", "User", id);
             }
             //проверить куки пользователя 
             //если есть пользователь - редирект на страницу пользователя
