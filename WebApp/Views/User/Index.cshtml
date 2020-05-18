@@ -51,14 +51,20 @@
         <div style="font-size: 26px;" class="text-dark" id="name" class="row align-items-center justify-content-center text-white pt-2">
             @User.Identity.Name
         </div>
+        @{
+                    if (User.Identity.Name != Model.NickName)
+                    {
+                        <button id="subscribe" class="btn btn-primary small">Subscribe</button>
+                    }
+                }
     </div>
     <div class="container-fluid" style="background-color: #35558c;">
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">POSTS</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account">POSTS</a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">SUBSCRIBERS</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">SUBSCRIPTIONS</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account">SUBSCRIBERS</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account">SUBSCRIPTIONS</a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</a></div>
             </div>
         </div>
@@ -109,6 +115,9 @@
     });
     });
 
+
+</script>
+<script>
          $('#postdata').on('click', function() {
             $.ajax({
               url:'@Url.Action("SavePost", "Account")',
@@ -129,8 +138,18 @@
             ddl += '</div>\n';
             ddl += '</div>\n';
             $(ddl).insertAfter('#posts'); 
-        });
-   
+       });</script>
+<script> 
+         $('#subscribe').on('click', function() {
+                     $.ajax({
+                       url:'@Url.Action("Subscribe", "Account")',
+                       type:'POST',
+                       data: {
+                           target: '@Model.NickName'
+                       }
+                     })
+                });
+         
 </script>
 </body>
 </html>

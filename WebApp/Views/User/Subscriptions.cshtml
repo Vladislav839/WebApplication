@@ -71,7 +71,7 @@
         </div>
     </div>
 </header>
-<div id="subscribers" style="display: flex; flex-direction: column; justify-content: center; color: black;">
+<div id="subscriptions" style="display: flex; flex-direction: column; justify-content: center; color: black;">
    
 </div>
     <div class="container">
@@ -96,7 +96,7 @@
     $(document).ready(function(){
       $.ajax({
       type:'GET',
-      url:'@Url.Action("GetSubscribersInput", "Account")',
+      url:'@Url.Action("GetSubscribersOutput", "Account")',
       data : {
           id: @Model.Id
       }     
@@ -115,7 +115,7 @@
                      ddl += '</div>\n';
                 });
                 console.log(ddl);
-                $(ddl).insertAfter('#subscribers');            
+                $(ddl).insertAfter('#subscriptions');            
     });
    });
     

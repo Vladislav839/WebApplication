@@ -60,7 +60,7 @@ namespace WebApp.Services
         }*/
         public User FindById(int id)
         {
-            return _appContext.UserModels.Select(Mappers.BuildUser).FirstOrDefault(user => user.Id == id);
+            return _appContext.UserModels.Select(Mappers.BuildUserInformation).FirstOrDefault(user => user.Id == id);
         }
 
         public User FindByName(string name)
@@ -71,7 +71,7 @@ namespace WebApp.Services
         public void FollowUser(int senderId, int targetId)
         {
             UserModel currentUser = _appContext.UserModels.FirstOrDefault(user => user.Id == senderId);
-            UserModel targetUser = _appContext.UserModels.FirstOrDefault(user => user.Id == senderId);
+            UserModel targetUser = _appContext.UserModels.FirstOrDefault(user => user.Id == targetId);
             if (FindById(senderId) != null && FindById(targetId) != null)
             {
                 if (_appContext.Subscribers.FirstOrDefault(s =>
@@ -113,12 +113,19 @@ namespace WebApp.Services
             List<User> followers = new List<User>();
             foreach (var s in subPairs)
             {
-                if (s.targetId == userId)
-                {
-                    followers.Add(Mappers.BuildUserInformation(s.target));   
-                }
+                followers.Add(Mappers.BuildUserInformation(s.sender));
             }
             return followers;
+        }
+        public List<User> GetFollows(int userId)
+        {
+            List<Subscriber> subPairs = _appContext.Subscribers.Where(s => s.senderId == userId ).ToList();
+            List<User> follows = new List<User>();
+            foreach (var s in subPairs)
+            { 
+                follows.Add(FindById(s.targetId));
+            }
+            return follows;
         }
     }
 }

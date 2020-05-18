@@ -23,5 +23,16 @@ namespace WebApp.Controllers
             var user = await _db.UserModels.FirstOrDefaultAsync(u => u.Id == id).ConfigureAwait(true);
             return View(Mappers.BuildUser(user));
         }
+
+        public async Task<IActionResult> Subscribers(int id)
+        {
+            var user = await _db.UserModels.FirstOrDefaultAsync(u => u.Id == id).ConfigureAwait(true);
+            return View(Mappers.BuildUser(user));
+        }
+        public async Task<IActionResult> Subscriptions(int id)
+        {
+            var user = await _db.UserModels.FirstOrDefaultAsync(u => u.Id == id).ConfigureAwait(true);
+            return View(Mappers.BuildUser(user));
+        }
     }
 }

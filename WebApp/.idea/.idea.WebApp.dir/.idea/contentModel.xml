@@ -72,6 +72,7 @@
         <e p="User" t="Include">
           <e p="Index.cshtml" t="Include" />
           <e p="Subscribers.cshtml" t="Include" />
+          <e p="Subscriptions.cshtml" t="Include" />
         </e>
       </e>
       <e p="WebApp.csproj" t="IncludeRecursive" />

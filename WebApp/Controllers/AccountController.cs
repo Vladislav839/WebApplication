@@ -145,11 +145,42 @@ namespace AuthApp.Controllers
             List<Post> a = _userService.GetPosts(id);
             return a;
         }
-
-        public List<User> GetSubscribers()
+        [HttpGet]
+        public List<User> GetSubscribersInput()
         {
             int id = _userService.FindByName(User.Identity.Name).Id;
             return _userService.GetFollowers(id);
+        }
+        [HttpGet]
+        public List<User> GetSubscribersOutput()
+        {
+            int id = _userService.FindByName(User.Identity.Name).Id;
+            return _userService.GetFollows(id);
+        }
+        
+        public IActionResult Subscribers()
+        {
+            var user = _userService.FindByName(User.Identity.Name);
+            return RedirectToAction("Subscribers", "User", user);
+        }
+        public IActionResult Subscriptions()
+        {
+            var user = _userService.FindByName(User.Identity.Name);
+            return RedirectToAction("Subscriptions", "User", user);
+        }
+
+        [HttpPost]
+        public void Subscribe(string target)
+        {
+            int senderId = _userService.FindByName(User.Identity.Name).Id;
+            int targetId = _userService.FindByName(target).Id;
+            _userService.FollowUser(senderId, targetId);
+        }
+
+        public IActionResult Index()
+        {
+            var user = _userService.FindByName(User.Identity.Name);
+            return RedirectToAction("Index", "User", user);
         }
     }
 }

@@ -131,3 +131,5 @@ C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\F
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Friends.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\UserPosts.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
+C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Subscribers.cshtml.g.cs
+C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Subscriptions.cshtml.g.cs
