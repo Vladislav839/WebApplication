@@ -46,6 +46,7 @@ namespace WebApp.Services
                 //birthday = u.birthday
             };
         }
+
         public static Post BuildPost(PostModel p)
         {
             return new Post
@@ -59,6 +60,27 @@ namespace WebApp.Services
                 OwnerId = p.OwnerId
             };
         }
-        
+
+        public static Message BuildMessage(MessageModel m)
+        {
+            return new Message
+            {
+                MessageId = m.MessageId,
+                OwnerDialogId = m.OwnerDialogId,
+                OwnerId = m.OwnerId,
+                SendingTime = m.SendingTime,
+                Text = m.Text
+            };
+        }
+
+        public static Dialog BuildDialog(DialogModel d)
+        {
+            return new Dialog
+            {
+                DialogId = d.DialogId,
+                FirstPersonId = d.FirstPersonId,
+                SecondPersonId = d.SecondPersonId
+            };
+        }
     }
 }

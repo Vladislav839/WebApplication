@@ -30,11 +30,13 @@ namespace AuthApp.Controllers
             _userService = new UserService(_db);
             _postService = new PostService(_db);
         }
+        
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
@@ -46,7 +48,7 @@ namespace AuthApp.Controllers
                 {
                     await Authenticate(model.NickName); // аутентификация
 
-                    return RedirectToAction("Index", "User", new {id = user.Id});
+                    return RedirectToAction("About", "User", new {id = user.Id});
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }

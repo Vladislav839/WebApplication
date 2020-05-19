@@ -1,0 +1,84 @@
+@model WebApp.Models.Dialog
+@{
+    Layout = null;
+    ViewData["Title"] = "Dialogs";
+}
+@using System.Net
+@using System.Security.Claims;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+<header>
+    <div class="container-fluid">
+        <div class="row bg-dark align-items-center">
+            <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
+            <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
+                <a href="#" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c)"> 
+        <div style="font-size: 26px;" class="text-dark" id="name" class="row align-items-center justify-content-center text-white pt-2">
+            @User.Identity.Name
+        </div>
+    </div>
+    <div class="message-text">
+        <input placeholder="Write some text" id="message_text" />
+        <button id="send-message" value="Send" >Send</button>
+    </div>
+</header>
+<div class="container-fluid">
+    <footer class="page-footer bg-dark font-small blue">
+        <div class="text-center text-gray-dark py-3">
+            © 2020 Copyright:
+        </div>
+    </footer>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $.ajax({
+      type:'GET',
+      url:'@Url.Action("GetMessagesOfDialog", "Dialog")'     
+    })
+    .done(function (data){
+                let ddl = ' ';
+                $.each(data, function(index, element){
+                
+                });
+                $(ddl).insertAfter('#messages');
+    });
+    });
+
+     $('#postdata').on('click', function() {
+            $.ajax({
+              url:'@Url.Action("SavePost", "Account")',
+              type:'POST',
+              data: {
+                  text: $('#comment').val()
+              }
+            })
+            let name =  '@Model.NickName';
+            let date = Date();
+            let ddl = '<div class="container media border p-3 text-dark">\n';
+
+            $(ddl).insertAfter('#posts'); 
+     });
+     
+     $("#send-message").click(function() {
+        
+     })
+</script>
+
+</body>
+</html>

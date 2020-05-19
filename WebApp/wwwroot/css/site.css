@@ -69,3 +69,33 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.container-for-about{
+  position: center;
+  line-height: 60px;
+  background-color: #7abaff;
+}
+.information-about{
+background: linear-gradient(to top, #1b6ec2, #1861ac);
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  border-radius: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.after-name-age-etc{
+  font-family: "Times New Roman";
+}
+.col-name{
+  font-family: cursive;
+}
+.col-age{
+  font-family: cursive;
+}
+.col-birthday{
+  font-family: cursive;
+}
+.col-interests{
+  font-family: cursive;
+}

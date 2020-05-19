@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\project\vlad\WebApplication" t="IncludeFlat">
+    <e p="C:\Users\Egor\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Egor\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_WebApp.931548127.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Egor\Desktop\project_ebat\WebApplication" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
       <e p="WebApp" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
@@ -9,6 +11,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="AccountController.cs" t="Include" />
+          <e p="DialogController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
           <e p="PostController.cs" t="Include" />
           <e p="UserController.cs" t="Include" />
@@ -52,13 +55,19 @@
         </e>
         <e p="Models" t="Include">
           <e p="ApplicationContext.cs" t="Include" />
+          <e p="Dialog.cs" t="Include" />
+          <e p="DialogModel.cs" t="Include" />
           <e p="ErrorViewModel.cs" t="Include" />
           <e p="Friend.cs" t="Include" />
           <e p="LikePost.cs" t="Include" />
+          <e p="Message.cs" t="Include" />
+          <e p="MessageDialog.cs" t="Include" />
+          <e p="MessageModel.cs" t="Include" />
           <e p="Post.cs" t="Include" />
           <e p="PostModel.cs" t="Include" />
           <e p="Subscriber.cs" t="Include" />
           <e p="User.cs" t="Include" />
+          <e p="UserDialog.cs" t="Include" />
           <e p="UserModel.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -74,7 +83,9 @@
           <e p="launchSettings.json" t="Include" />
         </e>
         <e p="Services" t="Include">
+          <e p="DialogService.cs" t="Include" />
           <e p="Mappers.cs" t="Include" />
+          <e p="MessageService.cs" t="Include" />
           <e p="PostService.cs" t="Include" />
           <e p="UserService.cs" t="Include" />
         </e>
@@ -91,6 +102,9 @@
             <e p="Register.cshtml" t="Include" />
             <e p="UserPosts.cshtml" t="Include" />
           </e>
+          <e p="Dialog" t="Include">
+            <e p="Dialog.cshtml" t="Include" />
+          </e>
           <e p="Home" t="Include">
             <e p="Feed.cshtml" t="Include" />
             <e p="Friends.cshtml" t="Include" />
@@ -104,6 +118,7 @@
             <e p="Error.cshtml" t="Include" />
           </e>
           <e p="User" t="Include">
+            <e p="About.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
           </e>
         </e>
@@ -186,7 +201,5 @@
       </e>
       <e p="WebApp.sln" t="IncludeFlat" />
     </e>
-    <e p="C:\Users\ъуъ\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\ъуъ\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_WebApp.-1540845210.00" t="ExcludeRecursive" />
   </component>
 </project>

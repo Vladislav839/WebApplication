@@ -14,6 +14,8 @@ namespace WebApp.Models
         //public DbSet<Friend> Friends { get; set; }
         //public DbSet<Subscriber> Subscribers { get; set; }
         //public DbSet<LikePost> LikesPosts { get; set; }
+        public DbSet<MessageModel> MessagesModels { get; set; }
+        public DbSet<DialogModel> DialogsModels { get; set; }
         
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
@@ -54,13 +56,13 @@ namespace WebApp.Models
                 .HasKey(t => new {t.senderId, t.targetId});
             
             modelBuilder.Entity<Subscriber>().HasOne(p => p.sender)
-                .WithMany(up => up.OutputSubscribtions)
+                .WithMany(up => up.OutputSubscriptions)
                 .HasForeignKey(u => u.senderId);
             
             modelBuilder.Entity<Subscriber>().HasOne(p => p.target)
                 .WithMany(up => up.InputSubscriptions)
                 .HasForeignKey(u => u.targetId);*/
-            
+
         }
 
         

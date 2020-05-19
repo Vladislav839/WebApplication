@@ -1,0 +1,88 @@
+@model WebApp.Models.User;
+@{
+    Layout = null;
+    ViewData["Title"] = "About";
+}
+@using System.Net
+@using System.Security.Claims;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+        <div class="row bg-dark align-items-center">
+            <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
+            <div class="col-md-4 mt-4 mb-3">
+                <form class="d-flex">
+                    <input type="text" class="form-control" placeholder="Искать здесь...">
+                    <button class="bth btn-success ml-2">Search</button>
+                </form>
+            </div>
+            <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
+                <a href="#" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c)">
+        <div class="row align-items-center justify-content-center pt-4">
+            <div style="width: 200px; height: 200px;">
+                <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid">
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center pt-4">
+            <form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
+             <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+             </div>
+            <button id="photo" class="btn btn-primary small">Change photo</button>
+            </form>
+        </div>
+        <div style="font-size: 26px;" class="text-dark" id="name" class="row align-items-center justify-content-center text-white pt-2">
+            @User.Identity.Name
+        </div>
+    </div>
+        <div class="container-fluid" style="background-color: #35558c;">
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">POSTS</a></div>
+                    <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div>
+                    <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">FRIENDS</a></div>
+                    <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="container-for-about">
+            <div class="information-about">
+                <div class="col-name">Name: <span class="after-name-age-etc">@User.Identity.Name</span></div>
+                <div class="col-age">Age: <span></span></div>
+                <div class="col-birthday">Birthday: <span></span></div>
+                <div class="col-interests">Interests: <span></span></div>
+            </div>
+        </div>
+</header>
+<div class="container-fluid">
+    <footer class="page-footer bg-dark font-small blue">
+        <div class="text-center text-gray-dark py-3">
+            © 2020 Copyright:
+        </div>
+    </footer>
+    </div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+   
+</script>
+</body>
+</html>
