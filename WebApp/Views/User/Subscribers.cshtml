@@ -49,7 +49,7 @@
             </form>
         </div>
         <div style="font-size: 26px;" class="text-dark" id="name" class="row align-items-center justify-content-center text-white pt-2">
-            @User.Identity.Name
+            @Model.NickName
         </div>
         @{
             if (User.Identity.Name != Model.NickName)
@@ -74,14 +74,7 @@
 <div id="subscribers" style="display: flex; flex-direction: column; justify-content: center; color: black;">
    
 </div>
-    <div class="container">
-        <h2 class="text-dark mt-3">Add post</h2>
-            <div class="form-group">
-                <label for="comment">Comment:</label>
-               <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
-            </div>
-            <button class="btn btn-primary mb-4" id="postdata">Submit</button>
-    </div>
+    
     <div class="container-fluid">
     <footer class="page-footer bg-dark font-small blue">
         <div class="text-center text-gray-dark py-3">

@@ -46,7 +46,8 @@ namespace WebApp.Services
         
         public List<Post> GetPosts(int user_id)
         {
-            return _appContext.PostModels.Select(Mappers.BuildPost).Where(p => p.OwnerId == user_id).OrderByDescending(p => p.Time).ToList();
+            var a = _appContext.PostModels.Where(p => p.OwnerId == user_id).Select(Mappers.BuildPost).OrderByDescending(p => p.Time).ToList();
+            return a;
         }
         
         /*public List<Subscriber> GetInputSubscriptions(int id)
