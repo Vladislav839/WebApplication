@@ -101,7 +101,10 @@
     $(document).ready(function(){
       $.ajax({
       type:'GET',
-      url:'@Url.Action("GetPosts", "Account")'     
+      url:'@Url.Action("GetPosts", "Account")',
+      data:{
+          id: @Model.Id
+      }     
     })
     .done(function (data){
                 let ddl = ' ';
