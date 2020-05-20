@@ -101,7 +101,7 @@
                      ddl += '@Url.Content(Model.Path)"';
                      ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
                      ddl += '<div class="media-body">\n';
-                     ddl += '<a href="@Url.RouteUrl(new { controller = "Account", action = "Index", id = @Model.Id })" class="text-dark">' + element.nickName + '<small><i class="text-dark">'+ '</i></small></a>\n';               
+                     ddl += '<a href="@Url.RouteUrl(new { controller = "Account", action = "Index", id = 0})' + element.id + '" class="text-dark">' + element.nickName + '<small><i class="text-dark">'+ '</i></small></a>\n';               
                      ddl += '<p class="text-body">' + "Subscribers - " + element.subscribersQuantity +'\n'+ "Subscriptions - " + element.subscriptionsQuantity + '</p>\n';      
                      ddl += '</div>\n';
                      ddl += '</div>\n';
