@@ -187,5 +187,11 @@ namespace AuthApp.Controllers
             var user = _userService.FindByName(User.Identity.Name);
             return RedirectToAction("Index", "User", new {id = iduser.Id});
         }
+        public IActionResult IndexByName(string username)
+        {
+            var iduser = _userService.FindByName(username);
+            var user = _userService.FindByName(User.Identity.Name);
+            return RedirectToAction("Index", "User", new {id = iduser.Id});
+        }
     }
 }

@@ -26,8 +26,7 @@
                 </form>
             </div>
             <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
-                <a href="#" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
-                <form method="post" asp-controller="Account" asp-action="Logout">
+                <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>                <form method="post" asp-controller="Account" asp-action="Logout">
                     <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
                 </form>
             </div>
@@ -102,8 +101,8 @@
                      ddl += '@Url.Content(Model.Path)"';
                      ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
                      ddl += '<div class="media-body">\n';
-                     ddl += '<h4 class="text-dark">' + element.nickName + '<small><i class="text-dark">'+ '</i></small></h4>\n';
-                     ddl += '<p class="text-dark">' + '</p>\n';  
+                     ddl += '<a href="@Url.RouteUrl(new { controller = "Account", action = "Index", id = @Model.Id })" class="text-dark">' + element.nickName + '<small><i class="text-dark">'+ '</i></small></a>\n';               
+                     ddl += '<p class="text-body">' + "Subscribers - " + element.subscribersQuantity +'\n'+ "Subscriptions - " + element.subscriptionsQuantity + '</p>\n';      
                      ddl += '</div>\n';
                      ddl += '</div>\n';
                 });
