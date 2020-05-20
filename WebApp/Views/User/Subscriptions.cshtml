@@ -62,10 +62,10 @@
     
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account">POSTS</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account">SUBSCRIBERS</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account">SUBSCRIPTIONS</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS (@Model.subscribersQuantity) </a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS (@Model.subscriptionsQuantity)</a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</a></div>
             </div>
         </div>
@@ -111,7 +111,15 @@
                 $(ddl).insertAfter('#subscriptions');            
     });
    });
-    
+    $('#subscribe').on('click', function() {
+                         $.ajax({
+                           url:'@Url.Action("Subscribe", "Account")',
+                           type:'POST',
+                           data: {
+                               target: '@Model.NickName'
+                           }
+                         })
+                    });
 
 </script>
 </body>

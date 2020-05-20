@@ -14,6 +14,8 @@ namespace WebApp.Models
         public List<PostModel> Posts { get; set; }
         public List<Subscriber> InputSubscriptions { get; set; }
         public List<Subscriber> OutputSubscribtions { get; set; }
-        //public List<LikePost> LikesPosts { get; set; } 
+        public List<LikePost> LikesPost { get; set; }
+        public int subscribersQuantity { get; set; }
+        public int subscriptionsQuantity { get; set; }
     }
 }

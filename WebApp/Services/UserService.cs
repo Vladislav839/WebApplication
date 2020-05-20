@@ -46,7 +46,7 @@ namespace WebApp.Services
         
         public List<Post> GetPosts(int user_id)
         {
-            var a = _appContext.PostModels.Where(p => p.OwnerId == user_id).Select(Mappers.BuildPost).OrderByDescending(p => p.Time).ToList();
+            var a = _appContext.PostModels.Where(p => p.OwnerId == user_id)?.Select(Mappers.BuildPost)?.OrderByDescending(p => p.Time).ToList();
             return a;
         }
         
@@ -85,10 +85,15 @@ namespace WebApp.Services
                         target = targetUser,
                         targetId = targetId
                     };
+
                     _appContext.Subscribers.Add(sub);
-                    _appContext.SaveChanges();
+                    _appContext.UserModels.FirstOrDefault(u => u.Id == senderId).subscriptionsQuantity =
+                        currentUser.subscriptionsQuantity + 1;
+                    _appContext.UserModels.FirstOrDefault(u => u.Id == targetId).subscribersQuantity = 
+                        currentUser.subscribersQuantity + 1;
                     _appContext.UserModels.FirstOrDefault(u => u.Id == senderId).OutputSubscribtions.Add(sub);
                     _appContext.UserModels.FirstOrDefault(u => u.Id == targetId).InputSubscriptions.Add(sub);
+                    _appContext.SaveChanges();
                 }
             }
         }
@@ -114,7 +119,7 @@ namespace WebApp.Services
             List<User> followers = new List<User>();
             foreach (var s in subPairs)
             {
-                followers.Add(Mappers.BuildUserInformation(s.sender));
+                followers.Add(FindById(s.senderId));
             }
             return followers;
         }
@@ -123,7 +128,7 @@ namespace WebApp.Services
             List<Subscriber> subPairs = _appContext.Subscribers.Where(s => s.senderId == userId ).ToList();
             List<User> follows = new List<User>();
             foreach (var s in subPairs)
-            { 
+            {
                 follows.Add(FindById(s.targetId));
             }
             return follows;

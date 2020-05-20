@@ -18,6 +18,8 @@ namespace WebApp.Services
                 //FriendsIn = u.Friends2,
                 Id = u.Id,
                 Path = u.Path,
+                subscribersQuantity = u.subscribersQuantity,
+                subscriptionsQuantity = u.subscriptionsQuantity
                 //LikesPosts = u.LikesPosts,
                 //InputSubscriptions = u.InputSubscriptions,
                 //OutputSubcriptions = u.OutputSubscribtions,
@@ -34,7 +36,9 @@ namespace WebApp.Services
                 NickName = u.NickName,
                 Email = u.Email,
                 Id = u.Id,
-                Path = u.Path
+                Path = u.Path,
+                subscribersQuantity = u.subscribersQuantity,
+                subscriptionsQuantity = u.subscriptionsQuantity
             };
             return a;
         }
@@ -45,7 +49,7 @@ namespace WebApp.Services
                 Time = DateTime.Parse(p.Time),
                 Id = p.Id,
                 Owner = BuildUserInformation(p.Owner),
-                rating = p.Rating,
+                Rating = p.Rating,
                 Text = p.Text,
                 OwnerId = p.OwnerId
             };

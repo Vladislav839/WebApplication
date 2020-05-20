@@ -14,6 +14,8 @@
       <e p="Migrations" t="Include">
         <e p="20200517173057_subscribers.cs" t="Include" />
         <e p="20200517173057_subscribers.Designer.cs" t="Include" />
+        <e p="20200520110824_subq.cs" t="Include" />
+        <e p="20200520110824_subq.Designer.cs" t="Include" />
         <e p="ApplicationContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">

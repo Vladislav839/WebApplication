@@ -150,7 +150,7 @@ namespace AuthApp.Controllers
         {
             int a = Id;
             int id = _userService.FindByName(User.Identity.Name).Id;
-            return _userService.GetFollowers(id);
+            return _userService.GetFollowers(Id);
         }
         [HttpGet]
         public List<User> GetSubscribersOutput(int Id)
@@ -160,15 +160,17 @@ namespace AuthApp.Controllers
             return _userService.GetFollows(a);
         }
         
-        public IActionResult Subscribers()
+        public IActionResult Subscribers(int id)
         {
+            var iduser = _userService.FindById(id);
             var user = _userService.FindByName(User.Identity.Name);
-            return RedirectToAction("Subscribers", "User", user);
+            return RedirectToAction("Subscribers", "User", new {id = iduser.Id});
         }
-        public IActionResult Subscriptions()
+        public IActionResult Subscriptions(int id)
         {
+            var iduser = _userService.FindById(id);
             var user = _userService.FindByName(User.Identity.Name);
-            return RedirectToAction("Subscriptions", "User", user);
+            return RedirectToAction("Subscriptions", "User", new {id = iduser.Id});
         }
 
         [HttpPost]
@@ -179,10 +181,11 @@ namespace AuthApp.Controllers
             _userService.FollowUser(senderId, targetId);
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
+            var iduser = _userService.FindById(id);
             var user = _userService.FindByName(User.Identity.Name);
-            return RedirectToAction("Index", "User", user);
+            return RedirectToAction("Index", "User", new {id = iduser.Id});
         }
     }
 }

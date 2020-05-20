@@ -61,10 +61,10 @@
     <div class="container-fluid" style="background-color: #35558c;">
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account">POSTS</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account">SUBSCRIBERS</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account">SUBSCRIPTIONS</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS (@Model.subscribersQuantity) </a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS (@Model.subscriptionsQuantity)</a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</a></div>
             </div>
         </div>
@@ -114,7 +114,7 @@
                      ddl += '@Url.Content(Model.Path)"';
                      ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
                      ddl += '<div class="media-body">\n';
-                     ddl += '<h4 class="text-dark">' + element.owner.nickName + '<small><i class="text-dark">' + element.time + '</i></small></h4>\n';
+                     ddl += '<h4 class="text-dark">' + element.owner.nickName + '<small><i class="text-dark">' + " " + element.time + " " + '<i style="color:#00ee00">' + element.rating + '</i>' + '</i></small> </h4>\n';
                      ddl += '<p class="text-dark">' + element.text + '</p>\n';  
                      ddl += '</div>\n';
                      ddl += '</div>\n';

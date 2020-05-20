@@ -31,7 +31,7 @@ namespace WebApp.Services
 
         public int GetRating(int id_post)
         {
-            return _appContext.PostModels.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post)?.rating ?? 0;
+            return _appContext.PostModels.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post)?.Rating ?? 0;
         }
 
         public Post FindById(int id_post)
