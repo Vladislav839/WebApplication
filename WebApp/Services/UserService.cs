@@ -165,6 +165,12 @@ namespace WebApp.Services
                 }
             }
         }
+
+        public List<User> UserSearch(string request)
+        {
+            var users = _appContext.UserModels.Select(Mappers.BuildUser).Where(p => p.NickName.Contains(request)).ToList();
+            return users;
+        } 
         
     }
 }

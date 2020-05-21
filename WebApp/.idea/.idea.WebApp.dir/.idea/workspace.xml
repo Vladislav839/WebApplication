@@ -78,7 +78,6 @@
         <option value="$PROJECT_DIR$/Models/Friend.cs" />
         <option value="$PROJECT_DIR$/Views/Account/Login.cshtml" />
         <option value="$PROJECT_DIR$/Models/Subscriber.cs" />
-        <option value="$PROJECT_DIR$/Controllers/UserController.cs" />
         <option value="$PROJECT_DIR$/Controllers/DialogController.cs" />
         <option value="$PROJECT_DIR$/Models/LikePost.cs" />
         <option value="$PROJECT_DIR$/Models/Post.cs" />
@@ -92,10 +91,11 @@
         <option value="$PROJECT_DIR$/wwwroot/css/site.css" />
         <option value="$PROJECT_DIR$/wwwroot/css/homestyle.css" />
         <option value="$PROJECT_DIR$/Views/User/Subscriptions.cshtml" />
-        <option value="$PROJECT_DIR$/Services/UserService.cs" />
         <option value="$PROJECT_DIR$/Views/User/Subscribers.cshtml" />
         <option value="$PROJECT_DIR$/Controllers/AccountController.cs" />
         <option value="$PROJECT_DIR$/Views/User/Index.cshtml" />
+        <option value="$PROJECT_DIR$/Services/UserService.cs" />
+        <option value="$PROJECT_DIR$/Controllers/UserController.cs" />
       </list>
     </option>
   </component>
@@ -183,6 +183,7 @@
       <workItem from="1590008177958" duration="1568000" />
       <workItem from="1590042964028" duration="3745000" />
       <workItem from="1590062611823" duration="8256000" />
+      <workItem from="1590074056212" duration="1705000" />
     </task>
     <servers />
   </component>

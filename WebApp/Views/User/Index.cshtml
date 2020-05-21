@@ -135,15 +135,17 @@
     $('#document').on('click','.like', function() {
                      $.ajax({
                            url:'@Url.Action("SwitchLikePost", "Account")',
-                           type:'POST',
+                           type:'GET',
                            data: {
-                               target: '@Model.NickName'
+                               username:'@User.Identity.Name',
+                               id: $(this).data('id')
                     }
                     
                 })
             });
 
 </script>
+
 <script>
          $('#like').on('click', function() {
             $.ajax({
