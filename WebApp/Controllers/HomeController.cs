@@ -30,10 +30,10 @@ namespace WebApp.Controllers
             //если нет - редирект на логин
             
                 //------новые изменения-------
-                var user = await db.UserModels.FirstOrDefaultAsync(u => u.NickName == User.Identity.Name).ConfigureAwait(true);
-                if(user != null)
-                   return  RedirectToAction("Index", "User", new {id = user.Id});
-            
+            var user = await db.UserModels.FirstOrDefaultAsync(u => u.NickName == User.Identity.Name).ConfigureAwait(true);
+            if(user != null) 
+                return  RedirectToAction("Index", "User", new {id = user.Id});
+                
             return RedirectToAction("Login", "Account");
         }
 

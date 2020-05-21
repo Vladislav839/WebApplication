@@ -98,7 +98,7 @@
                 $.each(data, function(index, element){
                      ddl += '<div class="container media border p-3 text-dark">\n';
                      ddl +=  '<img src="';
-                     ddl += '@Url.Content(Model.Path)"';
+                     ddl += element.path + '"';
                      ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
                      ddl += '<div class="media-body">\n';
                      ddl += '<a href="@Url.RouteUrl(new { controller = "Account", action = "Index", id = 0})' + element.id + '" class="text-dark">' + element.nickName + '<small><i class="text-dark">'+ '</i></small></a>\n';               

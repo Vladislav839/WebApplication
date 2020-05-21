@@ -96,7 +96,7 @@ namespace AuthApp.Controllers
 
         [HttpPost]
         
-        public IActionResult SavePost(string text)
+        public Post SavePost(string text)
         {
             PostModel postModel = new PostModel
             {
@@ -108,7 +108,7 @@ namespace AuthApp.Controllers
             };
             _db.PostModels.Add(postModel);
             _db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return Mappers.BuildPost(postModel);
         }
 
         [HttpPost]
@@ -192,6 +192,11 @@ namespace AuthApp.Controllers
             var iduser = _userService.FindByName(username);
             var user = _userService.FindByName(User.Identity.Name);
             return RedirectToAction("Index", "User", new {id = iduser.Id});
+        }
+
+        public void SwitchLikePost(string userName, int postId)
+        {
+            _userService.SwitchLikePost(_userService.FindByName(userName).Id, postId);
         }
     }
 }

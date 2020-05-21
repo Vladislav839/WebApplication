@@ -82,7 +82,6 @@ input:hover {
 input[type=password] {
     background-size: 7%;
     background-position: 12px 12px;
-    background-image: url('password.png');
     background-repeat: no-repeat;
 }
 

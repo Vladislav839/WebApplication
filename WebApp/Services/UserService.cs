@@ -133,5 +133,38 @@ namespace WebApp.Services
             }
             return follows;
         }
+
+        public void SwitchLikePost(int userId, int postId)
+        {
+            UserModel user = _appContext.UserModels.FirstOrDefault(u => u.Id == userId);
+            PostModel targetPost = _appContext.PostModels.FirstOrDefault(p => p.Id == postId);
+            if (user != null && targetPost != null)
+            {
+                if (_appContext.LikesPosts.FirstOrDefault(lp =>
+                    lp.RatingPersonId == user.Id && lp.PostId == targetPost.Id) == null)
+                {
+                    LikePost sub = new LikePost()
+                    {
+                        RatingPerson = user,
+                        RatingPersonId = userId,
+                        PostModel = targetPost,
+                        PostId = postId
+                    };
+
+                    _appContext.LikesPosts.Add(sub);
+                    _appContext.PostModels.FirstOrDefault(u => u.Id == postId).Rating =
+                        targetPost.Rating + 1;
+                    _appContext.SaveChanges();
+                }
+                else
+                {
+                    _appContext.LikesPosts.Remove(_appContext.LikesPosts.FirstOrDefault(lp => lp.PostId == postId && lp.RatingPersonId == userId));
+                    _appContext.PostModels.FirstOrDefault(u => u.Id == postId).Rating =
+                        targetPost.Rating - 1;
+                    _appContext.SaveChanges();
+                }
+            }
+        }
+        
     }
 }

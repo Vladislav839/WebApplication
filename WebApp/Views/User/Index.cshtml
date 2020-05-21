@@ -108,22 +108,57 @@
     .done(function (data){
                 let ddl = ' ';
                 $.each(data, function(index, element){
-                     ddl += '<div class="container media border p-3 text-dark">\n';
-                     ddl +=  '<img src="';
-                     ddl += '@Url.Content(Model.Path)"';
-                     ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
-                     ddl += '<div class="media-body">\n';
-                     ddl += '<h4 class="text-dark">' + element.owner.nickName + '<small><i class="text-dark">' + " " + element.time + " " + '<i style="color:#00ee00">' + element.rating + '</i>' + '</i></small> </h4>\n';
-                     ddl += '<p class="text-dark">' + element.text + '</p>\n';  
-                     ddl += '</div>\n';
-                     ddl += '</div>\n';
+                    ddl+=DrawPost(element);
                 });
-                console.log(ddl);
                 $(ddl).insertAfter('#posts');            
     });
     });
+ var DrawPost = function(data) {
+      let ddl = ' ';
+      ddl += '<div class="container media border p-3 text-dark">\n';
+      ddl +=  '<img src="';
+      ddl += data.owner.path + '"';
+      ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
+      ddl += '<div class="media-body">\n';
+      ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + data.time + " " + '<i style="color:#00ee00">' + data.rating + '</i>' + '</i></small> </h4>\n';
+      ddl += '<p class="text-dark">' + data.text + '</p>\n';  
+      ddl += '<button data-id="' + data.id + '" class="like">Like post</button>';
+      ddl += '</div>\n';
+      ddl += '</div>\n';
+      return ddl;
+    }
 
+   
 
+</script>
+<script>
+    $('#document').on('click','.like', function() {
+                     $.ajax({
+                           url:'@Url.Action("SwitchLikePost", "Account")',
+                           type:'POST',
+                           data: {
+                               target: '@Model.NickName'
+                    }
+                    
+                })
+            });
+
+</script>
+<script>
+         $('#like').on('click', function() {
+            $.ajax({
+              url:'@Url.Action("", "Account")',
+              type:'GET',
+              data: {
+                  text: $('#comment').val()
+              }
+            })
+            .done(function (data){
+                let ddl = ' ';
+                ddl+=DrawPost(data);
+                $(ddl).insertAfter('#posts');            
+                });
+       });
 </script>
 <script>
          $('#postdata').on('click', function() {
@@ -134,19 +169,13 @@
                   text: $('#comment').val()
               }
             })
-            let name =  '@Model.NickName';
-            let date = Date();
-            let ddl = '<div class="container media border p-3 text-dark">\n';
-            ddl +=  '<img src="';
-            ddl += '@Url.Content(Model.Path)"';
-            ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
-            ddl += '<div class="media-body">\n';
-            ddl += '<h4 class="text-dark">' + name + '<small><i class="text-dark">' + date + '</i></small></h4>\n';
-            ddl += '<p class="text-dark">' + $('#comment').val() + '</p>\n';
-            ddl += '</div>\n';
-            ddl += '</div>\n';
-            $(ddl).insertAfter('#posts'); 
-       });</script>
+            .done(function (data){
+                let ddl = ' ';
+                ddl+=DrawPost(data);
+                $(ddl).insertAfter('#posts');            
+                });
+       });
+</script>
 <script> 
          $('#subscribe').on('click', function() {
                      $.ajax({

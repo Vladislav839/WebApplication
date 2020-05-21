@@ -39,17 +39,11 @@ namespace WebApp.Services
             return _appContext.PostModels.Select(Mappers.BuildPost).FirstOrDefault(p => p.Id == id_post);
         }
         
-        /*public bool IsLikedByUser(int postId, int userId)
+        public bool IsLikedByUser(int postId, int userId)
         {
             var finder = _appContext.LikesPosts.Where(lp => lp.PostId == postId && lp.RatingPersonId == userId).ToList();
             if (finder.Count != 0) return true;
             return false;
-        }*/
-
-        public List<User> FindPerson_simple(string request)
-        {
-            return _appContext.UserModels.Select(Mappers.BuildUser).Where(p => p.NickName.Contains(request)).ToList();
-            
         }
     }
 }
