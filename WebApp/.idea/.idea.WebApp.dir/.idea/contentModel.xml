@@ -24,6 +24,7 @@
         <e p="LikePost.cs" t="Include" />
         <e p="Post.cs" t="Include" />
         <e p="PostModel.cs" t="Include" />
+        <e p="SearchRequest.cs" t="Include" />
         <e p="Subscriber.cs" t="Include" />
         <e p="User.cs" t="Include" />
         <e p="UserModel.cs" t="Include" />
@@ -73,6 +74,7 @@
         </e>
         <e p="User" t="Include">
           <e p="Index.cshtml" t="Include" />
+          <e p="Search.cshtml" t="Include" />
           <e p="Subscribers.cshtml" t="Include" />
           <e p="Subscriptions.cshtml" t="Include" />
         </e>
@@ -83,6 +85,7 @@
           <e p="homestyle.css" t="Include" />
           <e p="loginerrorstyle.css" t="Include" />
           <e p="profile.css" t="Include" />
+          <e p="search.css" t="Include" />
           <e p="site.css" t="Include" />
         </e>
         <e p="favicon.ico" t="Include" />

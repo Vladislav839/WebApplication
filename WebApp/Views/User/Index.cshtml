@@ -21,12 +21,12 @@
             <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
             <div class="col-md-4 mt-4 mb-3">
                 <form class="d-flex">
-                    <input type="text" class="form-control" placeholder="Искать здесь...">
-                    <button class="bth btn-success ml-2">Search</button>
-                </form>
+                                    <input type="text" class="form-control" placeholder="Искать здесь...">
+                                    <button class="bth btn-success ml-2">Search</button>
+                                </form>
             </div>
             <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
-<a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>                <form method="post" asp-controller="Account" asp-action="Logout">
                     <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
                 </form>
             </div>

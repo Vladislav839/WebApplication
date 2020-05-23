@@ -1,0 +1,45 @@
+body {
+    height: 100%;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+}
+.content {
+    padding-bottom: 90px;
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+    font-family: arial;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+.card p a {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+
+a:hover {
+    opacity: 0.7;
+}

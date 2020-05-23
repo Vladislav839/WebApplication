@@ -160,6 +160,12 @@ namespace AuthApp.Controllers
             return _userService.GetFollows(a);
         }
         
+        [HttpGet]
+        public List<User> UserSearch(string RequestText)
+        {
+            return _userService.UserSearch(RequestText);
+        }
+        
         public IActionResult Subscribers(int id)
         {
             var iduser = _userService.FindById(id);
@@ -198,5 +204,6 @@ namespace AuthApp.Controllers
         {
             _userService.SwitchLikePost(_userService.FindByName(userName).Id, postId);
         }
+        
     }
 }

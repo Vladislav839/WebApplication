@@ -1,0 +1,88 @@
+<!--
+@model WebApp.Models.SearchRequest;
+@{
+    Layout = null;
+    ViewData["Title"] = "Home Page";
+}-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebApp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/search.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="content">
+    <header>
+        <div class="container-fluid">
+        <div class="row bg-dark align-items-center">
+            <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
+            <div class="col-md-4 mt-4 mb-3">
+                <form class="d-flex">
+                    <input type="text" class="form-control" placeholder="Искать здесь...">
+                    <button class="bth btn-success ml-2">Search</button>
+                </form>
+            </div>
+            <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
+                <a href="#" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+<div id="searchresults" class="row d-flex flex-row justify-content-center align-items-center">
+
+</div>
+</div>
+</div>
+    <footer class="page-footer bg-dark font-small blue" style="width: 100%; position: relative;  bottom: 0; left: 0; margin-top: 15px;">
+        <div class="text-center text-gray-dark py-3">
+            © 2020 Copyright:
+        </div>
+    </footer>
+  </div>
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        $.ajax({
+        type:'GET',
+        url:'@Url.Action("UserSearch", "Account")',
+        data : {
+            RequestText: '@Model.RequestText'
+        }     
+      })
+     .done(function (data){
+     let ddl = ' ';
+     $.each(data, function(index, element){
+              ddl += '<div class="card">\n';
+              ddl += '<img src="';
+              ddl +=  element.path + '"';
+              ddl += ' alt="John" style="width:100%">\n';
+              ddl += '<div class="media-body">\n';
+              ddl += '<h1>' + element.nickName + '</h1>\n';    
+              ddl += '<div style="margin: 24px 0;">';
+              ddl += '</div>';
+              ddl += '<p><a href="@Url.RouteUrl(new { controller = "Account", action = "Index", id = 0})' + element.id + '">' + 'See Profile' +  '</a></p>\n';               
+              ddl += '</div>\n';
+              ddl += '</div>\n';
+          });
+           console.log(ddl);
+           $(ddl).insertAfter('#searchresults');            
+      })
+   })
+  </script>
+
+</body>
+</html>
+
+
