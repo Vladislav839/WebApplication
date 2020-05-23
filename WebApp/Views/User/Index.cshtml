@@ -20,10 +20,10 @@
         <div class="row bg-dark align-items-center">
             <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
             <div class="col-md-4 mt-4 mb-3">
-                <form class="d-flex">
-                                    <input type="text" class="form-control" placeholder="Искать здесь...">
-                                    <button class="bth btn-success ml-2">Search</button>
-                                </form>
+                <form asp-action="Search" asp-controller="User" class="d-flex">
+                    <input id="request" name="request" type="text" class="form-control" placeholder="Искать здесь...">
+                    <button type="submit" class="bth btn-success ml-2">Search</button>
+                </form>
             </div>
             <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
                     <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>                <form method="post" asp-controller="Account" asp-action="Logout">
@@ -120,46 +120,82 @@
       ddl += data.owner.path + '"';
       ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
       ddl += '<div class="media-body">\n';
-      ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + data.time + " " + '<i style="color:#00ee00">' + data.rating + '</i>' + '</i></small> </h4>\n';
+      ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + data.time + " " + '<i id="l' + data.id + '" style="color:#00ee00">' + data.rating + '</i>' + '</i></small> </h4>\n';
       ddl += '<p class="text-dark">' + data.text + '</p>\n';  
-      ddl += '<button data-id="' + data.id + '" class="like">Like post</button>';
+      ddl += '<button class="'+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" > ' + stringLikedUnliked(data.id) +  ' </button>';
       ddl += '</div>\n';
       ddl += '</div>\n';
       return ddl;
     }
-
-   
-
 </script>
 <script>
-    $('#document').on('click','.like', function() {
-                     $.ajax({
-                           url:'@Url.Action("SwitchLikePost", "Account")',
-                           type:'GET',
-                           data: {
-                               username:'@User.Identity.Name',
-                               id: $(this).data('id')
-                    }
-                    
-                })
-            });
-
+var isLiked = function(idPost) {
+  return $.ajax({
+    url:'@Url.Action("IsLikedByUser", "Account")',
+    type:'GET',
+    async: false,
+    data: {
+        userName: '@User.Identity.Name',
+        postId: idPost
+    }
+  });
+}
 </script>
-
 <script>
-         $('#like').on('click', function() {
+var likeUnlike = function(idPost) {
+    let result = '';
+    isLiked(idPost).done(function(data) {
+        if(data === true) result = "unlike";
+        else result = "like";
+    });
+    return result;
+}
+</script>
+<script>
+var stringLikedUnliked = function(idPost) {
+  let result = '';
+      isLiked(idPost).done(function(data) {
+          if(data === true) result = "Unlike post";
+          else result = "Like post";
+      });
+      return result;
+} 
+</script>
+<script>
+
+$(document).on('click', '.like', function() {
+    
             $.ajax({
-              url:'@Url.Action("", "Account")',
+              url:'@Url.Action("SwitchLikePost", "Account")',
+              type:'GET',
+              data: {   
+                  userName:'@User.Identity.Name',
+                  postId: $(this).data("id")
+              }
+            });
+            let v = document.getElementById("l" + String($(this).data("id")));
+            v.innerHTML = String(parseInt(v.innerHTML) + 1);
+            $(this).text("Unlike post");
+            $(this).removeClass("like");
+            $(this).addClass("unlike");
+            
+    })
+</script>
+<script>
+         $(document).on('click', '.unlike', function() {
+            $.ajax({
+              url:'@Url.Action("SwitchLikePost", "Account")',
               type:'GET',
               data: {
-                  text: $('#comment').val()
+                  userName:'@User.Identity.Name',
+                  postId: $(this).data("id")
               }
             })
-            .done(function (data){
-                let ddl = ' ';
-                ddl+=DrawPost(data);
-                $(ddl).insertAfter('#posts');            
-                });
+            let v = document.getElementById("l" + String($(this).data("id")));
+            v.innerHTML = String(parseInt(v.innerHTML) - 1);
+            $(this).text("Like post");
+            $(this).removeClass("unlike");
+            $(this).addClass("like");
        });
 </script>
 <script>

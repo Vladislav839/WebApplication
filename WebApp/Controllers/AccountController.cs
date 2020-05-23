@@ -199,10 +199,15 @@ namespace AuthApp.Controllers
             var user = _userService.FindByName(User.Identity.Name);
             return RedirectToAction("Index", "User", new {id = iduser.Id});
         }
-
+        [HttpGet]
         public void SwitchLikePost(string userName, int postId)
         {
             _userService.SwitchLikePost(_userService.FindByName(userName).Id, postId);
+        }
+
+        public bool IsLikedByUser(string userName, int postId)
+        {
+            return _postService.IsLikedByUser(postId, _userService.FindByName(userName).Id);
         }
         
     }

@@ -41,9 +41,9 @@ namespace WebApp.Services
         
         public bool IsLikedByUser(int postId, int userId)
         {
-            var finder = _appContext.LikesPosts.Where(lp => lp.PostId == postId && lp.RatingPersonId == userId).ToList();
-            if (finder.Count != 0) return true;
-            return false;
+            var finder = _appContext.LikesPosts.FirstOrDefault(lp => lp.PostId == postId && lp.RatingPersonId == userId);
+            if (finder == null) return false;
+            return true;
         }
     }
 }

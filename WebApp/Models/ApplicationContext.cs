@@ -35,7 +35,7 @@ namespace WebApp.Models
             
             modelBuilder.Entity<LikePost>().HasOne(p => p.PostModel)
                 .WithMany(up => up.LikesPost)
-                .HasForeignKey(u => u.RatingPersonId);
+                .HasForeignKey(u => u.PostId);
             
             modelBuilder.Entity<Subscriber>()
                 .HasKey(t => new {t.senderId, t.targetId});
