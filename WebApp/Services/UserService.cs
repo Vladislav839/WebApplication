@@ -69,7 +69,7 @@ namespace WebApp.Services
             return _appContext.UserModels.Select(Mappers.BuildUser).FirstOrDefault(user => user.NickName == name);
         }
 
-        public void FollowUser(int senderId, int targetId)
+        public void SwitchFollowUser(int senderId, int targetId)
         {
             UserModel currentUser = _appContext.UserModels.FirstOrDefault(user => user.Id == senderId);
             UserModel targetUser = _appContext.UserModels.FirstOrDefault(user => user.Id == targetId);
@@ -87,27 +87,26 @@ namespace WebApp.Services
                     };
 
                     _appContext.Subscribers.Add(sub);
-                    _appContext.UserModels.FirstOrDefault(u => u.Id == senderId).subscriptionsQuantity =
-                        currentUser.subscriptionsQuantity + 1;
-                    _appContext.UserModels.FirstOrDefault(u => u.Id == targetId).subscribersQuantity = 
-                        currentUser.subscribersQuantity + 1;
-                    _appContext.UserModels.FirstOrDefault(u => u.Id == senderId).OutputSubscribtions.Add(sub);
-                    _appContext.UserModels.FirstOrDefault(u => u.Id == targetId).InputSubscriptions.Add(sub);
+                    
+                    _appContext.UserModels.FirstOrDefault(u => u.Id == senderId).subscriptionsQuantity 
+                        = currentUser.OutputSubscribtions.Count;
+
+                    _appContext.UserModels.FirstOrDefault(u => u.Id == targetId).subscribersQuantity 
+                        = targetUser.InputSubscriptions.Count;
+
+                    
                     _appContext.SaveChanges();
                 }
-            }
-        }
-
-        public void UnfollowUser(int senderId, int targetId)
-        {
-            UserModel currentUser = _appContext.UserModels.FirstOrDefault(user => user.Id == senderId);
-            UserModel targetUser = _appContext.UserModels.FirstOrDefault(user => user.Id == senderId);
-            if (FindById(senderId) != null && FindById(targetId) != null)
-            {
-                if (_appContext.Subscribers.FirstOrDefault(s =>
-                    s.senderId == currentUser.Id && s.targetId == targetUser.Id) != null)
+                else
                 {
                     _appContext.Subscribers.Remove(_appContext.Subscribers.FirstOrDefault(s=> s.senderId == senderId && s.targetId == targetId));
+                    
+                    _appContext.UserModels.FirstOrDefault(u => u.Id == senderId).subscriptionsQuantity 
+                        = currentUser.subscriptionsQuantity - 1;
+
+                    _appContext.UserModels.FirstOrDefault(u => u.Id == targetId).subscribersQuantity 
+                        = targetUser.subscribersQuantity - 1;
+                    
                     _appContext.SaveChanges();
                 }
             }
@@ -166,6 +165,16 @@ namespace WebApp.Services
             }
         }
 
+        public bool IsSubscribedOnUser(int targetId, int userId)
+        {
+            UserModel currentUser = _appContext.UserModels.FirstOrDefault(user => user.Id == userId);
+            UserModel targetUser = _appContext.UserModels.FirstOrDefault(user => user.Id == targetId);
+            if (FindById(userId) != null && FindById(targetId) != null)
+                if (_appContext.Subscribers.FirstOrDefault(s =>
+                    s.senderId == currentUser.Id && s.targetId == targetUser.Id) == null)
+                    return false;
+            return true;
+        }
         public List<User> UserSearch(string request)
         {
             var users = _appContext.UserModels.Select(Mappers.BuildUser).Where(p => p.NickName.Contains(request)).ToList();

@@ -179,12 +179,12 @@ namespace AuthApp.Controllers
             return RedirectToAction("Subscriptions", "User", new {id = iduser.Id});
         }
 
-        [HttpPost]
-        public void Subscribe(string target)
+        [HttpGet]
+        public void SwitchSubscription(string target)
         {
             int senderId = _userService.FindByName(User.Identity.Name).Id;
             int targetId = _userService.FindByName(target).Id;
-            _userService.FollowUser(senderId, targetId);
+            _userService.SwitchFollowUser(senderId, targetId);
         }
 
         public IActionResult Index(int id)
@@ -208,6 +208,12 @@ namespace AuthApp.Controllers
         public bool IsLikedByUser(string userName, int postId)
         {
             return _postService.IsLikedByUser(postId, _userService.FindByName(userName).Id);
+        }
+        
+        public bool IsSubscribedOnUser(int targetId)
+        {
+            var user = _userService.FindByName(User.Identity.Name);
+            return _userService.IsSubscribedOnUser(targetId, user.Id);
         }
         
     }

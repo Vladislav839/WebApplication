@@ -53,7 +53,7 @@
         @{
                     if (User.Identity.Name != Model.NickName)
                     {
-                        <button id="subscribe" class="btn btn-primary small">Subscribe</button>
+                        <button id="subscribe" class="btn btn-primary small ">Subscribe</button>
                     }
                 }
     </div>
@@ -62,8 +62,8 @@
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS (@Model.subscribersQuantity) </a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS (@Model.subscriptionsQuantity)</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS  <a id="subscribersCount" class="text-white">@Model.subscribersQuantity </a> </a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS <a id="subscriptionsCount" class="text-white">@Model.subscriptionsQuantity</a> </a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</a></div>
             </div>
         </div>
@@ -128,6 +128,7 @@
       return ddl;
     }
 </script>
+
 <script>
 var isLiked = function(idPost) {
   return $.ajax({
@@ -214,17 +215,83 @@ $(document).on('click', '.like', function() {
                 });
        });
 </script>
-<script> 
-         $('#subscribe').on('click', function() {
-                     $.ajax({
-                       url:'@Url.Action("Subscribe", "Account")',
-                       type:'POST',
-                       data: {
-                           target: '@Model.NickName'
-                       }
-                     })
-                });
-         
+
+<script>
+$(document).ready(function(){
+    let v = document.getElementById("subscribe");
+    v.innerHTML = stringSubscribedUnsubscribed();
+    $("#subscribe").addClass(subscribeUnsubscribe());
+});
+</script>
+
+<script>
+        $(document).on('click', '.subscribe', function() {   
+            $.ajax({
+              url:'@Url.Action("SwitchSubscription", "Account")',
+              type:'GET',
+              data: {   
+                  target:'@Model.NickName',
+              }
+            });
+            let v =document.getElementById("subscribersCount");
+            v.innerHTML = String(parseInt(v.innerHTML) + 1);
+            $(this).text("Unsubscribe");
+            $(this).removeClass("subscribe");
+            $(this).addClass("unsubscribe");
+            
+    })
+</script>
+<script>
+         $(document).on('click', '.unsubscribe', function() {
+            $.ajax({
+              url:'@Url.Action("SwitchSubscription", "Account")',
+              type:'GET',
+              data: {
+                  target:'@Model.NickName',
+              }
+            });
+            let v =document.getElementById("subscribersCount");
+            v.innerHTML = String(parseInt(v.innerHTML) - 1);
+            $(this).text("Subscribe");
+            $(this).removeClass("unsubscribe");
+            $(this).addClass("subscribe");
+       });
+</script>
+
+<script>
+var isSubscribed = function() {
+  return $.ajax({
+    url:'@Url.Action("IsSubscribedOnUser", "Account")',
+    type:'GET',
+    async: false,
+    data: {
+        targetId: @Model.Id
+    }
+  });
+}
+</script>
+<script>
+var subscribeUnsubscribe = function() {
+    let result = '';
+    isSubscribed().done(function(data) {
+        if(data === true) result = "unsubscribe";
+        else result = "subscribe";
+    });
+    return result;
+}
+</script>
+<script>
+var stringSubscribedUnsubscribed = function() {
+  let result = '';
+      isSubscribed().done(function(data) {
+          if(data === true) result = "Unsubscribe";
+          else result = "Subscribe";
+      });
+      return result;
+} 
+</script>
+<script>
+
 </script>
 </body>
 </html>

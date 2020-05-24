@@ -85,7 +85,7 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function(){ //
       $.ajax({
       type:'GET',
       url:'@Url.Action("GetSubscribersInput", "Account")',
@@ -111,10 +111,10 @@
     });
    });
     </script>
-<script>
+<script> //
     $('#subscribe').on('click', function() {
                          $.ajax({
-                           url:'@Url.Action("Subscribe", "Account")',
+                           url:'@Url.Action("SwitchSubscription", "Account")',
                            type:'POST',
                            data: {
                                target: '@Model.NickName'

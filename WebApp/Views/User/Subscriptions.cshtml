@@ -112,7 +112,7 @@
    });
     $('#subscribe').on('click', function() {
                          $.ajax({
-                           url:'@Url.Action("Subscribe", "Account")',
+                           url:'@Url.Action("SwitchSubscription", "Account")',
                            type:'POST',
                            data: {
                                target: '@Model.NickName'
