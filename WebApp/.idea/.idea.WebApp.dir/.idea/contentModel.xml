@@ -102,7 +102,6 @@
           <e p="social-network.png" t="Include" />
         </e>
         <e p="js" t="Include">
-          <e p="likesSubsPosts.js" t="Include" />
           <e p="site.js" t="Include" />
         </e>
         <e p="lib" t="Include">

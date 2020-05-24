@@ -96,6 +96,7 @@
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="js/likesSubsPosts.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
       $.ajax({
@@ -126,10 +127,8 @@
       ddl += '</div>\n';
       ddl += '</div>\n';
       return ddl;
-    }
-</script>
+    };
 
-<script>
 var isLiked = function(idPost) {
   return $.ajax({
     url:'@Url.Action("IsLikedByUser", "Account")',
@@ -140,9 +139,8 @@ var isLiked = function(idPost) {
         postId: idPost
     }
   });
-}
-</script>
-<script>
+};
+
 var likeUnlike = function(idPost) {
     let result = '';
     isLiked(idPost).done(function(data) {
@@ -151,8 +149,7 @@ var likeUnlike = function(idPost) {
     });
     return result;
 }
-</script>
-<script>
+
 var stringLikedUnliked = function(idPost) {
   let result = '';
       isLiked(idPost).done(function(data) {
@@ -160,9 +157,7 @@ var stringLikedUnliked = function(idPost) {
           else result = "Like post";
       });
       return result;
-} 
-</script>
-<script>
+};
 
 $(document).on('click', '.like', function() {
     
@@ -180,9 +175,8 @@ $(document).on('click', '.like', function() {
             $(this).removeClass("like");
             $(this).addClass("unlike");
             
-    })
-</script>
-<script>
+    });
+
          $(document).on('click', '.unlike', function() {
             $.ajax({
               url:'@Url.Action("SwitchLikePost", "Account")',
@@ -198,8 +192,7 @@ $(document).on('click', '.like', function() {
             $(this).removeClass("unlike");
             $(this).addClass("like");
        });
-</script>
-<script>
+
          $('#postdata').on('click', function() {
             $.ajax({
               url:'@Url.Action("SavePost", "Account")',
@@ -214,17 +207,13 @@ $(document).on('click', '.like', function() {
                 $(ddl).insertAfter('#posts');            
                 });
        });
-</script>
 
-<script>
 $(document).ready(function(){
     let v = document.getElementById("subscribe");
     v.innerHTML = stringSubscribedUnsubscribed();
     $("#subscribe").addClass(subscribeUnsubscribe());
 });
-</script>
 
-<script>
         $(document).on('click', '.subscribe', function() {   
             $.ajax({
               url:'@Url.Action("SwitchSubscription", "Account")',
@@ -239,9 +228,8 @@ $(document).ready(function(){
             $(this).removeClass("subscribe");
             $(this).addClass("unsubscribe");
             
-    })
-</script>
-<script>
+    });
+        
          $(document).on('click', '.unsubscribe', function() {
             $.ajax({
               url:'@Url.Action("SwitchSubscription", "Account")',
@@ -256,9 +244,7 @@ $(document).ready(function(){
             $(this).removeClass("unsubscribe");
             $(this).addClass("subscribe");
        });
-</script>
 
-<script>
 var isSubscribed = function() {
   return $.ajax({
     url:'@Url.Action("IsSubscribedOnUser", "Account")',
@@ -268,9 +254,8 @@ var isSubscribed = function() {
         targetId: @Model.Id
     }
   });
-}
-</script>
-<script>
+};
+
 var subscribeUnsubscribe = function() {
     let result = '';
     isSubscribed().done(function(data) {
@@ -278,9 +263,8 @@ var subscribeUnsubscribe = function() {
         else result = "subscribe";
     });
     return result;
-}
-</script>
-<script>
+};
+
 var stringSubscribedUnsubscribed = function() {
   let result = '';
       isSubscribed().done(function(data) {
@@ -289,9 +273,6 @@ var stringSubscribedUnsubscribed = function() {
       });
       return result;
 } 
-</script>
-<script>
-
 </script>
 </body>
 </html>

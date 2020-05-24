@@ -111,15 +111,15 @@
         <option value="$PROJECT_DIR$/Views/Account/Login.cshtml" />
         <option value="$PROJECT_DIR$/Models/SearchRequest.cs" />
         <option value="$PROJECT_DIR$/Controllers/UserController.cs" />
-        <option value="$PROJECT_DIR$/Views/User/Search.cshtml" />
-        <option value="$PROJECT_DIR$/Views/User/Subscriptions.cshtml" />
         <option value="$PROJECT_DIR$/Services/PostService.cs" />
         <option value="$PROJECT_DIR$/Models/ApplicationContext.cs" />
         <option value="$PROJECT_DIR$/Controllers/AccountController.cs" />
-        <option value="$PROJECT_DIR$/Views/User/Subscribers.cshtml" />
         <option value="$PROJECT_DIR$/Services/UserService.cs" />
         <option value="$PROJECT_DIR$/wwwroot/js/likesSubsPosts.js" />
+        <option value="$PROJECT_DIR$/Views/User/Search.cshtml" />
         <option value="$PROJECT_DIR$/Views/User/Index.cshtml" />
+        <option value="$PROJECT_DIR$/Views/User/Subscriptions.cshtml" />
+        <option value="$PROJECT_DIR$/Views/User/Subscribers.cshtml" />
       </list>
     </option>
   </component>
@@ -213,7 +213,7 @@
       <workItem from="1590245633322" duration="2718000" />
       <workItem from="1590250253919" duration="5916000" />
       <workItem from="1590259995342" duration="8836000" />
-      <workItem from="1590313023300" duration="6063000" />
+      <workItem from="1590313023300" duration="6847000" />
     </task>
     <servers />
   </component>
@@ -240,22 +240,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1588886455046" />
-    <state width="1493" height="102" key="GridCell.Tab.0.bottom" timestamp="1590319109632">
+    <state width="1493" height="102" key="GridCell.Tab.0.bottom" timestamp="1590319825230">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="102" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590319109632" />
-    <state width="1493" height="102" key="GridCell.Tab.0.center" timestamp="1590319109631">
+    <state width="1493" height="102" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590319825230" />
+    <state width="1493" height="102" key="GridCell.Tab.0.center" timestamp="1590319825229">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="102" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590319109631" />
-    <state width="1493" height="102" key="GridCell.Tab.0.left" timestamp="1590319109631">
+    <state width="1493" height="102" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590319825229" />
+    <state width="1493" height="102" key="GridCell.Tab.0.left" timestamp="1590319825229">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="102" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590319109631" />
-    <state width="1493" height="102" key="GridCell.Tab.0.right" timestamp="1590319109632">
+    <state width="1493" height="102" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590319825229" />
+    <state width="1493" height="102" key="GridCell.Tab.0.right" timestamp="1590319825230">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="102" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590319109632" />
+    <state width="1493" height="102" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590319825230" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1590317164426">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

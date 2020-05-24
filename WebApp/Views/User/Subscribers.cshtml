@@ -63,8 +63,8 @@
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS (@Model.subscribersQuantity) </a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS (@Model.subscriptionsQuantity)</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS  <a id="subscribersCount" class="text-white">@Model.subscribersQuantity </a> </a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS <a id="subscriptionsCount" class="text-white">@Model.subscriptionsQuantity</a> </a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</a></div>
             </div>
         </div>
@@ -85,7 +85,7 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){ //
+    $(document).ready(function(){
       $.ajax({
       type:'GET',
       url:'@Url.Action("GetSubscribersInput", "Account")',
@@ -110,8 +110,7 @@
                 $(ddl).insertAfter('#subscribers');            
     });
    });
-    </script>
-<script> //
+
     $('#subscribe').on('click', function() {
                          $.ajax({
                            url:'@Url.Action("SwitchSubscription", "Account")',
@@ -122,14 +121,78 @@
                          })
                     });
 
-</script>
-<script>
 
         $("#customFile").on("change", function() {
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
   
+        $(document).ready(function(){
+            let v = document.getElementById("subscribe");
+            v.innerHTML = stringSubscribedUnsubscribed();
+            $("#subscribe").addClass(subscribeUnsubscribe());
+        });
+        
+                $(document).on('click', '.subscribe', function() {   
+                    $.ajax({
+                      url:'@Url.Action("SwitchSubscription", "Account")',
+                      type:'GET',
+                      data: {   
+                          target:'@Model.NickName',
+                      }
+                    });
+                    let v =document.getElementById("subscribersCount");
+                    v.innerHTML = String(parseInt(v.innerHTML) + 1);
+                    $(this).text("Unsubscribe");
+                    $(this).removeClass("subscribe");
+                    $(this).addClass("unsubscribe");
+                    
+            });
+                
+                 $(document).on('click', '.unsubscribe', function() {
+                    $.ajax({
+                      url:'@Url.Action("SwitchSubscription", "Account")',
+                      type:'GET',
+                      data: {
+                          target:'@Model.NickName',
+                      }
+                    });
+                    let v =document.getElementById("subscribersCount");
+                    v.innerHTML = String(parseInt(v.innerHTML) - 1);
+                    $(this).text("Subscribe");
+                    $(this).removeClass("unsubscribe");
+                    $(this).addClass("subscribe");
+               });
+        
+        var isSubscribed = function() {
+          return $.ajax({
+            url:'@Url.Action("IsSubscribedOnUser", "Account")',
+            type:'GET',
+            async: false,
+            data: {
+                targetId: @Model.Id
+            }
+          });
+        };
+        
+        var subscribeUnsubscribe = function() {
+            let result = '';
+            isSubscribed().done(function(data) {
+                if(data === true) result = "unsubscribe";
+                else result = "subscribe";
+            });
+            return result;
+        };
+        
+        var stringSubscribedUnsubscribed = function() {
+          let result = '';
+              isSubscribed().done(function(data) {
+                  if(data === true) result = "Unsubscribe";
+                  else result = "Subscribe";
+              });
+              return result;
+        } 
+        
 </script>
 </body>
 </html>
