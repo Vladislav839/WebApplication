@@ -193,6 +193,11 @@ namespace AuthApp.Controllers
             var user = _userService.FindByName(User.Identity.Name);
             return RedirectToAction("Index", "User", new {id = iduser.Id});
         }
+        public IActionResult Photos(int id)
+        {
+            var iduser = _userService.FindById(id);
+            return RedirectToAction("Photos", "User", new {id = iduser.Id});
+        }
         public IActionResult IndexByName(string username)
         {
             var iduser = _userService.FindByName(username);
@@ -214,6 +219,12 @@ namespace AuthApp.Controllers
         {
             var user = _userService.FindByName(User.Identity.Name);
             return _userService.IsSubscribedOnUser(targetId, user.Id);
+        }
+
+        [HttpGet]
+        public List<PhotoModel> GetPhotos(int id)
+        {
+            return _db.PhotoModels.Where(u => u.OwnerId == id).ToList();
         }
         
     }

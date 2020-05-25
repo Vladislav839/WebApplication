@@ -13,6 +13,7 @@ namespace WebApp.Models
         public DbSet<PostModel> PostModels { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<LikePost> LikesPosts { get; set; }
+        public DbSet<PhotoModel> PhotoModels { get; set; }
         
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)

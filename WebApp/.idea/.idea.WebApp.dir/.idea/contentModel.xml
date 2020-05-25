@@ -16,12 +16,15 @@
         <e p="20200517173057_subscribers.Designer.cs" t="Include" />
         <e p="20200520110824_subq.cs" t="Include" />
         <e p="20200520110824_subq.Designer.cs" t="Include" />
+        <e p="20200525183347_photochki.cs" t="Include" />
+        <e p="20200525183347_photochki.Designer.cs" t="Include" />
         <e p="ApplicationContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
         <e p="ApplicationContext.cs" t="Include" />
         <e p="ErrorViewModel.cs" t="Include" />
         <e p="LikePost.cs" t="Include" />
+        <e p="PhotoModel.cs" t="Include" />
         <e p="Post.cs" t="Include" />
         <e p="PostModel.cs" t="Include" />
         <e p="SearchRequest.cs" t="Include" />
@@ -74,6 +77,7 @@
         </e>
         <e p="User" t="Include">
           <e p="Index.cshtml" t="Include" />
+          <e p="Photos.cshtml" t="Include" />
           <e p="Search.cshtml" t="Include" />
           <e p="Subscribers.cshtml" t="Include" />
           <e p="Subscriptions.cshtml" t="Include" />
@@ -94,6 +98,7 @@
           <e p="1529014066_28adb6a8908558ba55eac1d63b412a03.jpg" t="Include" />
           <e p="3d-businessman-relaxing-in-a-deck-chair-drawing_csp43048944.jpg" t="Include" />
           <e p="_MG_1552.JPG" t="Include" />
+          <e p="chikibamboni-3-768x610.jpg" t="Include" />
         </e>
         <e p="img" t="Include">
           <e p="avatar-default.png" t="Include" />

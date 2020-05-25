@@ -134,3 +134,4 @@ C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\I
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Subscribers.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Subscriptions.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Search.cshtml.g.cs
+C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Photos.cshtml.g.cs
