@@ -20571,6 +20571,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Рабочий стол\\SuperMegaProject\\WebApplication\\WebApp\\Views\\User\\Photos.cshtml",
+      "TargetPath": "Views\\User\\Photos.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Рабочий стол\\SuperMegaProject\\WebApplication\\WebApp\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"

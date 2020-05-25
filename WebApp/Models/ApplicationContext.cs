@@ -11,6 +11,7 @@ namespace WebApp.Models
     {
         public DbSet<UserModel> UserModels { get; set; }
         public DbSet<PostModel> PostModels { get; set; }
+        public DbSet<PhotoModel> PhotoModels { get; set; }
         //public DbSet<Friend> Friends { get; set; }
         //public DbSet<Subscriber> Subscribers { get; set; }
         //public DbSet<LikePost> LikesPosts { get; set; }

@@ -1,0 +1,126 @@
+@model IEnumerable<WebApp.Models.PhotoModel>;
+@{
+    Layout = null;
+    ViewData["Title"] = "Photos";
+}
+@using System.Net
+@using System.Security.Claims;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApp</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <style>
+div.gallery {
+  border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+        <div class="row bg-dark align-items-center">
+            <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
+            <div class="col-md-4 mt-4 mb-3">
+                <form class="d-flex">
+                    <input type="text" class="form-control" placeholder="Искать здесь...">
+                    <button class="bth btn-success ml-2">Search</button>
+                </form>
+            </div>
+            <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
+                <a href="#" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+    </div>
+   </header>
+  
+  <!-- The slideshow -->
+  <div class="container">
+   @foreach (var item in Model) 
+   {
+      <div class="responsive">
+  <div class="gallery">
+    <a target="_blank" href="@Url.Content(item.Path)">
+      <img src="@Url.Content(item.Path)" width="600" height="400">
+    </a>
+  </div>
+</div>
+   }
+   </div>
+  
+  <!-- Left and right controls -->
+  
+   <div style="background-color: white; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+   <form asp-action="AddPhoto" asp-controller="user" method="post" enctype="multipart/form-data">
+             <div class="custom-file">
+            <input type="file" class="custom-file-input" name="uploadedFile" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+             </div>
+            <button id="photo" type="submit" class="btn btn-primary small">Add photo</button>
+    </form>
+   </div>
+    <footer class="page-footer bg-dark font-small blue"  style="width: 100%; position: absolute; bottom: 0; left: 0;">
+        <div class="text-center text-gray-dark py-3">
+            © 2020 Copyright:
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+         $("#customFile").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+    </script>
+</body>
+</html>
