@@ -18,6 +18,19 @@ namespace WebApp.Migrations
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("WebApp.Models.LikePost", b =>
+                {
+                    b.Property<int>("RatingPersonId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("RatingPersonId", "PostId");
+
+                    b.ToTable("LikesPosts");
+                });
+
             modelBuilder.Entity("WebApp.Models.PostModel", b =>
                 {
                     b.Property<int>("Id")
@@ -44,6 +57,21 @@ namespace WebApp.Migrations
                     b.ToTable("PostModels");
                 });
 
+            modelBuilder.Entity("WebApp.Models.Subscriber", b =>
+                {
+                    b.Property<int>("senderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("targetId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("senderId", "targetId");
+
+                    b.HasIndex("targetId");
+
+                    b.ToTable("Subscribers");
+                });
+
             modelBuilder.Entity("WebApp.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
@@ -63,9 +91,30 @@ namespace WebApp.Migrations
                     b.Property<string>("Path")
                         .HasColumnType("text");
 
+                    b.Property<int>("subscribersQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("subscriptionsQuantity")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.ToTable("UserModels");
+                });
+
+            modelBuilder.Entity("WebApp.Models.LikePost", b =>
+                {
+                    b.HasOne("WebApp.Models.PostModel", "PostModel")
+                        .WithMany("LikesPost")
+                        .HasForeignKey("RatingPersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApp.Models.UserModel", "RatingPerson")
+                        .WithMany("LikesPost")
+                        .HasForeignKey("RatingPersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebApp.Models.PostModel", b =>
@@ -73,6 +122,21 @@ namespace WebApp.Migrations
                     b.HasOne("WebApp.Models.UserModel", "Owner")
                         .WithMany("Posts")
                         .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApp.Models.Subscriber", b =>
+                {
+                    b.HasOne("WebApp.Models.UserModel", "sender")
+                        .WithMany("OutputSubscribtions")
+                        .HasForeignKey("senderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApp.Models.UserModel", "target")
+                        .WithMany("InputSubscriptions")
+                        .HasForeignKey("targetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

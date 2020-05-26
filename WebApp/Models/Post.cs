@@ -11,12 +11,6 @@ namespace WebApp.Models
         public int OwnerId { get; set; }
         public string Text{ get; set; }
         public DateTime Time{ get; set; }
-        public int rating { get; set; }
-        //public List<LikePost> LikesPosts { get; set; }
-
-        public Post()
-        {
-            //LikesPosts = new List<LikePost>();
-        }
+        public int Rating { get; set; }
     }
 }

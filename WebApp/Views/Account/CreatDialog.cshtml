@@ -53,28 +53,24 @@
     $(document).ready(function(){
       $.ajax({
       type:'GET',
-      url:'@Url.Action("GetMessagesOfDialog", "Dialog")',
-      data:{
-          id: @Model.Id
-      }    
+      url:'@Url.Action("GetMessagesOfDialog", "Dialog")'     
     })
     .done(function (data){
+        console.log('is okay');
                 let ddl = ' ';
-                $.each(data, function(index, element){
+                $.each(data, function(element){
+                console.log('alalalalal');
                      ddl += '<div class="container media border p-3 text-dark">\n';
-                     ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
                      ddl += '<div class="media-body">\n';
-                     ddl += '<h4 class="text-dark">' + element.OwnerId + '<small><i class="text-dark">' + element.SendingTime + '</i></small></h4>\n';
-                     ddl += '<p class="text-dark">' + element.Text + '</p>\n';  
+                     ddl += '<h4 class="text-dark">' + element.ownerid + '<small><i class="text-dark">' + 'date' + '</i></small></h4>\n';
+                     ddl += '<p class="text-dark">' + element.text + '</p>\n';  
                      ddl += '</div>\n';
                      ddl += '</div>\n';
                 
                 });
-                console.log(ddl);
-                $(ddl).insertBefore("#messages");            
+                $(ddl).insertAfter("#messages");            
     });
     });
-    
 
          $('#send-message').on('click', function() {
             $.ajax({
@@ -82,11 +78,11 @@
               type:'POST',
               data: {
                   text: $('#comment').val(),
-                  id: @Model.Id
+                                    
               }
-            }).done(function(data) {
-                console.log('hello there');
-            let name =  '@User.Identity.Name';
+            });
+            console.log('everything is okay');
+            let name =  'NickName';
             let text = $("#message_text").val();
             let date = Date();
             let ddl = '<div class="container media border p-3 text-dark">\n';
@@ -95,9 +91,7 @@
             ddl += '<h4 class="text-dark">' + name + '<small><i class="text-dark">' + date + '</i></small></h4>\n';
             ddl += '</div>\n';
             ddl += '</div>\n';
-            $(ddl).insertAfter("#messages");              
-            })
- 
+            $(ddl).insertAfter("#messages"); 
         });
    
 </script>

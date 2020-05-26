@@ -131,6 +131,8 @@ C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\F
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Friends.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\UserPosts.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
+C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Subscribers.cshtml.g.cs
+C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Subscriptions.cshtml.g.cs
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -191,6 +193,8 @@ C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
+C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Subscribers.cshtml.g.cs
+C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Subscriptions.cshtml.g.cs
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.RazorTargetAssemblyInfo.cache
@@ -199,6 +203,5 @@ C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.csproj.CopyComplete
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.dll
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.pdb
-C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\About.cshtml.g.cs
-C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Dialogs\Dialogs.cshtml.g.cs
+C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\CreatDialog.cshtml.g.cs
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Dialog\Dialog.cshtml.g.cs

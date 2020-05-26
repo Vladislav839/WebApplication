@@ -12,33 +12,21 @@
         <e p="UserController.cs" t="Include" />
       </e>
       <e p="Migrations" t="Include">
-        <e p="20200507164248_FriendList.cs" t="Include" />
-        <e p="20200507164248_FriendList.Designer.cs" t="Include" />
-        <e p="20200507193602_UserToModel.cs" t="Include" />
-        <e p="20200507193602_UserToModel.Designer.cs" t="Include" />
-        <e p="20200507211919_FriendList_changedbset.cs" t="Include" />
-        <e p="20200507211919_FriendList_changedbset.Designer.cs" t="Include" />
-        <e p="20200507211932_FriendList_changedbset_.cs" t="Include" />
-        <e p="20200507211932_FriendList_changedbset_.Designer.cs" t="Include" />
-        <e p="20200507212812_UserToModel___.cs" t="Include" />
-        <e p="20200507212812_UserToModel___.Designer.cs" t="Include" />
-        <e p="20200507212822_UserToModel____.cs" t="Include" />
-        <e p="20200507212822_UserToModel____.Designer.cs" t="Include" />
-        <e p="20200508145222_ok_names.cs" t="Include" />
-        <e p="20200508145222_ok_names.Designer.cs" t="Include" />
+        <e p="20200517173057_subscribers.cs" t="Include" />
+        <e p="20200517173057_subscribers.Designer.cs" t="Include" />
+        <e p="20200520110824_subq.cs" t="Include" />
+        <e p="20200520110824_subq.Designer.cs" t="Include" />
         <e p="ApplicationContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
         <e p="ApplicationContext.cs" t="Include" />
         <e p="ErrorViewModel.cs" t="Include" />
-        <e p="Friend.cs" t="Include" />
         <e p="LikePost.cs" t="Include" />
         <e p="Post.cs" t="Include" />
         <e p="PostModel.cs" t="Include" />
         <e p="Subscriber.cs" t="Include" />
         <e p="User.cs" t="Include" />
         <e p="UserModel.cs" t="Include" />
-        <e p="UserPost.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
@@ -69,11 +57,11 @@
         <e p="Account" t="Include">
           <e p="Login.cshtml" t="Include" />
           <e p="Register.cshtml" t="Include" />
+          <e p="UserPosts.cshtml" t="Include" />
         </e>
         <e p="Home" t="Include">
           <e p="Feed.cshtml" t="Include" />
           <e p="Friends.cshtml" t="Include" />
-          <e p="Index.cshtml" t="Include" />
           <e p="Privacy.cshtml" t="Include" />
           <e p="Profile.cshtml" t="Include" />
         </e>
@@ -85,6 +73,8 @@
         </e>
         <e p="User" t="Include">
           <e p="Index.cshtml" t="Include" />
+          <e p="Subscribers.cshtml" t="Include" />
+          <e p="Subscriptions.cshtml" t="Include" />
         </e>
       </e>
       <e p="WebApp.csproj" t="IncludeRecursive" />
@@ -96,6 +86,12 @@
           <e p="site.css" t="Include" />
         </e>
         <e p="favicon.ico" t="Include" />
+        <e p="Files" t="Include">
+          <e p="0.89654800_1524035070_16-20180430.jpg" t="Include" />
+          <e p="1529014066_28adb6a8908558ba55eac1d63b412a03.jpg" t="Include" />
+          <e p="3d-businessman-relaxing-in-a-deck-chair-drawing_csp43048944.jpg" t="Include" />
+          <e p="_MG_1552.JPG" t="Include" />
+        </e>
         <e p="img" t="Include">
           <e p="avatar-default.png" t="Include" />
           <e p="header.jpg" t="Include" />

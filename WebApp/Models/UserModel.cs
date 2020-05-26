@@ -12,11 +12,12 @@ namespace WebApp.Models
         public string Password { get; set; }
         public string Path { get; set; }
         public List<PostModel> Posts { get; set; }
-        //public List<Friend> Friends1 { get; set; }
-        //public List<Friend> Friends2 { get; set; }
-        //public List<LikePost> LikesPosts { get; set; } 
-        //public List<Subscriber> InputSubscriptions { get; set; }
-        //public List<Subscriber> OutputSubscribtions { get; set; }
+        public List<Subscriber> InputSubscriptions { get; set; }
+        public List<Subscriber> OutputSubscribtions { get; set; }
+        public List<LikePost> LikesPost { get; set; }
         
+        public List<UserDialog> UserDialogs { get; set; }
+        public int subscribersQuantity { get; set; }
+        public int subscriptionsQuantity { get; set; }
     }
 }

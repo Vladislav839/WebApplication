@@ -13,25 +13,28 @@ namespace WebApp.Services
         {
             _applicationContext = db;
         }
-
-        public int GetFirstPersonId(int dialog_id)
-        {
-            return _applicationContext.DialogsModels.Select(Mappers.BuildDialog)
-                .FirstOrDefault(d => d.DialogId == dialog_id)?.FirstPersonId ?? -1;
-        }
-        
-        public int GetSecondPersonId(int dialog_id)
-        {
-            return _applicationContext.DialogsModels.Select(Mappers.BuildDialog)
-                .FirstOrDefault(d => d.DialogId == dialog_id)?.SecondPersonId ?? -1;
-        }
-
         public Dialog GetDialogById(int dialog_id)
         {
             return _applicationContext.DialogsModels.Select(Mappers.BuildDialog)
-                .FirstOrDefault(d => d.DialogId == dialog_id);
+                .FirstOrDefault(d => d.Id == dialog_id);
         }
 
+        public Dialog GetDialogByMatesId(int firstPersonId, int secondPersonId)
+        {
+            return _applicationContext.DialogsModels.Select(Mappers.BuildDialog)
+                .FirstOrDefault(d => d.FirstPersonId == firstPersonId && d.SecondPersonId == secondPersonId);
+        }
+
+        public bool IsDialogExist(int firstPersonId, int secondPersonId)
+        {
+            if (_applicationContext.DialogsModels.Select(Mappers.BuildDialog).First(d =>
+                d.FirstPersonId == firstPersonId && d.SecondPersonId == secondPersonId) == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
         public List<Message> GetMessagesFromDialog(int dialog_id)
         {
             List<Message> messages = new List<Message>();

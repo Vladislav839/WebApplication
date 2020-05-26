@@ -31,12 +31,17 @@ namespace AuthApp.Controllers
             _postService = new PostService(_db);
         }
         
+        // [HttpPost]
+        // public IActionResult Dialog()
+        // {
+        //
+        // }
+
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
@@ -48,7 +53,7 @@ namespace AuthApp.Controllers
                 {
                     await Authenticate(model.NickName); // аутентификация
 
-                    return RedirectToAction("About", "User", new {id = user.Id});
+                    return RedirectToAction("Index", "User", new {id = user.Id});
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -98,7 +103,7 @@ namespace AuthApp.Controllers
 
         [HttpPost]
         
-        public IActionResult SavePost(string text)
+        public Post SavePost(string text)
         {
             PostModel postModel = new PostModel
             {
@@ -110,7 +115,7 @@ namespace AuthApp.Controllers
             };
             _db.PostModels.Add(postModel);
             _db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return Mappers.BuildPost(postModel);
         }
 
         [HttpPost]
@@ -141,11 +146,64 @@ namespace AuthApp.Controllers
         }
 
         [HttpGet]
-        public List<Post> GetPosts()
+        public List<Post> GetPosts(int Id)
         {
             int id = _userService.FindByName(User.Identity.Name).Id;
-            List<Post> a = _userService.GetPosts(id);
+            List<Post> a = _userService.GetPosts(Id);
             return a;
+        }
+        [HttpGet]
+        public List<User> GetSubscribersInput(int Id)
+        {
+            int a = Id;
+            int id = _userService.FindByName(User.Identity.Name).Id;
+            return _userService.GetFollowers(Id);
+        }
+        [HttpGet]
+        public List<User> GetSubscribersOutput(int Id)
+        {
+            int a = Id;
+            int id = _userService.FindByName(User.Identity.Name).Id;
+            return _userService.GetFollows(a);
+        }
+        
+        public IActionResult Subscribers(int id)
+        {
+            var iduser = _userService.FindById(id);
+            var user = _userService.FindByName(User.Identity.Name);
+            return RedirectToAction("Subscribers", "User", new {id = iduser.Id});
+        }
+        public IActionResult Subscriptions(int id)
+        {
+            var iduser = _userService.FindById(id);
+            var user = _userService.FindByName(User.Identity.Name);
+            return RedirectToAction("Subscriptions", "User", new {id = iduser.Id});
+        }
+
+        [HttpPost]
+        public void Subscribe(string target)
+        {
+            int senderId = _userService.FindByName(User.Identity.Name).Id;
+            int targetId = _userService.FindByName(target).Id;
+            _userService.FollowUser(senderId, targetId);
+        }
+
+        public IActionResult Index(int id)
+        {
+            var iduser = _userService.FindById(id);
+            var user = _userService.FindByName(User.Identity.Name);
+            return RedirectToAction("Index", "User", new {id = iduser.Id});
+        }
+        public IActionResult IndexByName(string username)
+        {
+            var iduser = _userService.FindByName(username);
+            var user = _userService.FindByName(User.Identity.Name);
+            return RedirectToAction("Index", "User", new {id = iduser.Id});
+        }
+
+        public void SwitchLikePost(string userName, int postId)
+        {
+            _userService.SwitchLikePost(_userService.FindByName(userName).Id, postId);
         }
     }
 }

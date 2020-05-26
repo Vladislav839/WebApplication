@@ -22,7 +22,7 @@ namespace WebApp.Services
         public Message GetMessageById(int message_id)
         {
             return _applicationContext.MessagesModels.Select(Mappers.BuildMessage)
-                .FirstOrDefault(m => m.MessageId == message_id);
+                .FirstOrDefault(m => m.Id == message_id);
         }
 
         public User GetOwnerById(int owner_id)
@@ -33,25 +33,25 @@ namespace WebApp.Services
         public DateTime? GetSendingTime(int message_id)
         {
             return _applicationContext.MessagesModels.Select(Mappers.BuildMessage)
-                .FirstOrDefault(m => m.MessageId == message_id)?.SendingTime;
+                .FirstOrDefault(m => m.Id == message_id)?.SendingTime;
         }
 
         public string GetText(int message_id)
         {
             return _applicationContext.MessagesModels.Select(Mappers.BuildMessage)
-                .FirstOrDefault(m => m.MessageId == message_id)?.Text;
+                .FirstOrDefault(m => m.Id == message_id)?.Text;
         }
 
         public int GetOwnerDialogId(int message_id)
         {
             return _applicationContext.MessagesModels.Select(Mappers.BuildMessage)
-                .FirstOrDefault(m => m.MessageId == message_id)?.OwnerDialogId ?? -1;
+                .FirstOrDefault(m => m.Id == message_id)?.OwnerDialogId ?? -1;
         }
 
         public int GetMessageId(Message m)
         {
             return _applicationContext.MessagesModels.Select(Mappers.BuildMessage)
-                .FirstOrDefault(mes => mes.MessageId == m.MessageId)?.MessageId ?? -1;
+                .FirstOrDefault(mes => mes.Id == m.Id)?.Id ?? -1;
         }
     }
 }

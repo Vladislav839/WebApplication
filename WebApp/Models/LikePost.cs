@@ -1,4 +1,4 @@
-﻿/*namespace WebApp.Models
+﻿namespace WebApp.Models
 {
     public class LikePost
     {
@@ -7,4 +7,4 @@
         public PostModel PostModel { get; set; }
         public int PostId { get; set; }
     }
-}*/
+}
