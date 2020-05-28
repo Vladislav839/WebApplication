@@ -20521,6 +20521,16 @@
   "RootNamespace": "WebApp",
   "Documents": [
     {
+      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\User\\Search.cshtml",
+      "TargetPath": "Views\\User\\Search.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\Home\\Friends.cshtml",
+      "TargetPath": "Views\\Home\\Friends.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -20528,6 +20538,11 @@
     {
       "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\User\\Subscriptions.cshtml",
+      "TargetPath": "Views\\User\\Subscriptions.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20546,18 +20561,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\User\\Photos.cshtml",
+      "TargetPath": "Views\\User\\Photos.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\Profile.cshtml",
+      "TargetPath": "Views\\Profile.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\Profile.cshtml",
-      "TargetPath": "Views\\Profile.cshtml",
+      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\User\\Subscribers.cshtml",
+      "TargetPath": "Views\\User\\Subscribers.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20576,8 +20596,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\Home\\Feed.cshtml",
+      "TargetPath": "Views\\Home\\Feed.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\Account\\UserPosts.cshtml",
       "TargetPath": "Views\\Account\\UserPosts.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\Views\\User\\Index.cshtml",
+      "TargetPath": "Views\\User\\Index.cshtml",
       "FileKind": "mvc"
     }
   ],

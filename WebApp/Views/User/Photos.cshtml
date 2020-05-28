@@ -12,10 +12,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebApp</title>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+     <!--<link rel="stylesheet" href="~/css/site.css" />-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <style>
+
+    .img-gallery { overflow: hidden; width: 100%;}
+.img-gallery .ramka { float: left; margin-right: 10px; margin-bottom: 10px;}
+.img-gallery img, a{ width: 800px; height: 800px; object-fit: cover; }
+
+    html,
+body,
+.wrapper {
+	height: 100%;
+}
+.content {
+	box-sizing: border-box;
+	min-height: 100%;
+	padding-bottom: 90px;
+}
+footer {
+	height: 80px;
+	margin-top: -80px;
+}
 div.gallery {
   border: 1px solid #ccc;
 }
@@ -65,6 +85,8 @@ div.desc {
 </style>
 </head>
 <body>
+  <div class="wrapper">
+    <div class="content">
 <header>
         <div class="container-fluid">
         <div class="row bg-dark align-items-center">
@@ -76,7 +98,7 @@ div.desc {
                 </form>
             </div>
             <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
-                    <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3" style="height: 38px; width: 75px;">HOME</a>                <form method="post" asp-controller="Account" asp-action="Logout">
                     <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
                 </form>
             </div>
@@ -88,7 +110,13 @@ div.desc {
                 <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid">
             </div>
         </div>
-        <div class="row align-items-center justify-content-center pt-4">
+        <div class="row d-flex flex-column align-items-center justify-content-center">
+              @{
+                    if (User.Identity.Name != Model.NickName)
+                    {
+                        <button id="subscribe" class="btn btn-primary small" style="width: 20%;">Subscribe</button>
+                    }
+                }
             <form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
              <div class="custom-file">
             <input type="file" class="custom-file-input" name="uploadedFile" id="customFile">
@@ -100,18 +128,13 @@ div.desc {
         <div style="font-size: 38px; margin-top: -3px;" class="text-white text-center" id="name" class="row align-items-center justify-content-center text-white pt-2">
             @Model.NickName
         </div>
-        @{
-                    if (User.Identity.Name != Model.NickName)
-                    {
-                        <button id="subscribe" class="btn btn-primary small ">Subscribe</button>
-                    }
-                }
+       
     </div>
     <div class="container-fluid" style="background-color: #35558c;">
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div>
+                @* <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div> *@
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS  <a id="subscribersCount" class="text-white">@Model.subscribersQuantity </a> </a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS <a id="subscriptionsCount" class="text-white">@Model.subscriptionsQuantity</a> </a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</a></div>
@@ -122,9 +145,12 @@ div.desc {
 
   
   <!-- The slideshow -->
-  <div id="photos" class="container">
-        
-  </div>
+<div class="container ml-7 mt-3 mb-2">
+    <div class="img-gallery">
+      <div id="photos"></div>
+
+    </div>
+</div>
   
 
 
@@ -143,11 +169,14 @@ div.desc {
       </div>
   }
 }
-<footer class="page-footer bg-dark font-small blue"  style="width: 100%; position: absolute; bottom: 0; left: 0;">
+
+    </div>
+<footer class="page-footer bg-dark font-small blue">
     <div class="text-center text-gray-dark py-3">
         © 2020 Copyright:
     </div>
 </footer>
+  </div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script>
@@ -166,12 +195,10 @@ div.desc {
                     }).done(function(data) {
                                                 let ddl = ' ';
                                                    $.each(data, function(index, element){
-                                                         ddl+= '<div class="responsive">';
-                                                           ddl+= '<div class="gallery">';
+                                                         ddl+= '<div class="ramka">\n';
                                                              ddl+= '<a target="_blank" href="' + element.path + '">';
-                                                              ddl+= ' <img src="' + element.path + '" width="600" height="400">';
+                                                              ddl+= ' <img src="' + element.path + '" style=" width: 350px; height: 350px; object-fit: cover;">';
                                                              ddl+= ' </a>\n';
-                                                            ddl+= '</div>\n';
                                                           ddl+= '</div>\n';
                                                      });
                                                      $(ddl).insertAfter('#photos'); 

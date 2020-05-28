@@ -12,9 +12,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+      <style>
+    html,
+body,
+.wrapper {
+	height: 100%;
+}
+.content {
+	box-sizing: border-box;
+	min-height: 100%;
+	padding-bottom: 90px;
+}
+footer {
+	height: 80px;
+	margin-top: -80px;
+}
+</style>
 </head>
 <body>
+    <div class="wrapper">
+        <div class="content">
     <header>
         <div class="container-fluid">
         <div class="row bg-dark align-items-center">
@@ -38,7 +55,13 @@
                 <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid">
             </div>
         </div>
-        <div class="row align-items-center justify-content-center pt-4">
+       <div class="row d-flex flex-column align-items-center justify-content-center">
+              @{
+                    if (User.Identity.Name != Model.NickName)
+                    {
+                        <button id="subscribe" class="btn btn-primary small" style="width: 20%;">Subscribe</button>
+                    }
+                }
             <form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
              <div class="custom-file">
             <input type="file" class="custom-file-input" name="uploadedFile" id="customFile">
@@ -50,31 +73,25 @@
         <div style="font-size: 38px; margin-top: -3px;" class="text-white text-center" id="name" class="row align-items-center justify-content-center text-white pt-2">
             @Model.NickName
         </div>
-        @{
-            if (User.Identity.Name != Model.NickName)
-            {
-                <button id="subscribe" class="btn btn-primary small">Subscribe</button>
-            }
-        }
+       
             </div>
     <div class="container-fluid" style="background-color: #35558c;">
     
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div>
+                @* <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div> *@
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS  <a id="subscribersCount" class="text-white">@Model.subscribersQuantity </a> </a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS <a id="subscriptionsCount" class="text-white">@Model.subscriptionsQuantity</a> </a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">PHOTOS</a></div>
+                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Photos" asp-controller="Account" asp-route-id="@Model.Id">PHOTOS</a></div>
             </div>
         </div>
     </div>
 </header>
-<div id="subscribers" style="display: flex; flex-direction: column; justify-content: center; color: black;">
-   
+<div style="display: flex; flex-direction: column; justify-content: center; color: black;">
+   <div id="subscribers"></div>
 </div>
-    
-    <div class="container-fluid">
+        </div>
     <footer class="page-footer bg-dark font-small blue">
         <div class="text-center text-gray-dark py-3">
             © 2020 Copyright:
