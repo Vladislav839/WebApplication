@@ -127,7 +127,7 @@
       ddl += data.owner.path + '"';
       ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px; object-fit: cover; height: 60px;">\n';
       ddl += '<div class="media-body">\n';
-      ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + data.time + " " + '<i id="l' + data.id + '" style="color:#00ee00">' + data.rating + '</i>'+ '         ' + '<i class="fas fa-heart '+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" style="font-size: 15px; color: grey;"> ' +  ' </i>' + '</i></small> </h4>\n';
+      ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + data.time + " " + '<i id="l' + data.id + '" style="color:#00ee00">' + data.rating + '</i>'+ '         ' + '<i class="fas fa-heart '+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" style="font-size: 15px; color: ' + colorLikedUnliked(data.id) + '  ;"> ' +  ' </i>' + '</i></small> </h4>\n';
       ddl += '<p class="text-dark">' + data.text + '</p>\n';  
       //ddl += '<i class="fas fa-heart '+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" style="font-size: 25px; color: grey;"> ' +  ' </i>';
       ddl += '</div>\n';
@@ -156,11 +156,11 @@ var likeUnlike = function(idPost) {
     return result;
 }
 
-var stringLikedUnliked = function(idPost) {
+var colorLikedUnliked = function(idPost) {
   let result = '';
       isLiked(idPost).done(function(data) {
-          if(data === true) result = "Unlike post";
-          else result = "Like post";
+          if(data === true) result = "red";
+          else result = "grey";
       });
       return result;
 };
