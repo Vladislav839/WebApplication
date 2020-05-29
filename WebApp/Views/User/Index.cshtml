@@ -50,24 +50,19 @@
                 <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid" style="width: 200px; height: 200px; object-fit: cover;">
             </div>
         </div>
+        <div style="font-size: 38px; margin-top: -3px;" class="text-white text-center" id="name" class="row align-items-center justify-content-center text-white pt-2">
+                    @Model.NickName
+                </div>
         <div class="row d-flex flex-column align-items-center justify-content-center">
               @{
                     if (User.Identity.Name != Model.NickName)
                     {
                         <button id="subscribe" class="btn btn-primary small" style="width: 20%;">Subscribe</button>
                     }
-                }
-            <form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
-             <div class="custom-file">
-            <input type="file" class="custom-file-input" name="uploadedFile" id="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
-             </div>
-            <button id="photo" type="submit" class="btn btn-primary small">Change photo</button>
-            </form>
+              }
+              
         </div>
-        <div style="font-size: 38px; margin-top: -3px;" class="text-white text-center" id="name" class="row align-items-center justify-content-center text-white pt-2">
-            @Model.NickName
-        </div>
+        
     </div>
     <div class="container-fluid" style="background-color: #35558c;">
         <div class="container">
@@ -108,7 +103,6 @@
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="js/likesSubsPosts.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
       $.ajax({
@@ -133,9 +127,9 @@
       ddl += data.owner.path + '"';
       ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px; object-fit: cover; height: 60px;">\n';
       ddl += '<div class="media-body">\n';
-      ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + data.time + " " + '<i id="l' + data.id + '" style="color:#00ee00">' + data.rating + '</i>' + '</i></small> </h4>\n';
+      ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + data.time + " " + '<i id="l' + data.id + '" style="color:#00ee00">' + data.rating + '</i>'+ '         ' + '<i class="fas fa-heart '+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" style="font-size: 15px; color: grey;"> ' +  ' </i>' + '</i></small> </h4>\n';
       ddl += '<p class="text-dark">' + data.text + '</p>\n';  
-      ddl += '<i class="fas fa-heart '+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" style="font-size: 25px; color: grey;"> ' +  ' </i>';
+      //ddl += '<i class="fas fa-heart '+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" style="font-size: 25px; color: grey;"> ' +  ' </i>';
       ddl += '</div>\n';
       ddl += '</div>\n';
       return ddl;

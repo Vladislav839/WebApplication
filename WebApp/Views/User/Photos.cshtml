@@ -107,23 +107,28 @@ div.desc {
     <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c); display: flex; flex-direction: column;">
         <div class="row align-items-center justify-content-center pt-4">
             <div style="width: 200px; height: 200px;">
-                <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid">
+                                <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid" style="width: 200px; height: 200px; object-fit: cover;">
             </div>
         </div>
         <div class="row d-flex flex-column align-items-center justify-content-center">
-              @{
+              @*@{
                     if (User.Identity.Name != Model.NickName)
                     {
                         <button id="subscribe" class="btn btn-primary small" style="width: 20%;">Subscribe</button>
                     }
-                }
-            <form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
-             <div class="custom-file">
-            <input type="file" class="custom-file-input" name="uploadedFile" id="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
-             </div>
-            <button id="photo" type="submit" class="btn btn-primary small">Change photo</button>
-            </form>
+              }*@
+              @{
+                                if (User.Identity.Name == Model.NickName)
+                                {
+                                    <form asp-action="AddFile" asp-controller="Account" method="post" enctype="multipart/form-data">
+                                                 <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="uploadedFile" id="customFile">
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                                 </div>
+                                                <button id="photo" type="submit" class="btn btn-primary small">Change photo</button>
+                                                </form>
+                                }
+                            }
         </div>
         <div style="font-size: 38px; margin-top: -3px;" class="text-white text-center" id="name" class="row align-items-center justify-content-center text-white pt-2">
             @Model.NickName
@@ -197,7 +202,7 @@ div.desc {
                                                    $.each(data, function(index, element){
                                                          ddl+= '<div class="ramka">\n';
                                                              ddl+= '<a target="_blank" href="' + element.path + '">';
-                                                              ddl+= ' <img src="' + element.path + '" style=" width: 350px; height: 350px; object-fit: cover; border: 2px solid black;">';
+                                                              ddl+= ' <img src="' + element.path + '" style=" width: 350px; height: 350px; object-fit: cover; border: 0px solid black;">';
                                                              ddl+= ' </a>\n';
                                                           ddl+= '</div>\n';
                                                      });

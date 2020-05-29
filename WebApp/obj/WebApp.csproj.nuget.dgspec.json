@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\WebApp.csproj": {}
+    "C:\\project\\vlad\\WebApplication\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\WebApp.csproj": {
+    "C:\\project\\vlad\\WebApplication\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\project\\vlad\\WebApplication\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\WebApp.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\obj\\",
+        "projectPath": "C:\\project\\vlad\\WebApplication\\WebApp\\WebApp.csproj",
+        "packagesPath": "C:\\Users\\ъуъ\\.nuget\\packages\\",
+        "outputPath": "C:\\project\\vlad\\WebApplication\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ъуъ\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -75,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
