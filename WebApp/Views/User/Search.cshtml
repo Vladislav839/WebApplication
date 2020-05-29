@@ -45,7 +45,7 @@ footer {
                                 </form>
             </div>
             <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
-                <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
+                <a  href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
                 <form method="post" asp-controller="Account" asp-action="Logout">
                     <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
                 </form>
@@ -54,8 +54,8 @@ footer {
     </div>
 </header>
 <div class="container">
-<div id="searchresults" class="row d-flex flex-row justify-content-center align-items-center">
-
+<div class="row d-flex flex-row justify-content-center align-items-center">
+<div id="searchresults"></div>
 </div>
 </div>
 </div>
@@ -81,7 +81,7 @@ footer {
               ddl += '<div class="card">\n';
               ddl += '<img src="';
               ddl +=  element.path + '"';
-              ddl += ' alt="John" style="width:100%">\n';
+              ddl += ' alt="John" style="width:100%; height: 250px; object-fit: cover;">\n';
               ddl += '<div class="media-body">\n';
               ddl += '<h1>' + element.nickName + '</h1>\n';    
               ddl += '<div style="margin: 24px 0;">';
