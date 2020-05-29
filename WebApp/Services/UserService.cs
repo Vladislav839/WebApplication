@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Net.Mime;
@@ -46,8 +47,38 @@ namespace WebApp.Services
         
         public List<Post> GetPosts(int user_id)
         {
-            var a = _appContext.PostModels.Where(p => p.OwnerId == user_id)?.Select(Mappers.BuildPost)?.OrderByDescending(p => p.Time).ToList();
-            return a;
+            var a = _appContext.PostModels.Where(p => p.OwnerId == user_id);
+            IEnumerable<Post> b;
+            List<Post> c = new List<Post>();
+            if (a != null)
+            {
+                b = a.Select(Mappers.BuildPost);
+                if (b != null)
+                {
+                    c = b.OrderByDescending(p => p.Time).ToList();
+                }
+            };
+            return c;
+        }
+        public List<Post> GetNews(int user_id)
+        {
+            List<Post> news = new List<Post>();
+            var followers = GetFollowsModels(user_id);
+            if (followers != null)
+            {
+                foreach (var f in followers)
+                {
+                    if (f != null)
+                    {
+                        foreach (var p in _appContext.PostModels.Where(pm => pm.OwnerId == f.Id))
+                        {
+                            news.Add(Mappers.BuildPost(p));
+                        }
+                    }
+                }
+            }
+            news.OrderByDescending(p => p.Time);
+            return news;
         }
         
         /*public List<Subscriber> GetInputSubscriptions(int id)
@@ -62,6 +93,10 @@ namespace WebApp.Services
         public User FindById(int id)
         {
             return _appContext.UserModels.Select(Mappers.BuildUserInformation).FirstOrDefault(user => user.Id == id);
+        }
+        public UserModel FindModelById(int id)
+        {
+            return _appContext.UserModels.FirstOrDefault(user => user.Id == id);
         }
 
         public User FindByName(string name)
@@ -89,10 +124,10 @@ namespace WebApp.Services
                     _appContext.Subscribers.Add(sub);
                     
                     _appContext.UserModels.FirstOrDefault(u => u.Id == senderId).subscriptionsQuantity 
-                        = currentUser.OutputSubscribtions.Count;
+                        = currentUser.subscriptionsQuantity + 1;
 
                     _appContext.UserModels.FirstOrDefault(u => u.Id == targetId).subscribersQuantity 
-                        = targetUser.InputSubscriptions.Count;
+                        = targetUser.subscribersQuantity + 1;
 
                     
                     _appContext.SaveChanges();
@@ -122,6 +157,16 @@ namespace WebApp.Services
             }
             return followers;
         }
+        public List<UserModel> GetFollowsModels(int userId)
+        {
+            List<Subscriber> subPairs = _appContext.Subscribers.Where(s => s.senderId == userId).ToList();
+            List<UserModel> followers = new List<UserModel>();
+            foreach (var s in subPairs)
+            {
+                followers.Add(FindModelById(s.targetId));
+            }
+            return followers;
+        }
         public List<User> GetFollows(int userId)
         {
             List<Subscriber> subPairs = _appContext.Subscribers.Where(s => s.senderId == userId ).ToList();
@@ -132,7 +177,7 @@ namespace WebApp.Services
             }
             return follows;
         }
-
+        
         public void SwitchLikePost(int userId, int postId)
         {
             UserModel user = _appContext.UserModels.FirstOrDefault(u => u.Id == userId);
@@ -179,7 +224,6 @@ namespace WebApp.Services
         {
             var users = _appContext.UserModels.Select(Mappers.BuildUser).Where(p => p.NickName.Contains(request)).ToList();
             return users;
-        } 
-        
+        }
     }
 }

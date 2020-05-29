@@ -68,6 +68,7 @@
         </e>
         <e p="User" t="Include">
           <e p="Index.cshtml" t="Include" />
+          <e p="News.cshtml" t="Include" />
           <e p="Photos.cshtml" t="Include" />
           <e p="Search.cshtml" t="Include" />
           <e p="Subscribers.cshtml" t="Include" />

@@ -72,12 +72,13 @@ footer {
     
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
-                @* <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div> *@
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS  <a id="subscribersCount" class="text-white">@Model.subscribersQuantity </a> </a></div>
-                <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS <a id="subscriptionsCount" class="text-white">@Model.subscriptionsQuantity</a> </a></div>
+                            <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
+                            @* <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div> *@
+                            <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="News" asp-controller="Account" asp-route-id="@Model.Id" >NEWS</a></div>
+                            <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS  <a id="subscribersCount" class="text-white">@Model.subscribersQuantity </a> </a></div>
+                            <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS <a id="subscriptionsCount" class="text-white">@Model.subscriptionsQuantity</a> </a></div>
                 <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" asp-action="Photos" asp-controller="Account" asp-route-id="@Model.Id">PHOTOS</a></div>
-            </div>
+                       </div>
         </div>
     </div>
 </header>
@@ -111,7 +112,7 @@ footer {
                      ddl += '<div class="container media border p-3 text-dark">\n';
                      ddl +=  '<img src="';
                      ddl += element.path + '"';
-                     ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
+                     ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px; object-fit: cover; height: 60px">\n';
                      ddl += '<div class="media-body">\n';
                      ddl += '<h4><a href="@Url.RouteUrl(new { controller = "Account", action = "Index", id = 0})' + element.id + '" class="text-dark">' + element.nickName + '<small><i class="text-dark"></h4>'+ '</i></small></a>\n';               
                      ddl += '<p class="text-body">' + "Subscribers - " + element.subscribersQuantity +'\n'+ "Subscriptions - " + element.subscriptionsQuantity + '</p>\n';      

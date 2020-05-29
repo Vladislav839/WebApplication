@@ -146,6 +146,13 @@ namespace AuthApp.Controllers
             return a;
         }
         [HttpGet]
+        public List<Post> GetNews(int Id)
+        {
+            int id = _userService.FindByName(User.Identity.Name).Id;
+            List<Post> a = _userService.GetNews(Id);
+            return a;
+        }
+        [HttpGet]
         public List<User> GetSubscribersInput(int Id)
         {
             int a = Id;
@@ -192,6 +199,11 @@ namespace AuthApp.Controllers
             var iduser = _userService.FindById(id);
             var user = _userService.FindByName(User.Identity.Name);
             return RedirectToAction("Index", "User", new {id = iduser.Id});
+        }
+        public IActionResult News()
+        {
+            var user = _userService.FindByName(User.Identity.Name);
+            return RedirectToAction("News", "User", new {id = user.Id});
         }
         public IActionResult Photos(int id)
         {

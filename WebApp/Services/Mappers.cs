@@ -34,7 +34,6 @@ namespace WebApp.Services
             var a = new User
             {
                 NickName = u.NickName,
-                Email = u.Email,
                 Id = u.Id,
                 Path = u.Path,
                 subscribersQuantity = u.subscribersQuantity,

@@ -207,3 +207,4 @@ D:\Рабочий стол\WebApp\WebApplication\WebApp\obj\Debug\netcoreapp3.1\
 D:\Рабочий стол\WebApp\WebApplication\WebApp\obj\Debug\netcoreapp3.1\staticwebassets\WebApp.StaticWebAssets.xml
 D:\Рабочий стол\WebApp\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.dll
 D:\Рабочий стол\WebApp\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.pdb
+C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\News.cshtml.g.cs
