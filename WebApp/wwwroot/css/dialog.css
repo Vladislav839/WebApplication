@@ -1,0 +1,35 @@
+.container-for-message{
+    border-color: #1b6ec2;
+    border-width: 3px;
+}
+.block-for-messages{
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    overflow: auto;
+    height: 77.2vh;
+}
+.text-of-message{
+    word-wrap: break-word;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.input-text{
+    word-wrap: break-word;
+}
+.message-text-class{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+.input-text {
+    height: 15px;
+}
+.time-color{
+    color: #999999;
+}
+
+::-webkit-scrollbar { width: 5px; height: 3px;}
+::-webkit-scrollbar-track {  background-color: #999;}
+::-webkit-scrollbar-track-piece { background-color: #ffffff;}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #666; border-radius: 5px;}
+::-webkit-resizer { background-color: #666;}

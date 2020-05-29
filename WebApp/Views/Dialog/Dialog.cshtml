@@ -13,31 +13,38 @@
     <title>@ViewData["Title"] - WebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/dialog.css"/>
 </head>
 <body>
 <header>
     <div class="container-fluid">
-        <div class="row bg-dark align-items-center">
-            <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
-            <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
-                <a href="#" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>
-                <form method="post" asp-controller="Account" asp-action="Logout">
-                    <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
-                </form>
+            <div class="row bg-dark align-items-center">
+                <div class="col-md-2 text-center text-white mb-3 mt-4">SOCIAL ME</div>
+                <div class="col-md-4 mt-4 mb-3">
+                    <form class="d-flex">
+                        <input type="text" class="form-control" placeholder="Искать здесь...">
+                        <button class="bth btn-success ml-2">Search</button>
+                    </form>
+                </div>
+                <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
+                    <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a> 
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                        <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c)"> 
-        <div style="font-size: 26px;" class="text-dark" id="name" class="row align-items-center justify-content-center text-white pt-2">
-            @User.Identity.Name
+    <div class="block-for-messages">
+        <div id="messages">
+        
         </div>
     </div>
-    <div id="messages">
+    
         
-    </div>
-    <div class="message-text">
-        <input placeholder="Write some text" id="message_text" />
-        <button id="send-message" value="Send" >Send</button>
+    <div class="message-text-class" id="message-text">
+        <label for="message_text"></label>
+        <textarea placeholder="Hi" rows="2" class="input-text" id="message_text" cols="40" name="text_of_message"></textarea>
+        <button id="send-message" value="Send">Send</button>
     </div>
 </header>
 <div class="container-fluid">
@@ -50,6 +57,7 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
+
     $(document).ready(function(){
       $.ajax({
       type:'GET',
@@ -61,19 +69,61 @@
     .done(function (data){
                 let ddl = ' ';
                 $.each(data, function(index, element){
-                     ddl += '<div class="container media border p-3 text-dark">\n';
-                     ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
-                     ddl += '<div class="media-body">\n';
-                     ddl += '<h4 class="text-dark">' + element.OwnerId + '<small><i class="text-dark">' + element.SendingTime + '</i></small></h4>\n';
-                     ddl += '<p class="text-dark">' + element.Text + '</p>\n';  
-                     ddl += '</div>\n';
-                     ddl += '</div>\n';
-                
+                ddl += DrawMessage(element);
                 });
                 console.log(ddl);
                 $(ddl).insertBefore("#messages");            
     });
+    })
+    var DrawMessage = function(element){
+        let m = ' ';
+        m += '<div class="container-for-message">\n';
+        m += '<div class="media-body">\n';
+        m += '<div class="container">' + '<img src="';
+        m += GetUser(element.ownerId).path + '"';
+        m += ' class="mr-3 mt-3 rounded-circle" style="width:40px;">\n';
+        m += '<h4 class="text-dark">';
+        m +=  GetUser(element.ownerId).nickName;
+        m +=  ' ' + '<i class="time-color"><small>' + GetTime(element.id) + '</small></i></h4></div>\n';
+        m += '<div class="text-of-message">\n';
+        m += '<p class="text-dark">' + element.text + '</p>\n';  
+        m += '</div>\n';
+        m += '</div>\n';
+        m += '</div>\n';
+        m += '</div>';
+        return m;
+    }
+    var GetTime = function(messageId) {
+    let t = ' ';
+    $.ajax(
+        {
+        type: 'Get',
+        url:'@Url.Action("GetSendingTimeOfMessageById", "Dialog")',
+        async: false,
+        data:{
+            id: messageId
+        }
+        }
+    ).done(function(time) {
+     t = time; 
     });
+    return t;
+    }
+    var GetUser = function(data){
+        let u;
+        $.ajax({
+        type: 'Get',
+        url:'@Url.Action("GetUserById", "Dialog")',
+        async: false,
+        data:{
+            id: data
+        }
+        })   
+        .done(function (user){
+            u = user;
+        });
+        return u;
+    };
     
 
          $('#send-message').on('click', function() {
@@ -81,21 +131,13 @@
               url:'@Url.Action("SaveMessage", "Dialog")',
               type:'POST',
               data: {
-                  text: $('#comment').val(),
+                  text: $('#message-text').val(),
                   id: @Model.Id
               }
             }).done(function(data) {
-                console.log('hello there');
-            let name =  '@User.Identity.Name';
-            let text = $("#message_text").val();
-            let date = Date();
-            let ddl = '<div class="container media border p-3 text-dark">\n';
-            ddl += '<div class="text-dark">' + text + '</div>\n';
-            ddl += '<div class="media-body">\n';
-            ddl += '<h4 class="text-dark">' + name + '<small><i class="text-dark">' + date + '</i></small></h4>\n';
-            ddl += '</div>\n';
-            ddl += '</div>\n';
-            $(ddl).insertAfter("#messages");              
+                 let ddl = ' ';
+                     ddl += DrawMessage(data); 
+            $(ddl).insertBefore("#messages");              
             })
  
         });

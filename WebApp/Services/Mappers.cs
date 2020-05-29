@@ -34,9 +34,9 @@ namespace WebApp.Services
             {
                 Id = m.Id,
                 OwnerDialogId = m.OwnerDialogId,
-                OwnerId = m.OwnerId,
                 SendingTime = m.SendingTime,
-                Text = m.Text
+                Text = m.Text,
+                OwnerId = m.OwnerId
             };
         }
 

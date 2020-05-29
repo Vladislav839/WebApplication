@@ -205,3 +205,7 @@ C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.pdb
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\CreatDialog.cshtml.g.cs
 C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Dialog\Dialog.cshtml.g.cs
+C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\About.cshtml.g.cs
+C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\bin\Debug\netcoreapp3.1\Owin.dll
+C:\Users\Egor\Desktop\project_ebat\WebApplication\WebApp\bin\Debug\netcoreapp3.1\System.Net.WebSockets.WebSocketProtocol.dll

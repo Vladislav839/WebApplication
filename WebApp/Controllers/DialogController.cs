@@ -25,11 +25,11 @@ namespace WebApp.Controllers
             _messageService = new MessageService(context);
             _userService = new UserService(context);
         }
-        
+
         [HttpGet]
-        public List<Message> GetMessagesOfDialog(int dialog_id)
+        public List<Message> GetMessagesOfDialog(int id)
         {
-            return _dialogService.GetMessagesFromDialog(dialog_id);
+            return _dialogService.GetMessagesFromDialog(id);
         }
 
         [HttpGet]
@@ -41,9 +41,10 @@ namespace WebApp.Controllers
                 (d.FirstPersonId == firstPersonId && d.SecondPersonId == Id) ||
                 (d.FirstPersonId == Id && d.SecondPersonId == firstPersonId)) != null)
             {
-                return View(Mappers.BuildDialog(_applicationContext.DialogsModels.FirstOrDefault(d =>
-                    (d.FirstPersonId == firstPersonId && d.SecondPersonId == Id) ||
-                    (d.FirstPersonId == Id && d.SecondPersonId == firstPersonId))));
+                return View(Mappers.BuildDialog(_applicationContext.DialogsModels
+                    .FirstOrDefault(d =>
+                        (d.FirstPersonId == firstPersonId && d.SecondPersonId == Id) ||
+                        (d.FirstPersonId == Id && d.SecondPersonId == firstPersonId))));
             }
             else
             {
@@ -58,23 +59,30 @@ namespace WebApp.Controllers
                 return View(Mappers.BuildDialog(dialogModel));
             }
         }
-        
-        // [HttpGet]
-        // public async Task<IActionResult> Dialog(int dialogId)
-        // {
-        //     var dialog = await _applicationContext.DialogsModels.FirstOrDefaultAsync(d => d.Id == dialogId).ConfigureAwait(true);
-        //     return View(Mappers.BuildDialog(dialog));
-        // }
+
+        [HttpGet]
+        public User GetUserById(int id)
+        {
+            return _userService.FindById(id);
+        }
+
+        [HttpGet]
+        public string GetSendingTimeOfMessageById(int id)
+        {
+            return _messageService.GetSendingTime(id);
+        }
+
         [HttpPost]
-        public Message SaveMessage(string text, int dialogId)
+        public Message SaveMessage(string text, int id)
         {
             
             MessageModel messageModel = new MessageModel
             {
             Text = text,
-            OwnerId = _applicationContext.UserModels.FirstOrDefault(um => um.NickName == User.Identity.Name) == null ? _applicationContext.UserModels.FirstOrDefault(um => um.Id == 1)?.Id ?? -1 : _applicationContext.UserModels.FirstOrDefault(um => um.NickName == User.Identity.Name)?.Id ?? -1,
+            OwnerId = _applicationContext.UserModels.
+            FirstOrDefault(um => um.NickName == User.Identity.Name).Id,
             SendingTime = DateTime.Now,
-            OwnerDialogId = dialogId
+            OwnerDialogId = id
             };
             _applicationContext.MessagesModels.Add(messageModel);
             _applicationContext.SaveChanges();

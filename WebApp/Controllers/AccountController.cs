@@ -48,7 +48,8 @@ namespace AuthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserModel user = await _db.UserModels.FirstOrDefaultAsync(u => u.NickName == model.NickName && u.Password == model.Password);
+                UserModel user = await _db.UserModels.FirstOrDefaultAsync(u =>
+                    u.NickName == model.NickName && u.Password == model.Password);
                 if (user != null)
                 {
                     await Authenticate(model.NickName); // аутентификация

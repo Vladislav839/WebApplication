@@ -8,6 +8,7 @@ namespace WebApp.Services
     public class DialogService
     {
         private readonly ApplicationContext _applicationContext;
+        
 
         public DialogService(ApplicationContext db)
         {
@@ -22,7 +23,8 @@ namespace WebApp.Services
         public Dialog GetDialogByMatesId(int firstPersonId, int secondPersonId)
         {
             return _applicationContext.DialogsModels.Select(Mappers.BuildDialog)
-                .FirstOrDefault(d => d.FirstPersonId == firstPersonId && d.SecondPersonId == secondPersonId);
+                .FirstOrDefault(d => d.FirstPersonId == firstPersonId &&
+                                     d.SecondPersonId == secondPersonId);
         }
 
         public bool IsDialogExist(int firstPersonId, int secondPersonId)
@@ -35,11 +37,12 @@ namespace WebApp.Services
 
             return true;
         }
-        public List<Message> GetMessagesFromDialog(int dialog_id)
+        public List<Message> GetMessagesFromDialog(int id)
         {
-            List<Message> messages = new List<Message>();
-            messages = _applicationContext.MessagesModels.Select(Mappers.BuildMessage).ToList();
-            return messages.FindAll(m => m.OwnerDialogId == dialog_id);
+            var m = _applicationContext.MessagesModels.
+            Where(mes => mes.OwnerDialogId == id)?.
+            Select(Mappers.BuildMessage).ToList();
+            return m;
         }
 
         public void AddMessageToDialog(string text)

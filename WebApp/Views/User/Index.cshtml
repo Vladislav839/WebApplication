@@ -26,7 +26,8 @@
                 </form>
             </div>
             <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
-<a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a>                <form method="post" asp-controller="Account" asp-action="Logout">
+                <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3">HOME</a> 
+                <form method="post" asp-controller="Account" asp-action="Logout">
                     <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
                 </form>
             </div>

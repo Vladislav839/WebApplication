@@ -105,8 +105,7 @@
                      ddl += '<div class="media-body">\n';
                      ddl += '<a href="@Url.RouteUrl(new { controller = "Account", action = "Index", id = 0})' + element.id + '" class="text-dark">' + element.nickName + '<small><i class="text-dark">'+ '</i></small></a>\n';               
                      ddl += '<p class="text-body">' + "Subscribers - " + element.subscribersQuantity +'\n'+ "Subscriptions - " + element.subscriptionsQuantity + '</p>\n';
-                     //ddl += '<a class="text-dark" asp-controller="Dialog" asp-action="Dialog" asp-route-id="@Model.Id">Send Message</a>';
-                     ddl +='<a href="@Url.RouteUrl(new { controller = "Dialog", action = "Dialog", id = 0})' + element.id + '" class="text-dark">' + "Send Message" + '<small><i class="text-dark">'+ '</i></small></a>\n'                  
+                     ddl +='<a href="@Url.RouteUrl(new { controller = "Dialog", action = "Dialog", id = 0})' + element.id + '" class="text-dark">' + "Send Message" + '<small><i class="text-dark">'+ '</i></small></a>\n';                 
                      ddl += '</div>\n';
                      ddl += '</div>\n';
                 });
@@ -125,15 +124,6 @@
                            }
                          })
     });
-    //  $('#send-message').on('click', function() {
-    //    $.ajax({
-    //    url: '@Url.Action("Dialog", "Dialog")',
-    //    type: 'POST',
-    //    data:{
-    //    
-    //    }  
-    //    })
-    // });
 
 </script>
 <script>

@@ -17,15 +17,8 @@ namespace WebApp.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Path { get; set; }
-        //public List<Friend> FriendsOut { get; set; }
-        public IList<Post> Posts { get; set; }
-        //public List<Friend> FriendsIn { get; set; }
-        public List<LikePost> LikesPosts { get; set; }
-        public List<UserDialog> UserDialogs { get; set; }
         public int subscribersQuantity { get; set; }
         public int subscriptionsQuantity { get; set; }
-        //public List<Subscriber> OutputSubcriptions { get; set; } = null; 
-        //public List<Subscriber> InputSubscriptions{ get; set; } = null;
 
     }
 }

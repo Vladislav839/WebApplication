@@ -30,10 +30,23 @@ namespace WebApp.Services
             return _applicationContext.UserModels.Select(Mappers.BuildUser).FirstOrDefault(u => u.Id == owner_id);
         }
 
-        public DateTime? GetSendingTime(int message_id)
+        public string GetSendingTime(int message_id)
         {
-            return _applicationContext.MessagesModels.Select(Mappers.BuildMessage)
-                .FirstOrDefault(m => m.Id == message_id)?.SendingTime;
+            DateTime time = _applicationContext.MessagesModels.Select(Mappers.BuildMessage)
+                .FirstOrDefault(m => m.Id == message_id).SendingTime;
+            string textTime = time.Hour.ToString() + ":";
+            if (time.Minute < 10)
+            {
+                textTime += '0';
+            }
+
+            textTime += time.Minute.ToString();
+            // + " ";
+            //
+            // textTime += time.Day.ToString() + ".";
+            // textTime += time.Month.ToString() + ".";
+            // textTime += time.Year.ToString();
+            return textTime;
         }
 
         public string GetText(int message_id)
