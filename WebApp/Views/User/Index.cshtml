@@ -47,7 +47,7 @@
     <div class="container-fluid" style="height: 350px; background: linear-gradient(#7290d6, #36559c); display: flex; flex-direction: column;">
         <div class="row align-items-center justify-content-center pt-4">
             <div style="width: 200px; height: 200px;">
-                <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid">
+                <img src="@Url.Content(Model.Path)" class="rounded-circle img-fluid" style="width: 200px; height: 200px; object-fit: cover;">
             </div>
         </div>
         <div class="row d-flex flex-column align-items-center justify-content-center">
@@ -131,7 +131,7 @@
       ddl += '<div class="container media border p-3 text-dark">\n';
       ddl +=  '<img src="';
       ddl += data.owner.path + '"';
-      ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px;">\n';
+      ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px; object-fit: cover; height: 60px;">\n';
       ddl += '<div class="media-body">\n';
       ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + data.time + " " + '<i id="l' + data.id + '" style="color:#00ee00">' + data.rating + '</i>' + '</i></small> </h4>\n';
       ddl += '<p class="text-dark">' + data.text + '</p>\n';  
