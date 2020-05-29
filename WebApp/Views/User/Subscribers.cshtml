@@ -114,7 +114,8 @@ footer {
                      ddl += 'class="mr-3 mt-3 rounded-circle" style="width:60px; object-fit: cover; height: 60px">\n';
                      ddl += '<div class="media-body">\n';
                      ddl += '<h4><a href="@Url.RouteUrl(new { controller = "Account", action = "Index", id = 0})' + element.id + '" class="text-dark">' + element.nickName + '<small><i class="text-dark"></h4>'+ '</i></small></a>\n';               
-                     ddl += '<p class="text-body">' + "Subscribers - " + element.subscribersQuantity +'\n'+ "Subscriptions - " + element.subscriptionsQuantity + '</p>\n';      
+                     ddl += '<p class="text-body">' + "Subscribers - " + element.subscribersQuantity +'\n'+ "Subscriptions - " + element.subscriptionsQuantity + '</p>\n';
+                     ddl +='<a href="@Url.RouteUrl(new { controller = "Dialog", action = "Dialog", id = 0})' + element.id + '" class="text-dark">' + "Send Message" + '<small><i class="text-dark">'+ '</i></small></a>\n';                 
                      ddl += '</div>\n';
                      ddl += '</div>\n';
                 });

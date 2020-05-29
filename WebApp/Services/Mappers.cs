@@ -54,6 +54,26 @@ namespace WebApp.Services
             };
             return a;
         }
-        
+        public static Message BuildMessage(MessageModel m)
+        {
+            return new Message
+            {
+                Id = m.Id,
+                OwnerDialogId = m.OwnerDialogId,
+                SendingTime = m.SendingTime,
+                Text = m.Text,
+                OwnerId = m.OwnerId
+            };
+        }
+
+        public static Dialog BuildDialog(DialogModel d)
+        {
+            return new Dialog
+            {
+                Id = d.Id,
+                FirstPersonId = d.FirstPersonId,
+                SecondPersonId = d.SecondPersonId
+            };
+        }
     }
 }

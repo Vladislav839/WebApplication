@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Dynamic;
 
 namespace WebApp.Models
 {
@@ -17,5 +18,6 @@ namespace WebApp.Models
         public List<LikePost> LikesPost { get; set; }
         public int subscribersQuantity { get; set; }
         public int subscriptionsQuantity { get; set; }
+        public List<UserDialog> UserDialogs { get; set; }
     }
 }

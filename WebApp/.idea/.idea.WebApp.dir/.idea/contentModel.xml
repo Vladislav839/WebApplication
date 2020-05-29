@@ -7,20 +7,27 @@
       <e p="bin" t="ExcludeRecursive" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
+        <e p="DialogController.cs" t="Include" />
         <e p="HomeController.cs" t="Include" />
         <e p="PostController.cs" t="Include" />
         <e p="UserController.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
         <e p="ApplicationContext.cs" t="Include" />
+        <e p="Dialog.cs" t="Include" />
+        <e p="DialogModel.cs" t="Include" />
         <e p="ErrorViewModel.cs" t="Include" />
         <e p="LikePost.cs" t="Include" />
+        <e p="Message.cs" t="Include" />
+        <e p="MessageDialog.cs" t="Include" />
+        <e p="MessageModel.cs" t="Include" />
         <e p="PhotoModel.cs" t="Include" />
         <e p="Post.cs" t="Include" />
         <e p="PostModel.cs" t="Include" />
         <e p="SearchRequest.cs" t="Include" />
         <e p="Subscriber.cs" t="Include" />
         <e p="User.cs" t="Include" />
+        <e p="UserDialog.cs" t="Include" />
         <e p="UserModel.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive">
@@ -37,8 +44,11 @@
         <e p="launchSettings.json" t="Include" />
       </e>
       <e p="Services" t="Include">
+        <e p="DialogService.cs" t="Include" />
         <e p="Mappers.cs" t="Include" />
+        <e p="MessageService.cs" t="Include" />
         <e p="PostService.cs" t="Include" />
+        <e p="Subscribers.cshtml" t="Include" />
         <e p="UserService.cs" t="Include" />
       </e>
       <e p="Startup.cs" t="Include" />
@@ -53,6 +63,9 @@
           <e p="Login.cshtml" t="Include" />
           <e p="Register.cshtml" t="Include" />
           <e p="UserPosts.cshtml" t="Include" />
+        </e>
+        <e p="Dialog" t="Include">
+          <e p="Dialog.cshtml" t="Include" />
         </e>
         <e p="Home" t="Include">
           <e p="Feed.cshtml" t="Include" />
@@ -78,6 +91,7 @@
       <e p="WebApp.csproj" t="IncludeRecursive" />
       <e p="wwwroot" t="Include">
         <e p="css" t="Include">
+          <e p="dialog.css" t="Include" />
           <e p="homestyle.css" t="Include" />
           <e p="loginerrorstyle.css" t="Include" />
           <e p="photos.css" t="Include" />
