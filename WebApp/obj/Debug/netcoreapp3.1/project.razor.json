@@ -20586,6 +20586,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Рабочий стол\\WebAppFinal\\WebApplication\\WebApp\\Views\\Dialog\\Dialog.cshtml",
+      "TargetPath": "Views\\Dialog\\Dialog.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Рабочий стол\\WebAppFinal\\WebApplication\\WebApp\\Views\\Account\\Register.cshtml",
       "TargetPath": "Views\\Account\\Register.cshtml",
       "FileKind": "mvc"
@@ -20598,6 +20603,11 @@
     {
       "FilePath": "d:\\Рабочий стол\\WebAppFinal\\WebApplication\\WebApp\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Рабочий стол\\WebAppFinal\\WebApplication\\WebApp\\Services\\Subscribers.cshtml",
+      "TargetPath": "Services\\Subscribers.cshtml",
       "FileKind": "mvc"
     },
     {

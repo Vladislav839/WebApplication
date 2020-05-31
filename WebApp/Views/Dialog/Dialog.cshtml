@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/dialog.css"/>
+    <style>
+        
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -36,7 +39,8 @@
                 </div>
             </div>
         </div>
-    <div class="block-for-messages">
+<div class="container-fluid" style="width: 100%; background-image: url('@Url.Content("~/img/chat-bg.jpg")');">
+    <div class="container mb-5 justify-content-center block-for-messages" width="100%">
         <div id="messages">
         
         </div>
@@ -45,11 +49,12 @@
         
     <div class="message-text-class mb-3" id="message-text">
         <textarea placeholder="Hi" rows="3" class="form-control input-text" id="message_text" cols="40" name="text_of_message"></textarea>
-        <button id="send-message" value="Send" class="btn btn-primary">Send</button>
+        <button id="send-message" value="Send" class="btn btn-primary mb-5">Send</button>
     </div>
+        </div>
 </header>
         </div>
-    <footer class="page-footer bg-dark font-small blue">
+    <footer class="page-footer bg-dark font-small blue mt-3">
         <div class="text-center text-gray-dark py-3">
             © 2020 Copyright:
         </div>
@@ -58,7 +63,13 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
-
+var name = "";
+@{
+    <text>
+        name = "@User.Identity.Name";
+        </text>
+}
+console.log(name);
     $(document).ready(function(){
       $.ajax({
       type:'GET',
@@ -77,10 +88,14 @@
     });
     })
     var DrawMessage = function(element){
-        let m = ' ';
-        m += '<div class="container-for-message" style="width: 40%;">\n';
+        let m = '<div class="row mt-2 mb-2">\n';
+        if (GetUser(element.ownerId).nickName === name){
+            m += '<div class="col-6 offset-6 container-for-message" style="background: #dfe2e8; width: 50%; border-radius: 5px;">\n';
+        } else {
+            m += '<div class="col-6 container-for-message" style="background: white; width: 50%; border-radius: 5px;">\n';
+        }
         m += '<div class="media-body">\n';
-        m += '<div class="container d-flex flex-row" style="margin-left: -14px; margin-bottom: 15px;">' + '<img src="';
+        m += '<div class="container d-flex flex-row" style="margin-left: -14px;">' + '<img src="';
         m += GetUser(element.ownerId).path + '"';
         m += 'class="mr-3 mt-3 rounded-circle" style="width:40px; object-fit: cover; height: 40px;">\n';
         m += '<h4 class="text-dark mt-3">';
@@ -88,6 +103,7 @@
         m +=  ' ' + '<i class="time-color"><small>' + GetTime(element.id) + '</small></i></h4></div>\n';
         m += '<div class="text-of-message">\n';
         m += '<p class="text-dark">' + element.text + '</p>\n';  
+        m += '</div>\n';
         m += '</div>\n';
         m += '</div>\n';
         m += '</div>\n';
