@@ -1,7 +1,7 @@
 @model WebApp.Models.User;
 @{
     Layout = null;
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "News";
 }
 @using System.Net
 @using System.Security.Claims;
@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApp</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <!--<link rel="stylesheet" href="~/css/site.css" />-->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -127,13 +127,32 @@ footer {
       ddl += data.owner.path + '"';
       ddl += ' class="mr-3 mt-3 rounded-circle" style="width:60px; object-fit: cover; height: 60px;">\n';
       ddl += '<div class="media-body" style="word-break: break-word;">\n';
-      ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + data.time + " " + '<i id="l' + data.id + '" style="color:#00ee00">' + data.rating + '</i>'+ '         ' + '<i class="fas fa-heart '+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" style="font-size: 15px; color: ' + colorLikedUnliked(data.id) + '  ;"> ' +  ' </i>' + '</i></small> </h4>\n';
+      ddl += '<h4 class="text-dark">' + data.owner.nickName + '<small><i class="text-dark">' + " " + ConvertTimeToPostFormat(data.time) + " " + '<i id="l' + data.id + '" style="color:#00ee00">' + data.rating + '</i>'+ '         ' + '<i class="fas fa-heart '+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" style="font-size: 15px; color: ' + colorLikedUnliked(data.id) + '  ;"> ' +  ' </i>' + '</i></small> </h4>\n';
       ddl += '<p class="text-dark">' + data.text + '</p>\n';  
       //ddl += '<i class="fas fa-heart '+ likeUnlike(data.id) +'" data-id="' + data.id + '" id="like" style="font-size: 25px; color: grey;"> ' +  ' </i>';
       ddl += '</div>\n';
       ddl += '</div>\n';
       return ddl;
     };
+
+    let ConvertTimeToPostFormat = function(time){
+         let t = ' ';
+         for(let i = 11; i < 16; i++){
+         t += time[i];
+         };
+         t+=' ';
+         t+=time[8];
+         t+=time[9];
+         t+='.';
+         t+=time[5];
+         t+=time[6];
+         t+='.';
+         t+=time[0];
+         t+=time[1];
+         t+=time[2];
+         t+=time[3];
+         return t;
+     };
 
 var isLiked = function(idPost) {
   return $.ajax({

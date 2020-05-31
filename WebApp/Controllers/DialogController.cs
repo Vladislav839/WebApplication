@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
 using WebApp.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
 {

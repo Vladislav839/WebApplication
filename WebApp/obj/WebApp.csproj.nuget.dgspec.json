@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Рабочий стол\\WebAppFinal\\WebApplication\\WebApp\\WebApp.csproj": {}
+    "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "D:\\Рабочий стол\\WebAppFinal\\WebApplication\\WebApp\\WebApp.csproj": {
+    "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Рабочий стол\\WebAppFinal\\WebApplication\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "D:\\Рабочий стол\\WebAppFinal\\WebApplication\\WebApp\\WebApp.csproj",
+        "projectPath": "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\WebApp.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\Рабочий стол\\WebAppFinal\\WebApplication\\WebApp\\obj\\",
+        "outputPath": "D:\\Рабочий стол\\WebApp\\WebApplication\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

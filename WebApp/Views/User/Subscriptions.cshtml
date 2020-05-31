@@ -1,7 +1,7 @@
 @model WebApp.Models.User;
 @{
     Layout = null;
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Subscriptions";
 }
 @using System.Net
 @using System.Security.Claims;
@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApp</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
      <style>
     html,
@@ -116,7 +116,9 @@ footer {
                      ddl += '<div class="media-body">\n';
                      ddl += '<h4><a href="@Url.RouteUrl(new { controller = "Account", action = "Index", id = 0})' + element.id + '" class="text-dark">' + element.nickName + '<small><i class="text-dark"></h4>'+ '</i></small></a>\n';               
                      ddl += '<p class="text-body">' + "Subscribers - " + element.subscribersQuantity +'\n'+ "Subscriptions - " + element.subscriptionsQuantity + '</p>\n';
-                     ddl +='<a href="@Url.RouteUrl(new { controller = "Dialog", action = "Dialog", id = 0})' + element.id + '" class="text-dark">' + "Send Message" + '<small><i class="text-dark">'+ '</i></small></a>\n';                 
+                     if (name !== element.nickName){
+                     ddl +='<a href="@Url.RouteUrl(new { controller = "Dialog", action = "Dialog", id = 0})' + element.id + '" class="text-dark">' + "Send Message" + '<small><i class="text-dark">'+ '</i></small></a>\n';
+                     }                         
                      ddl += '</div>\n';
                      ddl += '</div>\n';
                 });

@@ -79,12 +79,17 @@ console.log(name);
       }    
     })
     .done(function (data){
+               let count = 0;
                 let ddl = ' ';
                 $.each(data, function(index, element){
-                ddl += DrawMessage(element);
+                    count++;
+                    ddl += DrawMessage(element);
                 });
-                console.log(ddl);
-                $(ddl).insertBefore("#messages");            
+                //console.log(ddl);
+                if(count === 0){
+                       ddl = '<div id="no-message" style="text-align: center; font-style: italic;">No messages yet</div>'
+                }
+                $(ddl).insertBefore("#messages");          
     });
     })
     var DrawMessage = function(element){
@@ -110,6 +115,15 @@ console.log(name);
         m += '</div>';
         return m;
     }
+
+     let ConvertTimeToMessageFormat = function(time){
+        let t = ' ';
+        for(let i = 11; i < 16; i++){
+        t += time[i];
+        };
+        return t;
+    };
+
     var GetTime = function(messageId) {
     let t = ' ';
     $.ajax(
@@ -152,6 +166,7 @@ console.log(name);
                   id: @Model.Id
               }
             }).done(function(data) {
+                 $('#no-message').css('visibility', 'none');
                  let ddl = ' ';
                      ddl += DrawMessage(data); 
             $(ddl).insertBefore("#messages");              

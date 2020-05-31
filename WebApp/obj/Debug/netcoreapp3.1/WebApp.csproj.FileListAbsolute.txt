@@ -285,3 +285,6 @@ C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Services\Sub
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Dialog\Dialog.cshtml.g.cs
 D:\Рабочий стол\WebAppFinal\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Services\Subscribers.cshtml.g.cs
 D:\Рабочий стол\WebAppFinal\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Dialog\Dialog.cshtml.g.cs
+D:\Рабочий стол\WebApp\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Services\Subscribers.cshtml.g.cs
+D:\Рабочий стол\WebApp\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Dialog\Dialog.cshtml.g.cs
+D:\Рабочий стол\WebApp\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\User\News.cshtml.g.cs

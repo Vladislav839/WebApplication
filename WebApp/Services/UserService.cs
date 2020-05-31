@@ -41,7 +41,6 @@ namespace WebApp.Services
             {
                 likedPosts.Add(Mappers.BuildPost(lp.PostModel));
             }
-
             return likedPosts;
         }*/
         
@@ -77,8 +76,10 @@ namespace WebApp.Services
                     }
                 }
             }
-            news.OrderByDescending(p => p.Time);
-            return news;
+            var sortedUsers = from u in news
+                orderby u.Time descending
+                select u;
+            return sortedUsers.ToList();
         }
         
         /*public List<Subscriber> GetInputSubscriptions(int id)
@@ -222,7 +223,7 @@ namespace WebApp.Services
         }
         public List<User> UserSearch(string request)
         {
-            var users = _appContext.UserModels.Select(Mappers.BuildUser).Where(p => p.NickName.Contains(request)).ToList();
+            var users = _appContext.UserModels.Select(Mappers.BuildUser).Where(p => p.NickName.ToUpper().Contains(request.ToUpper())).ToList();
             return users;
         }
     }
