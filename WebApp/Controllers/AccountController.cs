@@ -62,8 +62,9 @@ namespace AuthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserModel user = await _db.UserModels.FirstOrDefaultAsync(u => u.Email == model.Email);
-                if (user == null)
+                UserModel user1 = await _db.UserModels.FirstOrDefaultAsync(u => u.Email == model.Email);
+                UserModel user2 = await _db.UserModels.FirstOrDefaultAsync(u => u.NickName == model.NickName);
+                if (user1 == null && user2 == null)
                 {
                     UserModel reguser = new UserModel { Email = model.Email, Password = model.Password, NickName = model.NickName, Path = "/img/avatar-default.png" };
                     // добавляем пользователя в бд

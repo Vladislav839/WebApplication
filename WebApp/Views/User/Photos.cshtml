@@ -98,7 +98,11 @@ div.desc {
                 </form>
             </div>
             <div class="col-md-3 d-flex offset-md-3 mt-3 text-white">
-                    <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3" style="height: 38px; width: 75px;">HOME</a>                <form method="post" asp-controller="Account" asp-action="Logout">
+            
+                
+                <a href="@Url.RouteUrl(new { controller = "Account", action = "IndexByName", username =@User.Identity.Name })" class="btn btn-light mt-2  mb-3 mr-3" style="height: 38px; width: 75px;">HOME</a>        
+                
+                <form method="post" asp-controller="Account" asp-action="Logout">
                     <input class="btn btn-light mt-2  mb-3 mr-3" type="submit" value="Logout" />
                 </form>
             </div>
@@ -136,17 +140,17 @@ div.desc {
        
     </div>
     <div class="container-fluid" style="background-color: #35558c;">
-        <div class="container-fluid">
-            <div class="row d-flex justify-content-center align-items-center">
-                            <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
-                            @* <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div> *@
-                            <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="News" asp-controller="Account" asp-route-id="@Model.Id" >NEWS</a></div>
-                            <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS  <a id="subscribersCount" class="text-white">@Model.subscribersQuantity </a> </a></div>
-                            <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS <a id="subscriptionsCount" class="text-white">@Model.subscriptionsQuantity</a> </a></div>
-                            <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="Photos" asp-controller="Account" asp-route-id="@Model.Id">PHOTOS</a></div>
-                        </div>
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" >POSTS</a></div>
+                    @* <div class="col-sm-3 text-center mt-3 mb-3"><a class="text-white" href="#">ABOUT</a></div> *@
+                    <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="News" asp-controller="Account" asp-route-id="@Model.Id" >NEWS</a></div>
+                    <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscribers" asp-controller="Account" asp-route-id="@Model.Id" >SUBSCRIBERS  <a id="subscribersCount" class="text-white">@Model.subscribersQuantity </a> </a></div>
+                    <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="Subscriptions" asp-controller="Account" asp-route-id="@Model.Id">SUBSCRIPTIONS <a id="subscriptionsCount" class="text-white">@Model.subscriptionsQuantity</a> </a></div>
+                    <div class="col-md-2 text-center mt-3 mb-3"><a class="text-white" asp-action="Photos" asp-controller="Account" asp-route-id="@Model.Id">PHOTOS</a></div>
+                </div>
+            </div>
         </div>
-    </div>
 </header>
 
   
