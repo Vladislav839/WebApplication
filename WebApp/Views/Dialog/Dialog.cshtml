@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApp</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/dialog.css"/>
@@ -68,32 +68,48 @@
       }    
     })
     .done(function (data){
+                let count = 0;
                 let ddl = ' ';
                 $.each(data, function(index, element){
-                ddl += DrawMessage(element);
+                    count++;
+                    ddl += DrawMessage(element);
                 });
                 console.log(ddl);
-                $(ddl).insertBefore("#messages");            
+                if(count === 0){
+                       ddl = '<div id="no-message" style="text-align: center; font-style: italic;">No messages yet</div>'
+                }
+                $(ddl).insertBefore("#messages");
+                
     });
     })
     var DrawMessage = function(element){
         let m = ' ';
+        var user =GetUser(element.ownerId);
         m += '<div class="container-for-message" style="width: 40%;">\n';
         m += '<div class="media-body">\n';
         m += '<div class="container d-flex flex-row" style="margin-left: -14px; margin-bottom: 15px;">' + '<img src="';
-        m += GetUser(element.ownerId).path + '"';
+        m += user.path + '"';
         m += 'class="mr-3 mt-3 rounded-circle" style="width:40px; object-fit: cover; height: 40px;">\n';
         m += '<h4 class="text-dark mt-3">';
-        m +=  GetUser(element.ownerId).nickName;
-        m +=  ' ' + '<i class="time-color"><small>' + GetTime(element.id) + '</small></i></h4></div>\n';
+        m += user.nickName;
+        m += ' ' + '<i class="time-color"><small>' + ConvertTimeToMessageFormat(element.sendingTime) + '</small></i></h4></div>\n';
         m += '<div class="text-of-message">\n';
         m += '<p class="text-dark">' + element.text + '</p>\n';  
         m += '</div>\n';
         m += '</div>\n';
         m += '</div>\n';
         m += '</div>';
+        
         return m;
-    }
+    };
+ 
+ let ConvertTimeToMessageFormat = function(time){
+        let t = ' ';
+        for(let i = 11; i < 16; i++){
+        t += time[i];
+        };
+        return t;
+    };
     var GetTime = function(messageId) {
     let t = ' ';
     $.ajax(
@@ -136,6 +152,7 @@
                   id: @Model.Id
               }
             }).done(function(data) {
+                $('#no-message').css('visibility', 'none');
                  let ddl = ' ';
                      ddl += DrawMessage(data); 
             $(ddl).insertBefore("#messages");              

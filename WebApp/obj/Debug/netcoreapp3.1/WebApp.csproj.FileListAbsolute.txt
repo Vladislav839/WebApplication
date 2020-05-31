@@ -281,5 +281,4 @@ D:\Рабочий стол\WebAppFinal\WebApplication\WebApp\obj\Debug\netcoreap
 D:\Рабочий стол\WebAppFinal\WebApplication\WebApp\obj\Debug\netcoreapp3.1\staticwebassets\WebApp.StaticWebAssets.xml
 D:\Рабочий стол\WebAppFinal\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.dll
 D:\Рабочий стол\WebAppFinal\WebApplication\WebApp\obj\Debug\netcoreapp3.1\WebApp.pdb
-C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Services\Subscribers.cshtml.g.cs
 C:\project\vlad\WebApplication\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Dialog\Dialog.cshtml.g.cs

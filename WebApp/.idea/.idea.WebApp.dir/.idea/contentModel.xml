@@ -48,7 +48,6 @@
         <e p="Mappers.cs" t="Include" />
         <e p="MessageService.cs" t="Include" />
         <e p="PostService.cs" t="Include" />
-        <e p="Subscribers.cshtml" t="Include" />
         <e p="UserService.cs" t="Include" />
       </e>
       <e p="Startup.cs" t="Include" />
@@ -106,12 +105,19 @@
           <e p="300px-Майк_Вазовски_с_лицом_Салли_шаблон.jpg" t="Include" />
           <e p="3d-businessman-relaxing-in-a-deck-chair-drawing_csp43048944.jpg" t="Include" />
           <e p="_MG_1552.JPG" t="Include" />
+          <e p="a459b62513d10b63130982df85e69e03--anime-manga-kawaii.jpg" t="Include" />
+          <e p="c6361ff0b657.jpg" t="Include" />
           <e p="chikibamboni-3-768x610.jpg" t="Include" />
+          <e p="cropped-fmt_96_28_vlcsnap-2017-03-28-14h03m02s463.jpg" t="Include" />
+          <e p="d4fe06739ce7c0a26ee64b05631d404c.jpg" t="Include" />
+          <e p="Narodnye lady - by RishaManis.png" t="Include" />
+          <e p="photo_2020-04-03_17-53-21.jpg" t="Include" />
           <e p="Screenshot_1.png" t="Include" />
           <e p="Screenshot_20.png" t="Include" />
           <e p="Screenshot_4.png" t="Include" />
           <e p="Screenshot_6.png" t="Include" />
           <e p="Screenshot_60.png" t="Include" />
+          <e p="sezd.jpg" t="Include" />
         </e>
         <e p="img" t="Include">
           <e p="avatar-default.png" t="Include" />
