@@ -51,7 +51,7 @@
         <textarea placeholder="Hi" rows="3" class="form-control input-text" id="message_text" cols="40" name="text_of_message"></textarea>
         <button id="send-message" value="Send" class="btn btn-primary mb-5">Send</button>
     </div>
-        </div>
+    </div>
 </header>
         </div>
     <footer class="page-footer bg-dark font-small blue mt-3">
@@ -93,19 +93,20 @@ console.log(name);
     });
     })
     var DrawMessage = function(element){
+        let user = GetUser(element.ownerId);
         let m = '<div class="row mt-2 mb-2">\n';
-        if (GetUser(element.ownerId).nickName === name){
+        if (user.nickName === name){
             m += '<div class="col-6 offset-6 container-for-message" style="background: #dfe2e8; width: 50%; border-radius: 5px;">\n';
         } else {
             m += '<div class="col-6 container-for-message" style="background: white; width: 50%; border-radius: 5px;">\n';
-        }
+        }    
         m += '<div class="media-body">\n';
         m += '<div class="container d-flex flex-row" style="margin-left: -14px;">' + '<img src="';
-        m += GetUser(element.ownerId).path + '"';
+        m += user.path + '"';
         m += 'class="mr-3 mt-3 rounded-circle" style="width:40px; object-fit: cover; height: 40px;">\n';
         m += '<h4 class="text-dark mt-3">';
-        m +=  GetUser(element.ownerId).nickName;
-        m +=  ' ' + '<i class="time-color"><small>' + GetTime(element.id) + '</small></i></h4></div>\n';
+        m +=  user.nickName;
+        m +=  ' ' + '<i class="time-color"><small>' + ConvertTimeToMessageFormat(element.sendingTime) + '</small></i></h4></div>\n';
         m += '<div class="text-of-message">\n';
         m += '<p class="text-dark">' + element.text + '</p>\n';  
         m += '</div>\n';
@@ -124,22 +125,6 @@ console.log(name);
         return t;
     };
 
-    var GetTime = function(messageId) {
-    let t = ' ';
-    $.ajax(
-        {
-        type: 'Get',
-        url:'@Url.Action("GetSendingTimeOfMessageById", "Dialog")',
-        async: false,
-        data:{
-            id: messageId
-        }
-        }
-    ).done(function(time) {
-     t = time; 
-    });
-    return t;
-    }
     var GetUser = function(data){
         let u;
         $.ajax({
@@ -169,7 +154,8 @@ console.log(name);
                  $('#no-message').css('visibility', 'none');
                  let ddl = ' ';
                      ddl += DrawMessage(data); 
-            $(ddl).insertBefore("#messages");              
+            $(ddl).insertBefore("#messages");          
+            $('#message_text').innerText('');
             })
  
         });
